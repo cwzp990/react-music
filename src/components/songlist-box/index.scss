@@ -1,0 +1,24 @@
+@import "../../styles/mixin.scss";
+
+.songlist-box {
+	@include wh(100%, 100%);
+	.img-wrapper {
+		position: relative;
+		.count {
+			position: absolute;
+			top: 5px;
+			right: 5px;
+			@include sc($font_small, #fff);
+		}
+		.sub {
+			position: absolute;
+			bottom: 5px;
+			left: 5px;
+			@include sc($font_small, #fff);
+		}
+	}
+	.title {
+		@include more;
+		@include sc;
+	}
+}

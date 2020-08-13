@@ -1,0 +1,23 @@
+$gray: #bfbfbf;
+$theme: #ffaa20;
+$font_small: 12px;
+$font_normal: 14px;
+$font_large: 16px;
+
+@mixin wh($w, $h) {
+	width: $w;
+	height: $h;
+}
+
+@mixin sc($s: $font_small, $c: $gray) {
+	font-size: $s;
+	color: $c;
+}
+
+@mixin more($row: 2) {
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: $row;
+	word-break: break-all;
+	overflow: hidden;
+}
