@@ -12,11 +12,6 @@
 			font-size: 0;
 			.slider-item {
 				display: inline-block;
-				height: 100%;
-				width: 100%;
-				line-height: 200px;
-				text-align: center;
-				font-size: 26px;
 				transform: translate3d(0, 0, 0);
 				backface-visibility: hidden;
 				@include wh(100%, 100%);

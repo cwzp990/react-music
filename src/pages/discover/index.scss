@@ -1,17 +1,31 @@
 @import "../../styles/mixin.scss";
 
-.discover-btn {
-	display: flex;
-	a {
+.m-discover {
+	.discover-btn {
 		display: flex;
-		justify-content: center;
-		align-items: center;
-		flex-direction: column;
-		width: 33%;
-		@include sc;
-		.iconfont {
-			@include sc(24px);
-			margin-bottom: 5px;
+		margin-top: 10px;
+		a {
+			display: flex;
+			position: relative;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			width: 33%;
+			@include sc;
+			.iconfont {
+				@include avatar(48px, 48px);
+				@include sc(32px, #fff);
+				margin-bottom: 5px;
+			}
+			.btn-title {
+				@include sc($font_normal, $gray);
+				margin-top: 8px;
+			}
+			.today {
+				@include center;
+				@include sc($font_small, #fff);
+				top: 36%;
+			}
 		}
 	}
 }

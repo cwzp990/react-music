@@ -6,6 +6,34 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "90853",
+      "name": "rank_fill",
+      "font_class": "rank",
+      "unicode": "e721",
+      "unicode_decimal": 59169
+    },
+    {
+      "icon_id": "6924607",
+      "name": "play",
+      "font_class": "play-hollow",
+      "unicode": "e61e",
+      "unicode_decimal": 58910
+    },
+    {
+      "icon_id": "11982669",
+      "name": "Month, date, calendar",
+      "font_class": "calendar",
+      "unicode": "e9cf",
+      "unicode_decimal": 59855
+    },
+    {
+      "icon_id": "12575463",
+      "name": "SongList 歌单",
+      "font_class": "songlist",
+      "unicode": "e63a",
+      "unicode_decimal": 58938
+    },
+    {
       "icon_id": "2738749",
       "name": "Loading",
       "font_class": "loading",
@@ -29,7 +57,7 @@
     {
       "icon_id": "5978743",
       "name": "random-forest",
-      "font_class": "suijisenlin",
+      "font_class": "random",
       "unicode": "e60e",
       "unicode_decimal": 58894
     },

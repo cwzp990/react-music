@@ -14,7 +14,7 @@ function Rank () {
 		})
 	}, [])
 
-	return <div className="ranklist-wrapper">
+	return <div className="m-rank">
 		{rankList.map(list => (<div className="box-wrapper" key={list.id}>
 			<Box info={list}></Box></div>))}
 	</div>

@@ -22,3 +22,20 @@ $font_large: 16px;
 	word-break: break-all;
 	overflow: hidden;
 }
+
+@mixin avatar($w, $h, $bgc: $theme) {
+	display: inline-block;
+	width: $w;
+	line-height: $h;
+	background: $bgc;
+	text-align: center;
+	border-radius: 50%;
+	overflow: hidden;
+}
+
+@mixin center {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}

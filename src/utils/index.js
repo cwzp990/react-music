@@ -7,3 +7,7 @@ export function convertCount (count) {
     return count
   }
 }
+
+export function today() {
+  return new Date().getDate()
+}
