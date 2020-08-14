@@ -3,8 +3,8 @@ import { renderRoutes } from 'react-router-config';
 
 function SongList (props) {
 	return (
-		<div>
-			<p>我是歌单</p>
+		<div className="m-square">
+			<p>这是歌单广场</p>
 			{renderRoutes(props.route.routes)}
 		</div>
 	)

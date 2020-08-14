@@ -1,0 +1,22 @@
+@import '../../styles/mixin.scss';
+
+.m-search {
+	.search-box {
+		@include wh(90%, 100%);
+		@include sc;
+		padding: 0 10px 0 25px;
+		box-sizing: border-box;
+		background: $bgc;
+		border-radius: 15px;
+  }
+  .icon-search {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    margin-top: -5px;
+    @include sc;
+  }
+  .cancel {
+    @include sc($font_small, $gray);
+  }
+}

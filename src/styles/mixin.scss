@@ -1,5 +1,6 @@
 $light_gray: #bfbfbf;
 $gray: #707070;
+$bgc: #f6f6f6;
 $theme: #ffaa20;
 $font_small: 12px;
 $font_normal: 14px;
@@ -23,11 +24,11 @@ $font_large: 16px;
 	overflow: hidden;
 }
 
-@mixin avatar($w, $h, $bgc: $theme) {
+@mixin avatar($w, $h, $bg: $theme) {
 	display: inline-block;
 	width: $w;
 	line-height: $h;
-	background: $bgc;
+	background: $bg;
 	text-align: center;
 	border-radius: 50%;
 	overflow: hidden;
@@ -38,4 +39,19 @@ $font_large: 16px;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+}
+
+.m-header {
+	display: flex;
+	align-items: center;
+	@include wh(100%, 36px);
+	.header-left,
+	.header-right {
+		flex: 0 0 5%;
+	}
+	.header-main {
+		position: relative;
+		height: 80%;
+		flex: 1;
+	}
 }

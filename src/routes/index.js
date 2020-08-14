@@ -9,8 +9,10 @@ import Mine from "../pages/mine"
 import Friend from "../pages/friend"
 import Daily from "../pages/daily"
 import SongList from "../pages/songlist"
-import SongListDetail from "../components/songlist"
 import Rank from "../pages/rank"
+import Search from "../pages/search"
+
+import SongListDetail from "../components/songlist"
 
 const routes = [
 	{
@@ -59,6 +61,10 @@ const routes = [
 						path: "/rank",
 						component: Rank,
 					},
+					{
+						path: '/search',
+						component: Search
+					}
 				],
 			},
 		],

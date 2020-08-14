@@ -28,4 +28,13 @@
 			}
 		}
 	}
+
+	.search-box {
+		@include wh(98%, 100%);
+		@include sc;
+		padding: 0 10px;
+		box-sizing: border-box;
+		background: $bgc;
+		border-radius: 15px;
+	}
 }

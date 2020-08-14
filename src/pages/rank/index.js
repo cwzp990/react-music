@@ -4,7 +4,8 @@ import Box from '../../components/songlist-box'
 
 import './index.scss'
 
-function Rank () {
+function Rank (props) {
+	const { history } = props
 
 	const [rankList, setRankList] = useState([])
 
@@ -16,7 +17,7 @@ function Rank () {
 
 	return <div className="m-rank">
 		{rankList.map(list => (<div className="box-wrapper" key={list.id}>
-			<Box info={list}></Box></div>))}
+			<Box info={list} history={history}></Box></div>))}
 	</div>
 }
 

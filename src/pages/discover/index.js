@@ -7,6 +7,7 @@ import { today } from '../../utils'
 import './index.scss'
 
 function Discover (props) {
+	const { history } = props
 
 	const [imgList, setImgList] = useState([])
 
@@ -17,7 +18,19 @@ function Discover (props) {
 		})
 	}, [])
 
+	const onSearch = () => {
+		history.push('/search')
+	}
+
 	return <div className="m-discover">
+		<div className="m-header">
+			<div className="header-main">
+				<input className="search-box" placeholder="随便搜搜吧 ┑(￣Д ￣)┍" onFocus={onSearch} />
+			</div>
+			<div className="header-right">
+				<i className="iconfont icon-person"></i>
+			</div>
+		</div>
 		<Slider imgList={imgList} />
 		<div className="discover-btn">
 			<NavLink to="/daily"><i className="iconfont icon-calendar"></i><span className="btn-title">每日推荐</span><span className="today">{today()}</span></NavLink>
