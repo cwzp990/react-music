@@ -30,7 +30,7 @@ const apiMusic = {
 	topPlaylist: "/top/playlist", //  歌单(网友精选歌单
 	newAlbum: "/top/albums", // 新碟上架
 	topArtists: "/top/artists", //  热门歌手
-	topList: "/top/list", //  音乐排行榜
+	topList: "/toplist", //  音乐排行榜
 	personalized: "/personalized", //  推荐歌单
 	highquality: "/top/playlist/highquality", // 精品歌单
 	privatecontent: "/personalized/privatecontent", // 独家放送

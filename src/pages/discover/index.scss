@@ -1,0 +1,17 @@
+@import "../../styles/mixin.scss";
+
+.discover-btn {
+	display: flex;
+	a {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		width: 33%;
+		@include sc;
+		.iconfont {
+			@include sc(24px);
+			margin-bottom: 5px;
+		}
+	}
+}

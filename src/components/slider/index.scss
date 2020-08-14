@@ -1,4 +1,4 @@
-@import '../../styles/mixin.scss';
+@import "../../styles/mixin.scss";
 
 .banner-wrapper {
 	position: relative;
@@ -31,7 +31,7 @@
 				display: inline-block;
 				margin: 0 4px;
 				border-radius: 50%;
-				background: $gray;
+				background: $light_gray;
 				@include wh(8px, 8px);
 				&.active {
 					width: 20px;

@@ -1,6 +1,8 @@
 @import "../../styles/mixin.scss";
 
 .songlist-box {
+	display: flex;
+	flex-direction: column;
 	@include wh(100%, 100%);
 	.img-wrapper {
 		position: relative;
@@ -19,6 +21,7 @@
 	}
 	.title {
 		@include more;
-		@include sc;
+		@include sc($font_normal, $gray);
+		line-height: 1.5;
 	}
 }

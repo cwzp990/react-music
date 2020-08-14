@@ -1,4 +1,5 @@
-$gray: #bfbfbf;
+$light_gray: #bfbfbf;
+$gray: #707070;
 $theme: #ffaa20;
 $font_small: 12px;
 $font_normal: 14px;
@@ -9,7 +10,7 @@ $font_large: 16px;
 	height: $h;
 }
 
-@mixin sc($s: $font_small, $c: $gray) {
+@mixin sc($s: $font_small, $c: $light_gray) {
 	font-size: $s;
 	color: $c;
 }

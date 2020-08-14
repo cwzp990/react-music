@@ -1,7 +1,23 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
+import { api } from '../../api'
+import Box from '../../components/songlist-box'
 
-function Rank() {
-	return <div>我是排行</div>
+import './index.scss'
+
+function Rank () {
+
+	const [rankList, setRankList] = useState([])
+
+	useEffect(() => {
+		api.getTopListResource().then(resp => {
+			setRankList(resp.data.list)
+		})
+	}, [])
+
+	return <div className="ranklist-wrapper">
+		{rankList.map(list => (<div className="box-wrapper" key={list.id}>
+			<Box info={list}></Box></div>))}
+	</div>
 }
 
 export default React.memo(Rank)

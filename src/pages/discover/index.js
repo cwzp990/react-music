@@ -3,7 +3,9 @@ import { NavLink } from "react-router-dom"
 import { api } from '../../api'
 import Slider from "../../components/slider"
 
-function Discover(props) {
+import './index.scss'
+
+function Discover (props) {
 
 	const [imgList, setImgList] = useState([])
 

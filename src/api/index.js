@@ -330,10 +330,8 @@ export const api = {
 	 * 17.华语金曲榜 18.中国嘻哈榜  19.法国NRJ  EuroHot 30周榜  20.台湾Hito排行榜
 	 * 21.Beatport全球电子舞曲榜
 	 */
-	getTopListResource(idx) {
-		return axios.get(TopListResource, {
-			params: { idx },
-		})
+	getTopListResource() {
+		return axios.get(TopListResource)
 	},
 
 	// 获取推荐歌单
