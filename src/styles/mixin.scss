@@ -6,6 +6,12 @@ $font_small: 12px;
 $font_normal: 14px;
 $font_large: 16px;
 
+@mixin bgImg {
+	position: relative;
+	z-index: -1;
+	background-size: cover;
+}
+
 @mixin wh($w, $h) {
 	width: $w;
 	height: $h;
@@ -27,6 +33,7 @@ $font_large: 16px;
 @mixin avatar($w, $h, $bg: $theme) {
 	display: inline-block;
 	width: $w;
+	height: $h;
 	line-height: $h;
 	background: $bg;
 	text-align: center;
@@ -41,17 +48,8 @@ $font_large: 16px;
 	transform: translate(-50%, -50%);
 }
 
-.m-header {
-	display: flex;
-	align-items: center;
-	@include wh(100%, 36px);
-	.header-left,
-	.header-right {
-		flex: 0 0 5%;
-	}
-	.header-main {
-		position: relative;
-		height: 80%;
-		flex: 1;
-	}
+.more {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }

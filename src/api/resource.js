@@ -27,9 +27,11 @@ const apiMusic = {
 	likeMusic: "/like", // 添加喜欢的音乐(用户级
 	fmTrash: "/fm_trash", // 将音乐从私人FM中移除至垃圾桶
 	categoryPlaylist: "/playlist/catlist", // 歌单分类
+	categoryHotPlaylist: "/playlist/hot", // 歌单分类
 	topPlaylist: "/top/playlist", //  歌单(网友精选歌单
 	newAlbum: "/top/albums", // 新碟上架
 	topArtists: "/top/artists", //  热门歌手
+	artList: "/artist/list",
 	topList: "/toplist", //  音乐排行榜
 	personalized: "/personalized", //  推荐歌单
 	highquality: "/top/playlist/highquality", // 精品歌单
@@ -77,9 +79,11 @@ export const DailySigninResource = API_ROOT.concat(apiMusic.dailySignin)
 export const LikeMusicResource = API_ROOT.concat(apiMusic.likeMusic)
 export const FmTrashResource = API_ROOT.concat(apiMusic.fmTrash)
 export const CategoryPlaylist = API_ROOT.concat(apiMusic.categoryPlaylist)
+export const CategoryHotPlaylist = API_ROOT.concat(apiMusic.categoryHotPlaylist)
 export const TopPlaylistResource = API_ROOT.concat(apiMusic.topPlaylist)
 export const NewAlbumResource = API_ROOT.concat(apiMusic.newAlbum)
 export const TopArtistsResource = API_ROOT.concat(apiMusic.topArtists)
+export const ArtListResource = API_ROOT.concat(apiMusic.artList)
 export const TopListResource = API_ROOT.concat(apiMusic.topList)
 export const PersonalizedResource = API_ROOT.concat(apiMusic.personalized)
 export const HighQuality = API_ROOT.concat(apiMusic.highquality)

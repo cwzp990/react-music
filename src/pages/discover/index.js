@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { NavLink } from "react-router-dom"
 import { api } from '../../api'
+import Header from "../../components/header"
 import Slider from "../../components/slider"
 import { today } from '../../utils'
 
@@ -22,15 +23,15 @@ function Discover (props) {
 		history.push('/search')
 	}
 
+	const goToSinger = () => {
+		history.push('/singer')
+	}
+
 	return <div className="m-discover">
-		<div className="m-header">
-			<div className="header-main">
-				<input className="search-box" placeholder="随便搜搜吧 ┑(￣Д ￣)┍" onFocus={onSearch} />
-			</div>
-			<div className="header-right">
-				<i className="iconfont icon-person"></i>
-			</div>
-		</div>
+		<Header>
+			<input className="search-box" placeholder="随便搜搜吧 ┑(￣Д ￣)┍" onFocus={onSearch} key="main" />
+			<i className="iconfont icon-person" onClick={goToSinger} key="right"></i>
+		</Header>
 		<Slider imgList={imgList} />
 		<div className="discover-btn">
 			<NavLink to="/daily"><i className="iconfont icon-calendar"></i><span className="btn-title">每日推荐</span><span className="today">{today()}</span></NavLink>

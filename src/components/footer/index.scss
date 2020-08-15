@@ -1,4 +1,4 @@
-@import '../../styles/mixin.scss';
+@import "../../styles/mixin.scss";
 .music-footer {
 	display: flex;
 	height: 50px;
@@ -13,8 +13,11 @@
 			@include sc(24px);
 			margin-bottom: 5px;
 		}
-	}
-	.active {
-		color: $theme;
+		&.active {
+			color: $theme;
+			.iconfont {
+				color: $theme;
+			}
+		}
 	}
 }

@@ -3,7 +3,7 @@ import BScroll from "better-scroll"
 
 import "./index.scss"
 
-function Slider(props) {
+function Slider (props) {
 	const [currentPageIndex, setCurrentPageIndex] = useState(0)
 	const scrollContainerRef = useRef()
 	const { imgList } = props
@@ -19,7 +19,7 @@ function Slider(props) {
 					<div className="slider-banner-wrapper">
 						{imgList.map(img => (
 							<div className="slider-item" key={img.bannerId}>
-								<img src={img.pic} width="100%" height="100%" alt="推荐" />
+								<img src={img.pic} alt="推荐" />
 							</div>
 						))}
 					</div>

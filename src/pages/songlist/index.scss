@@ -1,0 +1,17 @@
+@import "../../styles/mixin.scss";
+.m-square {
+	.square-category {
+		display: flex;
+		.cat-wrapper {
+			display: flex;
+			width: 90%;
+			overflow-x: scroll;
+			overflow-y: hidden;
+			span {
+        display: inline-block;
+				@include sc($font_normal, $gray);
+				@include wh(100px, 16px);
+			}
+		}
+	}
+}

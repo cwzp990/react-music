@@ -1,5 +1,3 @@
-import { func } from "prop-types"
-
 export function convertCount (count) {
   if (count >= 100000000) {
     return (count / 100000000).toFixed(2) + '亿'

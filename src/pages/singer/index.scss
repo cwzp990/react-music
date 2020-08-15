@@ -1,0 +1,13 @@
+@import '../../styles/mixin.scss';
+
+.m-singer {
+  .m-category {
+    p {
+      display: flex;
+      span {
+        @include sc($font_normal, $gray);
+        padding: 5px 10px;
+      }
+    }
+  }
+}

@@ -11,8 +11,10 @@ import Daily from "../pages/daily"
 import SongList from "../pages/songlist"
 import Rank from "../pages/rank"
 import Search from "../pages/search"
+import Singer from "../pages/singer"
 
 import SongListDetail from "../components/songlist"
+import SongListInfo from "../components/songlist/info"
 
 const routes = [
 	{
@@ -50,12 +52,14 @@ const routes = [
 					{
 						path: "/songlist",
 						component: SongList,
-						routes: [
-							{
-								path: '/songlist/detail/:id',
-								component: SongListDetail
-							}
-						]
+					},
+					{
+						path: '/list_detail/:id',
+						component: SongListDetail
+					},
+					{
+						path: '/list_info/:id',
+						component: SongListInfo
 					},
 					{
 						path: "/rank",
@@ -64,6 +68,10 @@ const routes = [
 					{
 						path: '/search',
 						component: Search
+					},
+					{
+						path: '/singer',
+						component: Singer
 					}
 				],
 			},

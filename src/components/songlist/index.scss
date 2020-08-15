@@ -1,0 +1,59 @@
+@import "../../styles/mixin.scss";
+
+.m-songlist-details {
+	.songlist-info {
+		display: flex;
+		justify-content: space-between;
+		@include wh(100%, 30%);
+    @include bgImg;
+    padding: 10px 0 25px 0;
+    box-sizing: border-box;
+		.cover {
+      position: relative;
+      flex: 0 0 140px;
+      @include wh(140px, 140px);
+      margin-right: 15px;
+			.count {
+				position: absolute;
+				top: 5px;
+				right: 5px;
+				@include sc($font_small, #fff);
+			}
+    }
+    .info {
+      flex: 1;
+      .title {
+        @include sc($font_large, #fff);
+        font-weight: 700;
+        margin-bottom: 20px;
+      }
+      .creator {
+        @include sc($font_small, #fff);
+        margin-bottom: 20px;
+        .avatar-wrapper {
+          display: inline-block;
+          vertical-align: middle;
+          @include avatar(36px, 36px);
+          margin-right: 10px;
+        }
+        .name {
+          display: inline-block;
+          vertical-align: middle;
+        }
+      }
+      .desc {
+        @include more;
+        @include sc($font_small, #fff);
+        line-height: 20px;
+      }
+    }
+  }
+  .songlist-main {
+    position: relative;
+    top: -10px;
+    z-index: 10;
+    background: #fff;
+    border-radius: 15px 15px 0 0;
+    padding: 15px 5px;
+  }
+}

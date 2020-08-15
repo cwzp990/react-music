@@ -1,0 +1,16 @@
+@import '../../styles/mixin.scss';
+
+.m-header {
+	display: flex;
+	align-items: center;
+	@include wh(100%, 36px);
+	.header-left,
+	.header-right {
+		flex: 0 0 5%;
+	}
+	.header-main {
+		position: relative;
+		height: 80%;
+		flex: 1;
+	}
+}
