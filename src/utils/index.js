@@ -8,19 +8,26 @@ export function convertCount (count) {
   }
 }
 
-export function today() {
+export function today () {
   return new Date().getDate()
 }
 
-export const debounce = (func, delay) => {
-  let timer;
+export function debounce (func, delay) {
+  let timer = null;
   return function (...args) {
-    if(timer) {
-      clearTimeout(timer);
+    if (timer) {
+      clearTimeout(timer)
     }
     timer = setTimeout(() => {
-      func.apply(this, args);
-      clearTimeout(timer);
-    }, delay);
-  };
-};
+      func.call(this, ...args)
+    }, delay)
+  }
+}
+
+export function more (txt, len) {
+  if (txt.length >= len) {
+    return txt.slice(0, len) + '...'
+  } else {
+    return txt
+  }
+}

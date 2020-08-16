@@ -1,10 +1,14 @@
 $light_gray: #bfbfbf;
 $gray: #707070;
+$black: #3c3c3c;
+$red: #d81e06;
+$blue: #1296db;
 $bgc: #f6f6f6;
 $theme: #ffaa20;
 $font_small: 12px;
 $font_normal: 14px;
 $font_large: 16px;
+$font_huge: 18px;
 
 @mixin bgImg {
 	position: relative;
@@ -46,6 +50,14 @@ $font_large: 16px;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+}
+
+.red {
+	color: $red !important;
+}
+
+.blue {
+	color: $blue !important;
 }
 
 .more {

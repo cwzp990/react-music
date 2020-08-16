@@ -1,7 +1,9 @@
 import React from "react"
+import { more } from '../../utils'
+
 import "./index.scss"
 
-function List(props) {
+function List (props) {
 	const { list, subscribed } = props
 	return (
 		<div className="m-list">
@@ -21,7 +23,7 @@ function List(props) {
 							<p className="song-name">
 								<span className="name">{song.name}</span>
 								<span className="singer">
-									{song.ar[0].name} - {song.al.name}
+									{song.ar[0].name} - {more(song.al.name, 25)}
 								</span>
 							</p>
 						</div>

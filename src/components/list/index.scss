@@ -5,8 +5,8 @@
 		display: flex;
 		justify-content: space-between;
 		.all {
-      margin-left: 10px;
-			@include sc($font_large, #000);
+			margin-left: 10px;
+			@include sc($font_large, $black);
 		}
 		.count {
 			@include sc($font_small);
@@ -22,20 +22,20 @@
 		margin-top: 10px;
 		.item-song {
 			display: flex;
-      justify-content: space-between;
+			justify-content: space-between;
 			height: 48px;
 			.item-left {
-				width: 80%;
+				width: 90%;
 				.index {
-          display: inline-block;
+					display: inline-block;
 					@include sc($font_normal, $gray);
-          margin-right: 15px;
+					margin-right: 15px;
 				}
 				.song-name {
 					display: inline-flex;
-          flex-direction: column;
+					flex-direction: column;
 					.name {
-						@include sc($font_normal, #000);
+						@include sc($font_normal, $black);
 						line-height: 1.5;
 					}
 					.singer {
@@ -43,10 +43,10 @@
 						line-height: 1.5;
 					}
 				}
-      }
-      .play {
-						@include sc($font_large, $light_gray);
-      }
+			}
+			.play {
+				@include sc($font_large, $light_gray);
+			}
 		}
 	}
 }

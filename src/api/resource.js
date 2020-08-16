@@ -11,7 +11,7 @@ const apiMusic = {
 	playlistDetail: "/playlist/detail", // 获取歌单详情
 	musicUrl: "/music/url", // 获取音乐url
 	search: "/search", // 搜素音乐
-	hotKeys: "/search/hot", // 热搜
+	hotKeys: "/search/hot/detail", // 热搜
 	lyric: "/lyric", // 获取歌词
 	getComment: "/comment/music", // 获取评论
 	sendComment: "/comment", // 写评论

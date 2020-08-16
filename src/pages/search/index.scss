@@ -1,4 +1,4 @@
-@import '../../styles/mixin.scss';
+@import "../../styles/mixin.scss";
 
 .m-search {
 	.search-box {
@@ -8,15 +8,97 @@
 		box-sizing: border-box;
 		background: $bgc;
 		border-radius: 15px;
+	}
+	.search {
+		position: absolute;
+		top: 50%;
+		left: 10px;
+		margin-top: -5px;
+		@include sc;
+	}
+	.cancel {
+		@include sc($font_small, $gray);
+	}
+
+	.history,
+	.hot {
+		@include sc($font_huge, $black);
+		line-height: 24px;
+	}
+
+	.search-history {
+		.title {
+			display: flex;
+			justify-content: space-between;
+			line-height: 30px;
+			.icon-empty {
+				@include sc($font_large, $light_gray);
+			}
+		}
+		.history-wrapper {
+			display: flex;
+			flex-wrap: wrap;
+			.item-search {
+				padding: 5px 8px;
+				margin: 0 10px 10px 0;
+				border-radius: 5px;
+				background: $bgc;
+				@include sc($font_normal, $gray);
+			}
+		}
+	}
+	.search-hot {
+		.hot-wrapper {
+			display: flex;
+			justify-content: space-between;
+			flex-wrap: wrap;
+			.item-hot {
+				display: flex;
+				align-items: center;
+        width: 50%;
+        margin-bottom: 10px;
+				.index {
+          @include sc($font_huge, $gray);
+          margin-right: 10px;
+				}
+				.main {
+					display: flex;
+					flex-direction: column;
+					.name {
+            display: inline-block;
+            @include sc($font_large, $black);
+            line-height: 24px;
+            margin-right: 3px;
+          }
+          .iconfont {
+            @include sc($font_large);
+          }
+          .sub {
+            @include sc($font_small, $light_gray);
+          }
+				}
+			}
+		}
+	}
+}
+
+.m-search-list {
+  .title {
+    line-height: 36px;
+    @include sc($font_normal, $blue);
   }
-  .icon-search {
-    position: absolute;
-    top: 50%;
-    left: 10px;
-    margin-top: -5px;
-    @include sc;
-  }
-  .cancel {
-    @include sc($font_small, $gray);
+  .result-wrapper {
+    display: flex;
+    flex-direction: column;
+    .item-result {
+      line-height: 36px;
+      border-bottom: 1px solid $bgc;
+      @include sc($font_normal, $black);
+      .iconfont {
+        display: inline-block;
+        @include sc($font_normal, $light_gray);
+        margin-right: 10px;
+      }
+    }
   }
 }
