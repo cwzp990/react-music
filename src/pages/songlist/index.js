@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react"
-import {renderRoutes} from 'react-router-config'
 import Box from "../../components/songlist-box"
 import { api } from "../../api"
 

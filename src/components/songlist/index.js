@@ -28,7 +28,7 @@ function SongListDetail(props) {
 
 	return (
 		<div className="m-songlist-details">
-			<div className="songlist-info" style={bg} onClick={() => onInfo(id)}>
+			<div className="songlist-info bg-img" style={bg} onClick={() => onInfo(id)}>
 				<div className="cover">
 					<img src={coverImgUrl} alt="" />
 					<span className="count">
@@ -51,7 +51,7 @@ function SongListDetail(props) {
 				</div>
 			</div>
 			<div className="songlist-main">
-				<List list={tracks} subscribed={subscribedCount} />
+				<List list={tracks} subscribed={subscribedCount} history={history} />
 			</div>
 		</div>
 	)

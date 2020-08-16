@@ -17,7 +17,7 @@ const apiMusic = {
 	sendComment: "/comment", // 写评论
 	liked: "/comment/like", // 评论点赞
 	album: "/album", //  获取专辑内容
-	artists: "/artists", // 获取歌手单曲列表
+	artistCategory: "/artist/list", // 获取歌手分类列表
 	artistAlbum: "/artist/album", // 获取歌手专辑列表
 	artistDesc: "/artist/desc", //  获取歌手信息
 	recommendResource: "/recommend/resource", // 获取每日推荐歌单（用户级）
@@ -31,7 +31,7 @@ const apiMusic = {
 	topPlaylist: "/top/playlist", //  歌单(网友精选歌单
 	newAlbum: "/top/albums", // 新碟上架
 	topArtists: "/top/artists", //  热门歌手
-	artList: "/artist/list",
+	singerHotSong: "/artist/top/song", // 歌手热门50首歌曲
 	topList: "/toplist", //  音乐排行榜
 	personalized: "/personalized", //  推荐歌单
 	highquality: "/top/playlist/highquality", // 精品歌单
@@ -69,7 +69,7 @@ export const CommentResource = API_ROOT.concat(apiMusic.getComment)
 export const sendComment = API_ROOT.concat(apiMusic.sendComment)
 export const CommentLiked = API_ROOT.concat(apiMusic.liked)
 export const AlbumResource = API_ROOT.concat(apiMusic.album)
-export const ArtistsResource = API_ROOT.concat(apiMusic.artists)
+export const ArtistsResource = API_ROOT.concat(apiMusic.artistCategory)
 export const ArtistAlbumResource = API_ROOT.concat(apiMusic.artistAlbum)
 export const ArtistDescResource = API_ROOT.concat(apiMusic.artistDesc)
 export const RecommendResource = API_ROOT.concat(apiMusic.recommendResource)
@@ -83,7 +83,7 @@ export const CategoryHotPlaylist = API_ROOT.concat(apiMusic.categoryHotPlaylist)
 export const TopPlaylistResource = API_ROOT.concat(apiMusic.topPlaylist)
 export const NewAlbumResource = API_ROOT.concat(apiMusic.newAlbum)
 export const TopArtistsResource = API_ROOT.concat(apiMusic.topArtists)
-export const ArtListResource = API_ROOT.concat(apiMusic.artList)
+export const SingerHotSongResource = API_ROOT.concat(apiMusic.singerHotSong)
 export const TopListResource = API_ROOT.concat(apiMusic.topList)
 export const PersonalizedResource = API_ROOT.concat(apiMusic.personalized)
 export const HighQuality = API_ROOT.concat(apiMusic.highquality)

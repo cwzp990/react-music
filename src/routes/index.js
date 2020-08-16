@@ -12,9 +12,11 @@ import SongList from "../pages/songlist"
 import Rank from "../pages/rank"
 import Search from "../pages/search"
 import Singer from "../pages/singer"
+import SingerInfo from "../pages/singer/singer-info"
 
 import SongListDetail from "../components/songlist"
 import SongListInfo from "../components/songlist/info"
+import Comment from "../components/comment"
 
 const routes = [
 	{
@@ -72,6 +74,14 @@ const routes = [
 					{
 						path: '/singer',
 						component: Singer
+					},
+					{
+						path: '/singerinfo/:id',
+						component: SingerInfo
+					},
+					{
+						path: '/comment/:id',
+						component: Comment
 					}
 				],
 			},

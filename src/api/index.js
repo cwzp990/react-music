@@ -18,6 +18,7 @@ import {
 	CommentLiked,
 	AlbumResource,
 	ArtistsResource,
+	SingerHotSongResource,
 	ArtistAlbumResource,
 	ArtistDescResource,
 	RecommendResource,
@@ -332,6 +333,13 @@ export const api = {
 				area,
 				type
 			}
+		})
+	},
+
+	// 获取歌手热门单曲
+	getSingerHotSong (id) {
+		return axios.get(SingerHotSongResource, {
+			params: { id }
 		})
 	},
 

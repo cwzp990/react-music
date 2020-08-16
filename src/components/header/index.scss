@@ -1,4 +1,4 @@
-@import '../../styles/mixin.scss';
+@import "../../styles/mixin.scss";
 
 .m-header {
 	display: flex;
@@ -7,10 +7,13 @@
 	.header-left,
 	.header-right {
 		flex: 0 0 5%;
+		.iconfont {
+			@include sc($font_huge);
+		}
 	}
 	.header-main {
 		position: relative;
-		height: 80%;
+		width: 80%;
 		flex: 1;
 	}
 }

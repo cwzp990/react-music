@@ -10,12 +10,6 @@ $font_normal: 14px;
 $font_large: 16px;
 $font_huge: 18px;
 
-@mixin bgImg {
-	position: relative;
-	z-index: -1;
-	background-size: cover;
-}
-
 @mixin wh($w, $h) {
 	width: $w;
 	height: $h;
@@ -36,6 +30,7 @@ $font_huge: 18px;
 
 @mixin avatar($w, $h, $bg: $theme) {
 	display: inline-block;
+	vertical-align: middle;
 	width: $w;
 	height: $h;
 	line-height: $h;

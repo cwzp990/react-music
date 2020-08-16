@@ -1,13 +1,56 @@
-@import '../../styles/mixin.scss';
+@import "../../styles/mixin.scss";
 
 .m-singer {
-  .m-category {
-    p {
-      display: flex;
-      span {
-        @include sc($font_normal, $gray);
-        padding: 5px 10px;
-      }
-    }
-  }
+	.m-category {
+		margin-bottom: 5px;
+		p {
+			display: flex;
+			span {
+				@include sc($font_normal, $gray);
+				padding: 5px 10px;
+			}
+		}
+
+		.active {
+			color: $theme !important;
+		}
+	}
+
+	.singer-wrapper {
+		.list-wrapper {
+			display: flex;
+			flex-direction: column;
+			.item-singer {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 10px 0;
+				border-bottom: 1px solid $bgc;
+				@include sc($font_normal, $black);
+				.singer {
+					flex: 1;
+					.avatar {
+						@include avatar(48px, 48px);
+					}
+					.name {
+						display: inline-block;
+						vertical-align: middle;
+						margin-left: 15px;
+            @include sc($font_normal, $black);
+            .sub {
+              color: $gray;
+            }
+					}
+				}
+				.follow {
+					flex: 0 0 60px;
+					line-height: 24px;
+					text-align: center;
+					border: 1px solid $theme;
+					border-radius: 8px;
+					@include sc($font_normal, $theme);
+				}
+			}
+		}
+	}
 }
