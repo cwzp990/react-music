@@ -1,1 +1,39 @@
-@import '../../styles/mixin.scss';
+@import "../../styles/mixin.scss";
+
+.item-comment {
+	display: flex;
+	margin: 6px 0;
+	padding: 8px 0;
+	border-bottom: 1px solid $bgc;
+  .avatar {
+		@include avatar(48px, 48px);
+		flex: 0 0 48px;
+		margin-right: 10px;
+	}
+	.main {
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+		.userinfo {
+			display: flex;
+			justify-content: space-between;
+			.name {
+				@include sc($font_normal, $black);
+				font-weight: 700;
+				line-height: 18px;
+			}
+			.time {
+				@include sc($font_small, $gray);
+				line-height: 18px;
+			}
+			.count {
+				@include sc($font_small, $light_gray);
+				line-height: 18px;
+			}
+		}
+		.content {
+			@include sc($font_normal, $black);
+			line-height: 22px;
+		}
+	}
+}

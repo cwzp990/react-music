@@ -1,16 +1,16 @@
 @import "../../styles/mixin.scss";
 
 .m-singer-info {
-	height: 100%;
-	.singer-info {
+  height: 100%;
+  .singer-info {
     position: relative;
-		background: $black;
-		@include wh(100%, 30%);
-		.singer {
+    background: $black;
+    @include wh(100%, 30%);
+    .singer {
       position: absolute;
-      top: 48%;
+      top: 40%;
       left: 0;
-			.name {
+      .name {
         @include sc($font_huge, #fff);
         margin-bottom: 8px;
       }
@@ -19,14 +19,14 @@
         @include more(3);
         line-height: 22px;
       }
-		}
-	}
-	.singer-list {
-		position: relative;
-		top: -10px;
-		z-index: 10;
-		background: #fff;
-		border-radius: 15px 15px 0 0;
-		padding: 15px 5px;
-	}
+    }
+  }
+  .singer-list {
+    position: relative;
+    top: -10px;
+    z-index: 10;
+    background: #fff;
+    border-radius: 15px 15px 0 0;
+    padding: 15px 5px;
+  }
 }

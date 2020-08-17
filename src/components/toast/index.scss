@@ -1,0 +1,23 @@
+@import "../../styles/mixin.scss";
+
+.m-toast {
+  @include wh(180px, auto);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: $bgc;
+  .icon-wrapper {
+		@include wh(100%, 48px);
+		text-align: center;
+		margin-bottom: 10px;
+    .iconfont {
+			@include sc(48px, #fff);
+			line-height: 48px;
+    }
+	}
+	.tips {
+		@include sc($font_normal, #fff);
+		text-align: center;
+	}
+}
