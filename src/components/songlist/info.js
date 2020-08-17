@@ -2,10 +2,9 @@ import React from "react"
 
 function SongListInfo(props) {
 	const { info } = props
-	const { tag } = info
 	return (
 		<div className="m-songlist-info">
-			<div>
+			{/* <div>
 				<img src="" alt="" />
 			</div>
 			<h3></h3>
@@ -16,8 +15,7 @@ function SongListInfo(props) {
 						{t}
 					</span>
 				))}
-			</p>
-      
+			</p> */}
 		</div>
 	)
 }

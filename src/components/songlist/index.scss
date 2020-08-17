@@ -2,6 +2,7 @@
 
 .m-songlist-details {
 	.songlist-info {
+    position: relative;
 		display: flex;
 		justify-content: space-between;
 		@include wh(100%, 30%);
@@ -9,7 +10,6 @@
     box-sizing: border-box;
 		.cover {
       position: relative;
-      flex: 0 0 140px;
       @include wh(140px, 140px);
       margin-right: 15px;
 			.count {
@@ -20,7 +20,7 @@
 			}
     }
     .info {
-      flex: 1;
+      width: calc(100% - 155px);
       .title {
         @include sc($font_large, #fff);
         font-weight: 700;

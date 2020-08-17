@@ -3,6 +3,8 @@ import Header from "../../components/header";
 import CommentItem from "./comment-item";
 import { api } from "../../api";
 
+import './index.scss'
+
 function Comment(props) {
   const { history, match } = props;
   const [comments, setComments] = useState([]);
@@ -25,7 +27,7 @@ function Comment(props) {
     <div className="m-comment">
       <Header>
         <i className="iconfont icon-left" onClick={onBack} key="left"></i>
-        <p className="player-title" key="main">评论</p>
+        <p className="comment-title" key="main">评论</p>
       </Header>
 
       <div>

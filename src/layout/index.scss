@@ -1,8 +1,7 @@
 @import '../styles/mixin.scss';
 .music-wrapper {
 	position: relative;
-	@include wh(calc(100vw - 16px), 100vh);
-	padding: 0 8px;
+	@include wh(100vw, 100vh);
 	.music-main {
 		width: 100%;
 		height: calc(100% - 50px);

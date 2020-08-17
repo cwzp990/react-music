@@ -8,13 +8,13 @@
 	.header-right {
 		flex: 0 0 5%;
 		.iconfont {
-			@include sc($font_huge);
+			@include sc(24px);
 		}
 	}
 	.header-main {
 		position: relative;
-		width: 80%;
-		height: 100%;
+		@include wh(80%, 80%);
 		flex: 1;
+		text-align: center;
 	}
 }
