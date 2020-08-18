@@ -1,38 +1,41 @@
-import React, { useEffect, useState, useRef } from "react"
-import BScroll from "better-scroll"
+import React, { useEffect, useState } from "react";
+import Swiper from "swiper";
 
-import "./index.scss"
+import "swiper/swiper-bundle.min.css";
 
-function Slider (props) {
-	const [currentPageIndex, setCurrentPageIndex] = useState(0)
-	const scrollContainerRef = useRef()
-	const { imgList } = props
+function Slider(props) {
+  const [slider, setSlider] = useState(null);
+  const { imgList } = props;
 
-	useEffect(() => {
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
+  useEffect(() => {
+    return () => {
+      if (slider) setSlider(null);
+    };
+  }, []);
 
-	return (
-		<div className="slider-wrapper">
-			<div className="banner-wrapper">
-				<div className="slider-banner-scroll" ref={scrollContainerRef}>
-					<div className="slider-banner-wrapper">
-						{imgList.map(img => (
-							<div className="slider-item" key={img.bannerId}>
-								<img src={img.pic} alt="推荐" />
-							</div>
-						))}
-					</div>
+  useEffect(() => {
+    if (imgList.length && !slider) {
+      let slider = new Swiper(".swiper-container", {
+        pagination: { el: ".swiper-pagination" },
+      });
+      setSlider(slider);
+    }
+  }, [imgList.length, slider]);
 
-					<div className="docs-wrapper">
-						{imgList.map((img, index) => (
-							<span className={`doc ${currentPageIndex === index ? "active" : ""}`} key={img.bannerId}></span>
-						))}
-					</div>
-				</div>
-			</div>
-		</div>
-	)
+  return (
+    <div className="swiper-container">
+      <div className="swiper-wrapper">
+        {imgList.map((slider) => {
+          return (
+            <div className="swiper-slide" key={slider.bannerId}>
+              <img src={slider.pic} alt="推荐" />
+            </div>
+          );
+        })}
+      </div>
+      <div className="swiper-pagination"></div>
+    </div>
+  );
 }
 
-export default React.memo(Slider)
+export default React.memo(Slider);

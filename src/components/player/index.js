@@ -7,7 +7,7 @@ import { api } from "../../api"
 
 function Player (props) {
 	const [songInfo, setSongInfo] = useState({})
-	const [isFull, setIsFull] = useState(true)
+	const [isFull, setIsFull] = useState(false)
 	const { name, ar = [], al = {}, alia = [] } = songInfo
 	const url_id = 1403215687
 
