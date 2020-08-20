@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react"
+import Header from '../../components/header'
 
 import "./index.scss"
 import { api } from "../../api"
 
-function Singer(props) {
+function Singer (props) {
 	const { history } = props
 	const [singerList, setSingerList] = useState([])
 	const [area, setArea] = useState(-1)
@@ -28,12 +29,23 @@ function Singer(props) {
 		setType(type)
 	}
 
+	const onBack = () => {
+		history.goBack()
+	}
+
 	const goToInfo = id => {
 		history.push(`/singerinfo/${id}`)
 	}
 
 	return (
 		<div className="m-singer">
+			<Header>
+				<i className="iconfont icon-left" onClick={onBack} key="left"></i>
+				<p className="header-title" key="main">歌手分类</p>
+				<p key="right">
+					<img src="" alt="" />
+				</p>
+			</Header>
 			<div className="m-category">
 				<p>
 					<span className={area === 7 ? "active" : ""} onClick={() => changeArea(7)}>
@@ -65,7 +77,7 @@ function Singer(props) {
 				</p>
 			</div>
 
-			<div className="singer-wrapper">
+			<div className="singer-wrapper container">
 				<ul className="list-wrapper">
 					{singerList.map(i => (
 						<li className="item-singer" key={i.id} onClick={() => goToInfo(i.id)}>

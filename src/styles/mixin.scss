@@ -55,6 +55,10 @@ $font_huge: 18px;
 	color: $blue !important;
 }
 
+.container {
+	padding: 0 8px;
+}
+
 .more {
 	overflow: hidden;
 	text-overflow: ellipsis;

@@ -12,7 +12,7 @@ function List (props) {
 	}
 
 	return (
-		<div className="m-list">
+		<div className="m-list container">
 			<div className="title">
 				<p>
 					<i className="iconfont icon-play"></i>

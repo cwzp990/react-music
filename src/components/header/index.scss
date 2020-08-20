@@ -4,6 +4,7 @@
 	display: flex;
 	align-items: center;
 	@include wh(100%, 36px);
+	margin-bottom: 10px;
 	.header-left,
 	.header-right {
 		flex: 0 0 5%;
@@ -16,5 +17,10 @@
 		@include wh(80%, 80%);
 		flex: 1;
 		text-align: center;
+	}
+
+	.header-title {
+		@include sc($font_huge, $gray);
+		line-height: 30px;
 	}
 }

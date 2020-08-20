@@ -1,41 +1,30 @@
-import React, { useEffect, useState } from "react";
-import Swiper from "swiper";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState, useRef } from "react"
+import BScroll from "better-scroll"
 
-import "swiper/swiper-bundle.min.css";
+import "./index.scss"
 
 function Slider(props) {
-  const [slider, setSlider] = useState(null);
-  const { imgList } = props;
+	const { imgList } = props
+  const [currentIndex, setCurrentIndex] = useState(0)
+  
+	return (
+		<div className="slide-wrapper">
+			<div className="slide-group">
+				{imgList.map(item => (
+					<div className="slide-item" key={item.bannerId}>
+						<img src={item.pic} alt="" />
+					</div>
+				))}
+			</div>
 
-  useEffect(() => {
-    return () => {
-      if (slider) setSlider(null);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (imgList.length && !slider) {
-      let slider = new Swiper(".swiper-container", {
-        pagination: { el: ".swiper-pagination" },
-      });
-      setSlider(slider);
-    }
-  }, [imgList.length, slider]);
-
-  return (
-    <div className="swiper-container">
-      <div className="swiper-wrapper">
-        {imgList.map((slider) => {
-          return (
-            <div className="swiper-slide" key={slider.bannerId}>
-              <img src={slider.pic} alt="推荐" />
-            </div>
-          );
-        })}
-      </div>
-      <div className="swiper-pagination"></div>
-    </div>
-  );
+			<div className="dots">
+				{imgList.map((item, index) => (
+					<span className={index === currentIndex ? "active dot" : "dot"} key={index} />
+				))}
+			</div>
+		</div>
+	)
 }
 
-export default React.memo(Slider);
+export default React.memo(Slider)

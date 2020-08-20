@@ -1,14 +1,16 @@
-@import '../../styles/mixin.scss';
+@import "../../styles/mixin.scss";
 
 .m-rank {
-  display: flex;
-  flex-wrap: wrap;
-  .box-wrapper {
-    width: 32%;
-    margin-right: 2%;
-    margin-bottom: 8px;
-    &:nth-child(3n) {
-      margin-right: 0;
-    }
-  }
+	.ranklist-wrapper {
+		display: flex;
+		flex-wrap: wrap;
+		.box-wrapper {
+			width: 32%;
+			margin-right: 2%;
+			margin-bottom: 8px;
+			&:nth-child(3n) {
+				margin-right: 0;
+			}
+		}
+	}
 }

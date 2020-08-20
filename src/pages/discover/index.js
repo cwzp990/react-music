@@ -27,7 +27,7 @@ function Discover (props) {
 		history.push('/singer')
 	}
 
-	return <div className="m-discover">
+	return <div className="m-discover container">
 		<Header>
 			<input className="search-box" placeholder="随便搜搜吧 ┑(￣Д ￣)┍" onFocus={onSearch} key="main" />
 			<i className="iconfont icon-person" onClick={goToSinger} key="right"></i>

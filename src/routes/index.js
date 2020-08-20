@@ -13,6 +13,7 @@ import Rank from "../pages/rank"
 import Search from "../pages/search"
 import Singer from "../pages/singer"
 import SingerInfo from "../pages/singer/singer-info"
+import Classify from "../pages/classify"
 
 import SongListDetail from "../components/songlist"
 import SongListInfo from "../components/songlist/info"
@@ -82,6 +83,10 @@ const routes = [
 					{
 						path: '/comment/:id',
 						component: Comment
+					},
+					{
+						path: '/classify',
+						component: Classify
 					}
 				],
 			},

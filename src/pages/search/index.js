@@ -52,7 +52,7 @@ function Discover(props) {
 	}
 
 	const noSearch = (
-		<div>
+		<div className="container">
 			<div className="search-history">
 				<p className="title">
 					<span className="history">搜索历史</span>
@@ -88,7 +88,7 @@ function Discover(props) {
 	)
 
 	const hasSearch = (
-		<div className="m-search-list">
+		<div className="m-search-list container">
 			<p className="title">搜索 "{key}"</p>
 			<ul className="result-wrapper">
 				{result.map(i => (
@@ -102,7 +102,7 @@ function Discover(props) {
 	)
 
 	return (
-		<div className="m-search">
+		<div className="m-search container">
 			<div className="m-header">
 				<div className="header-main">
 					<input className="search-box" value={key} placeholder="随便搜搜吧┑(￣Д ￣)┍" onChange={onInput} />
