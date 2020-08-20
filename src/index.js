@@ -4,6 +4,9 @@ import "./styles/index.scss"
 import App from "./App"
 import * as serviceWorker from "./serviceWorker"
 
+// 默认全屏
+document.documentElement.webkitRequestFullScreen()
+
 ReactDOM.render(
 	<React.StrictMode>
 		<App />
