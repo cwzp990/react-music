@@ -1,0 +1,33 @@
+@import "../../styles/mixin.scss";
+
+.m-video {
+	.search-box {
+		@include wh(98%, 100%);
+		@include sc;
+		padding: 0 10px;
+		box-sizing: border-box;
+		background: $bgc;
+		border-radius: 15px;
+  }
+  
+	.square-category {
+		display: flex;
+		margin-bottom: 5px;
+		.cat-wrapper {
+			display: inline-block;
+			white-space: nowrap;
+			overflow-x: scroll;
+			overflow-y: hidden;
+			span {
+				display: inline-block;
+				text-align: center;
+				@include wh(60px, 100%);
+				@include sc($font_normal, $gray);
+				line-height: 24px;
+			}
+			&::-webkit-scrollbar {
+				display: none;
+			}
+		}
+	}
+}

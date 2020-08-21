@@ -42,6 +42,7 @@ import {
 	DjRecommend,
 	DjClassify,
 	MvResource,
+	VideoList,
 	playMV,
 	SimiMvResource,
 	MvCommentResource,
@@ -377,6 +378,11 @@ export const api = {
 	// 获取推荐MV
 	getPersonalizedMv () {
 		return axios.get(PersonalizedMvResource)
+	},
+
+	// 获取视频列表
+	getVideoList () {
+		return axios.get(VideoList)
 	},
 
 	// 获取最新音乐

@@ -42,6 +42,7 @@ const apiMusic = {
 	djRecommend: "/dj/recommend", // 推荐电台
 	djClassify: "/dj/catelist", // 电台分类
 	mv: "/mv", // 获取mv数据
+	videolist: "/video/group/list", // 视频标签列表
 	playMV: "/mv/url",
 	topMv: "/top/mv", // 获取mv排行
 	simiMv: "/simi/mv", // 获取相似mv
@@ -94,6 +95,7 @@ export const DjProgramResource = API_ROOT.concat(apiMusic.djProgram)
 export const DjRecommend = API_ROOT.concat(apiMusic.djRecommend)
 export const DjClassify = API_ROOT.concat(apiMusic.djClassify)
 export const MvResource = API_ROOT.concat(apiMusic.mv)
+export const VideoList = API_ROOT.concat(apiMusic.videolist)
 export const playMV = API_ROOT.concat(apiMusic.playMV)
 export const MVRank = API_ROOT.concat(apiMusic.topMv)
 export const SimiMvResource = API_ROOT.concat(apiMusic.simiMv)

@@ -6,6 +6,8 @@
 	@include wh(100%, 100%);
 	.img-wrapper {
 		position: relative;
+		border-radius: 8px;
+		overflow: hidden;
 		.count {
 			position: absolute;
 			top: 5px;

@@ -3,6 +3,7 @@ import { Redirect } from "react-router-dom"
 
 import BlankLayout from "../layout/blank"
 import HomeLayout from "../layout/home"
+import Login from "../pages/login"
 import Discover from "../pages/discover"
 import Video from "../pages/video"
 import Mine from "../pages/mine"
@@ -31,6 +32,10 @@ const routes = [
 						path: "/",
 						exact: true,
 						render: () => <Redirect to={"/discover"} />,
+					},
+					{
+						path: '/login',
+						component: Login
 					},
 					{
 						path: "/discover",

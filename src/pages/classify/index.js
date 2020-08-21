@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react"
+import Header from "../../components/header"
 import { api } from "../../api"
 
+import "./index.scss"
+
 function Classify(props) {
+	const { history } = props
 	const [cat, setCat] = useState([])
 
 	useEffect(() => {
@@ -21,21 +25,36 @@ function Classify(props) {
 		})
 	}, [])
 
+	const onBack = () => {
+		history.goBack()
+	}
+
 	return (
 		<div className="m-classify">
-			{cat.map(i => (
-				<div>
-					<p>{i.name}</p>
-					<ul>
-						{i.list.map(j => (
-							<li>
-								{j.hot && <i className="iconfont icon-hot"></i>}
-								<span>{j.name}</span>
-							</li>
-						))}
-					</ul>
-				</div>
-			))}
+			<Header>
+				<i className="iconfont icon-left" onClick={onBack} key="left"></i>
+				<p className="header-title" key="main">
+					所有歌单
+				</p>
+				<p key="right">
+					<img src="" alt="" />
+				</p>
+			</Header>
+			<div className="classify-wrapper container">
+				{cat.map(i => (
+					<div className="row">
+						<p className="title">{i.name}</p>
+						<ul className="row-wrapper">
+							{i.list.map(j => (
+								<li className="item-classify">
+									{j.hot && <i className="iconfont icon-hot red"></i>}
+									<span className="name">{j.name}</span>
+								</li>
+							))}
+						</ul>
+					</div>
+				))}
+			</div>
 		</div>
 	)
 }

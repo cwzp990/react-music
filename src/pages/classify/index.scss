@@ -1,0 +1,30 @@
+@import "../../styles/mixin.scss";
+
+.m-classify {
+	.classify-wrapper {
+		.row {
+			margin: 10px 0;
+			.title {
+				@include sc($font_large, $black);
+				line-height: 36px;
+			}
+			.row-wrapper {
+				display: flex;
+				flex-wrap: wrap;
+				.item-classify {
+					width: 23%;
+					line-height: 36px;
+					margin-right: 2.5%;
+					margin-bottom: 8px;
+					@include sc($font_normal, $gray);
+					background: $bgc;
+					text-align: center;
+					border-radius: 10px;
+					&:nth-child(4n) {
+						margin-right: 0;
+					}
+				}
+			}
+		}
+	}
+}
