@@ -1,0 +1,115 @@
+/* 入场动画开始 */
+.fade-enter,
+.fade-appear {
+	transform: translateX(100%);
+}
+
+/*入场动画过程*/
+.fade-enter-active,
+.fade-appear {
+	transform: translateX(0);
+	transition: transform 0.5s ease;
+}
+
+/*离场动画开始*/
+.fade-exit {
+	transform: translateX(0);
+}
+
+/*离场动画过程*/
+.fade-exit-active {
+	transform: translateX(-100%);
+	transition: transform 0.5s ease;
+}
+
+/*离场动画结束*/
+.fade-exit-done {
+	transform: translateX(-100%);
+}
+
+/* 反向back */
+/*入场动画开始*/
+.refade-enter,
+.refade-appear {
+	transform: translateX(-100%);
+}
+
+/*入场动画过程*/
+.refade-enter-active,
+.refade-appear-active {
+	transform: translateX(0%);
+	transition: transform 0.5s ease;
+}
+
+/*入场动画结束*/
+.refade-enter-done {
+	transform: translateX(0%);
+}
+
+/*离场动画开始*/
+.refade-exit {
+	transform: translateX(0%);
+}
+
+/*离场动画过程*/
+.refade-exit-active {
+	transform: translateX(100%);
+	transition: transform 0.5s ease;
+}
+
+/*离场动画结束*/
+.refade-exit-done {
+	transform: translateX(100%);
+}
+
+
+/**
+ * 下方淡入，下方淡出
+ */
+ .forward-from-bottom-enter {
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(100%);
+}
+
+.forward-from-bottom-enter-active {
+  z-index: 2;
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 500ms;
+}
+
+.forward-from-bottom-exit {
+  z-index: 1;
+  opacity: 1;
+}
+
+.forward-from-bottom-exit-active {
+  z-index: 1;
+  opacity: .3;
+  transition: all 500ms;
+}
+
+.back-to-bottom-enter {
+  z-index: 1;
+  opacity: .3;
+}
+
+.back-to-bottom-enter-active {
+  z-index: 1;
+  opacity: 1;
+  transition: all 500ms;
+}
+
+.back-to-bottom-exit {
+  z-index: 2;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.back-to-bottom-exit-active {
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: all 500ms;
+}

@@ -1,14 +1,22 @@
 import React from "react"
+import { connect } from 'react-redux'
 import { more } from '../../utils'
 
 import "./index.scss"
+import { setAllPlay } from "../../store/actions"
 
 function List (props) {
 	const { list, subscribed, history } = props
+	const { setAllPlayDispatch } = props
+
 	console.log('歌曲列表', list)
 
-	const onPlay = (id) => {
+	const onPlay = (index) => {
 		// 播放器播放
+		setAllPlayDispatch({
+			playList: list,
+			currentIndex: index
+		})
 	}
 
 	return (
@@ -23,7 +31,7 @@ function List (props) {
 			</div>
 			<ul className="list-wrapper">
 				{list.map((song, index) => (
-					<li className="item-song" key={song.id} onClick={() => onPlay(song.id)}>
+					<li className="item-song" key={song.id} onClick={() => onPlay(index)}>
 						<div className="item-left">
 							<p className="index">{index + 1}</p>
 							<p className="song-name">
@@ -34,7 +42,7 @@ function List (props) {
 							</p>
 						</div>
 						<span className="play">
-							<i className="iconfont icon-play"></i>
+							<i className="iconfont icon-play-circle"></i>
 						</span>
 					</li>
 				))}
@@ -43,4 +51,16 @@ function List (props) {
 	)
 }
 
-export default React.memo(List)
+// 映射Redux全局的state到组件的props上
+const mapStateToProps = state => ({
+	currentMusic: state.currentMusic
+})
+
+// 映射dispatch到props上
+const mapDispatchToProps = dispatch => ({
+	setAllPlayDispatch: list => {
+		dispatch(setAllPlay(list))
+	}
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(List))

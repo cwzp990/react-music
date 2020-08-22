@@ -1,24 +1,23 @@
 import React from "react"
 import { renderRoutes } from "react-router-config"
-import { CSSTransition, TransitionGroup } from 'react-transition-group'
+import Transition from '../components/transition'
 import Footer from "../components/footer"
 import Player from "../components/player"
 
 import "./index.scss"
 
 function Home (props) {
-	const { route, location } = props
+	const { route } = props
 
 	return (
 		<div className="music-wrapper">
-			<TransitionGroup className={'router-wrapper'}>
-				<CSSTransition timeout={500} key={location.pathname}>
-					<div className="music-main">{renderRoutes(route.routes)}</div>
-					<Footer />
-					<Player />
-				</CSSTransition>
-			</TransitionGroup>
-
+			<div className="music-main">
+				<Transition>
+					{renderRoutes(route.routes)}
+				</Transition>
+			</div>
+			<Footer />
+			<Player />
 		</div>
 	)
 }

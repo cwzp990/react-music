@@ -1,16 +1,19 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import "./styles/index.scss"
+import { Provider } from 'react-redux'
+
 import App from "./App"
+import store from './store'
+import "./styles/index.scss"
 import * as serviceWorker from "./serviceWorker"
 
 // 默认全屏
 document.documentElement.webkitRequestFullScreen()
 
 ReactDOM.render(
-	<React.StrictMode>
+	<Provider store={store}>
 		<App />
-	</React.StrictMode>,
+	</Provider>,
 	document.getElementById("root")
 )
 
