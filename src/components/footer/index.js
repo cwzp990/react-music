@@ -12,7 +12,7 @@ function Footer() {
 			</NavLink>
 			<NavLink to="/video" activeClassName="active">
 				<i className="iconfont icon-video"></i>
-				<span>视频</span>
+				<span>MV</span>
 			</NavLink>
 			<NavLink to="/mine" activeClassName="active">
 				<i className="iconfont icon-music"></i>

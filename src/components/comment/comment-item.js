@@ -6,7 +6,6 @@ import {convertCount, formatDate} from '../../utils'
 function CommentItem(props) {
   const { info } = props;
   const { user = {}, time, content, liked, likedCount } = info;
-  console.log(info);
 
   return (
     <div className="item-comment">

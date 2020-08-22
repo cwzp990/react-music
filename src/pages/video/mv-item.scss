@@ -1,0 +1,49 @@
+@import "~video-react/styles/scss/video-react";
+@import "../../styles/mixin.scss";
+
+.m-mv {
+	.mv-wrapper {
+		display: flex;
+		flex-direction: column;
+		.mv-item {
+			margin: 10px 0;
+			.video-wrapper {
+				position: relative;
+				border-radius: 8px;
+				overflow: hidden;
+				.count {
+					position: absolute;
+					left: 5px;
+					bottom: 5px;
+					@include sc($font_normal, #fff);
+					.iconfont {
+						margin-right: 5px;
+					}
+				}
+				.time {
+					position: absolute;
+					right: 5px;
+					bottom: 5px;
+					@include sc($font_normal, #fff);
+				}
+			}
+
+			.mv-info {
+				display: flex;
+				justify-content: space-between;
+				padding: 8px 0;
+				.title {
+					display: inline-block;
+					width: 80%;
+					@include sc($font_normal, $black);
+				}
+				.name {
+					display: inline-block;
+					width: 20%;
+					text-align: right;
+					@include sc($font_small, $gray);
+				}
+			}
+		}
+	}
+}

@@ -9,8 +9,6 @@ function List (props) {
 	const { list, subscribed, history } = props
 	const { setAllPlayDispatch } = props
 
-	console.log('歌曲列表', list)
-
 	const onPlay = (index) => {
 		// 播放器播放
 		setAllPlayDispatch({

@@ -1,63 +1,113 @@
 @import "../../styles/mixin.scss";
 
-.m-player {
-  position: fixed;
-  top: 0;
-  left: 0;
-  @include wh(100%, 100%);
-  z-index: 1994;
-  background: #fff;
-  .iconfont {
-    color: #fff !important;
-  }
-  .player-title {
-    display: flex;
-    flex-direction: column;
-    .name {
-      @include sc($font_normal, #fff);
-    }
-    .singer {
-      @include sc($font_small, #fff);
-    }
-  }
+.player-normal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	@include wh(100%, 100%);
+	z-index: 1994;
+	background: #fff;
+	.iconfont {
+		color: #fff !important;
+	}
+	.player-title {
+		display: flex;
+		flex-direction: column;
+		.name {
+			@include sc($font_normal, #fff);
+			line-height: 18px;
+		}
+		.singer {
+			@include sc($font_small, #fff);
+			line-height: 12px;
+		}
+	}
 
-  .player-main {
-    position: relative;
-    @include wh(100%, calc(100% - 186px));
-    padding: 20px 10px;
-    box-sizing: border-box;
-    .song-img {
-      border-radius: 50%;
-      overflow: hidden;
-      margin: 50px;
-    }
-  }
+	.player-main {
+		position: relative;
+		@include wh(100%, calc(100% - 186px));
+		padding: 20px 10px;
+		box-sizing: border-box;
+		.needle {
+			position: absolute;
+			left: 50%;
+			top: 3px;
+			z-index: 1;
+			@include wh(138px, 207px);
+			background: url(../../assets/needle.png);
+			background-repeat: no-repeat;
+			background-size: 100% 100%;
+		}
+		.player-cd {
+			position: relative;
+			@include wh(100%, 0);
+			padding-bottom: 100%;
+			margin-top: 23%;
+			background: url(../../assets/disc.png);
+			background-repeat: no-repeat;
+			background-size: 100% 100%;
+			.song-img {
+				position: absolute;
+				left: 50px;
+				top: 50px;
+				@include wh(calc(100% - 100px), calc(100% - 100px));
+				border-radius: 50%;
+				overflow: hidden;
+				animation: circle-rotate 12s linear infinite;
+			}
+		}
 
-  .player-footer {
-    @include wh(100%, 150px);
-    .player-operate,
-    .player-btn {
-      display: flex;
-      .iconfont,
-      a {
-        flex: 1;
-        @include sc(24px, #fff);
-        text-align: center;
+		&.pause {
+			.needle {
+				transform-origin: left top;
+				transform: rotate(-20deg);
+			}
+			.player-cd {
+				.song-img {
+					animation-play-state: paused;
+				}
+			}
+		}
+	}
+
+	.player-footer {
+		@include wh(100%, 150px);
+		.player-operate,
+		.player-btn {
+			display: flex;
+			.btn-wrapper {
+				flex: 1;
+				@include sc(24px, #fff);
+				text-align: center;
         padding: 10px;
-      }
-    }
-    .player-progress {
-      @include wh(100%, 50px);
-    }
-  }
+        .icon-play-circle {
+          font-size: 28px;
+          line-height: 24px;
+        }
+			}
+		}
+		.player-progress {
+			@include wh(100%, 50px);
+		}
+	}
 
-  .bg-gray {
-    position: fixed;
-    top: 0;
-    left: 0;
-    @include wh(100%, 100%);
-    background: rgba(0, 0, 0, 0.2);
-    z-index: -1;
-    opacity: 0.5;
-  }
+	.bg-gray {
+		position: fixed;
+		top: 0;
+		left: 0;
+		@include wh(100%, 100%);
+		background: rgba(0, 0, 0, 0.2);
+		z-index: -1;
+		opacity: 0.5;
+	}
+}
+
+// cd旋转
+@keyframes circle-rotate {
+	0% {
+		transform: rotate(0);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
 }

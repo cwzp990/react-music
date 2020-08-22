@@ -16,6 +16,13 @@ export function convertCount (count) {
   }
 }
 
+export function formatPlayTime (interval) {
+  interval = interval | 0;
+  const minute = (interval / 60) | 0;
+  const second = (interval % 60).toString().padStart(2, "0");
+  return `${minute}:${second}`;
+};
+
 export function today () {
   return new Date().getDate();
 }

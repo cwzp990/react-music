@@ -41,7 +41,7 @@ const apiMusic = {
 	djProgram: "/personalized/djprogram", // 推荐电台
 	djRecommend: "/dj/recommend", // 推荐电台
 	djClassify: "/dj/catelist", // 电台分类
-	mv: "/mv", // 获取mv数据
+	mv: "/mv/all", // 获取mv数据
 	videolist: "/video/group/list", // 视频标签列表
 	playMV: "/mv/url",
 	topMv: "/top/mv", // 获取mv排行

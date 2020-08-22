@@ -111,9 +111,6 @@ function Discover(props) {
 						取消
 					</span>
 				</div>
-				<div className="header-right">
-					<i className="iconfont icon-person"></i>
-				</div>
 			</div>
 
 			{result.length ? hasSearch : noSearch}

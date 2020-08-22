@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react"
 import Box from "../../components/songlist-box"
 import Header from "../../components/header"
@@ -5,7 +6,7 @@ import { api } from "../../api"
 
 import "./index.scss"
 
-function SongList(props) {
+function SongList (props) {
 	const [hotCategory, setHotCategory] = useState([])
 	const [squareList, setSquareList] = useState([])
 
@@ -17,8 +18,8 @@ function SongList(props) {
 			setHotCategory(list)
 		})
 
-		onDetails()
-	}, [])
+		onDetails(hotCategory[0])
+	}, [hotCategory])
 
 	const onDetails = cat => {
 		api.getTopPlaylistResource(cat).then(resp => {
@@ -41,20 +42,10 @@ function SongList(props) {
 				<p className="header-title" key="main">
 					歌单广场
 				</p>
-				<p key="right">
-					<img src="" alt="" />
-				</p>
 			</Header>
 			<div className="square-category">
 				<div className="cat-wrapper">
-					<span>推荐</span>
-					<span>官方</span>
-					<span>精品</span>
-					<span>华语</span>
-					<span>流行</span>
-					<span>民谣</span>
-					<span>电子</span>
-					<span>轻音乐</span>
+					{hotCategory.map((name, index) => (<span onClick={() => onDetails(name)} key={index}>{name}</span>))}
 				</div>
 				<i className="iconfont icon-category" onClick={goToAll}></i>
 			</div>
@@ -67,7 +58,7 @@ function SongList(props) {
 					))}
 				</div>
 			</div>
-		</div>
+		</div >
 	)
 }
 

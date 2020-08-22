@@ -1,13 +1,13 @@
-/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useEffect, useState, useRef } from "react"
 import BScroll from "better-scroll"
 
 import "./index.scss"
 
-function Slider(props) {
+function Slider (props) {
 	const { imgList } = props
-  const [currentIndex, setCurrentIndex] = useState(0)
-  
+	const [currentIndex, setCurrentIndex] = useState(0)
+
 	return (
 		<div className="slide-wrapper">
 			<div className="slide-group">

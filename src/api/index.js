@@ -402,15 +402,15 @@ export const api = {
 		return axios.get(DjClassify)
 	},
 	// 获取mv数据
-	getMvResource (mvid) {
+	getMvResource (area, limit = 30, offset = 0) {
 		return axios.get(MvResource, {
-			params: { mvid },
+			params: { area, limit, offset },
 		})
 	},
 	// 获取MV播放地址
-	getMVPlay (url) {
+	getMVPlay (id) {
 		return axios.get(playMV, {
-			params: { url },
+			params: { id },
 		})
 	},
 	getMVRank (limit = 30) {

@@ -5,7 +5,7 @@ import { api } from "../../api";
 
 import './index.scss'
 
-function Comment(props) {
+function Comment (props) {
   const { history, match } = props;
   const [comments, setComments] = useState([]);
   const [hotComments, setHotComments] = useState([]);
@@ -40,23 +40,25 @@ function Comment(props) {
         </p>
       </div>
 
-      <p>精彩评论 ({hotComments.length})</p>
-      <ul>
-        {hotComments.map((i) => (
-          <li key={i.commentId}>
-            <CommentItem info={i} />
-          </li>
-        ))}
-      </ul>
+      <div className="container">
+        <p>精彩评论 ({hotComments.length})</p>
+        <ul>
+          {hotComments.map((i) => (
+            <li key={i.commentId}>
+              <CommentItem info={i} />
+            </li>
+          ))}
+        </ul>
 
-      <p>最新评论 ({comments.length})</p>
-      <ul>
-        {comments.map((i) => (
-          <li key={i.commentId}>
-            <CommentItem info={i} />
-          </li>
-        ))}
-      </ul>
+        <p>最新评论 ({comments.length})</p>
+        <ul>
+          {comments.map((i) => (
+            <li key={i.commentId}>
+              <CommentItem info={i} />
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

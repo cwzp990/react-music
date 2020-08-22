@@ -29,6 +29,10 @@ function Classify(props) {
 		history.goBack()
 	}
 
+	const backToSquare = () => {
+		
+	}
+
 	return (
 		<div className="m-classify">
 			<Header>
@@ -46,7 +50,7 @@ function Classify(props) {
 						<p className="title">{i.name}</p>
 						<ul className="row-wrapper">
 							{i.list.map(j => (
-								<li className="item-classify">
+								<li className="item-classify" onClick={backToSquare}>
 									{j.hot && <i className="iconfont icon-hot red"></i>}
 									<span className="name">{j.name}</span>
 								</li>
