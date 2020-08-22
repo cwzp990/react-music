@@ -52,6 +52,8 @@ const apiMusic = {
 	artistMv: "/artist/mv", // 获取歌手MV
 	userFollows: "/user/follows", // 获取用户关注列表
 	userFans: "/user/followeds", // 获取用户粉丝列表
+	auth: "/captcha/sent", // 发送验证码
+	verify: "/captcha/verify", // 验证验证码
 }
 
 export const LoginCellphoneResource = API_ROOT.concat(apiMusic.loginCellphone)
@@ -105,3 +107,5 @@ export const AlbumCommentResource = API_ROOT.concat(apiMusic.albumComment)
 export const ArtistMvResource = API_ROOT.concat(apiMusic.artistMv)
 export const UserFollows = API_ROOT.concat(apiMusic.userFollows)
 export const UserFans = API_ROOT.concat(apiMusic.userFans)
+export const AuthCode = API_ROOT.concat(apiMusic.auth)
+export const verifyAuth = API_ROOT.concat(apiMusic.verify)

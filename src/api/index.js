@@ -52,15 +52,17 @@ import {
 	MVRank,
 	UserFollows,
 	UserFans,
+	AuthCode,
+	verifyAuth
 } from "./resource"
 
 export const api = {
 	// 获取个人信息，注入cookies
-	getLoginCellphoneResource (mobile, password) {
+	getLoginCellphoneResource (phone, password) {
 		return axios.get(LoginCellphoneResource, {
 			params: {
-				phone: mobile || "",
-				password: password || "",
+				phone,
+				password,
 			},
 		})
 	},
@@ -460,4 +462,14 @@ export const api = {
 			params: { uid },
 		})
 	},
+	getAuthCode (phone) {
+		return axios.get(AuthCode, {
+			params: { phone }
+		})
+	},
+	verifyAuthCode (phone, captcha) {
+		return axios.get(verifyAuth, {
+			params: { phone, captcha }
+		})
+	}
 }

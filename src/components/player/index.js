@@ -112,6 +112,7 @@ const mapStateToProps = state => ({
 	currentIndex: state.currentIndex,
 	playList: state.playList,
 })
+
 //映射dispatch到props上
 const mapDispatchToProps = dispatch => ({
 	setShowPlayerDispatch: status => {

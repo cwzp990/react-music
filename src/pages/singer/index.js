@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react"
 import Header from '../../components/header'
+import { connect } from 'react-redux'
+import { setSinger } from "../../store/actions"
+import { api } from "../../api"
 
 import "./index.scss"
-import { api } from "../../api"
 
 function Singer (props) {
 	const { history } = props
+	const { setSingerDispatch } = props
 	const [singerList, setSingerList] = useState([])
 	const [area, setArea] = useState(-1)
 	const [type, setType] = useState(-1)
@@ -33,8 +36,10 @@ function Singer (props) {
 		history.goBack()
 	}
 
-	const goToInfo = id => {
-		history.push(`/singerinfo/${id}`)
+	// 路由拦截
+	const goToInfo = singer => {
+		setSingerDispatch(singer)
+		history.push(`/singerinfo/${singer.id}`)
 	}
 
 	return (
@@ -42,9 +47,6 @@ function Singer (props) {
 			<Header>
 				<i className="iconfont icon-left" onClick={onBack} key="left"></i>
 				<p className="header-title" key="main">歌手分类</p>
-				<p key="right">
-					<img src="" alt="" />
-				</p>
 			</Header>
 			<div className="m-category">
 				<p>
@@ -80,7 +82,7 @@ function Singer (props) {
 			<div className="singer-wrapper container">
 				<ul className="list-wrapper">
 					{singerList.map(i => (
-						<li className="item-singer" key={i.id} onClick={() => goToInfo(i.id)}>
+						<li className="item-singer" key={i.id} onClick={() => goToInfo(i)}>
 							<p className="singer">
 								<span className="avatar">
 									<img src={i.img1v1Url} alt="" />
@@ -96,4 +98,12 @@ function Singer (props) {
 	)
 }
 
-export default React.memo(Singer)
+//映射dispatch到props上
+const mapDispatchToProps = dispatch => ({
+	setSingerDispatch: singer => {
+		dispatch(setSinger(singer))
+	},
+})
+
+export default connect(null, mapDispatchToProps)(React.memo(Singer))
+

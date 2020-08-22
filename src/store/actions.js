@@ -21,6 +21,11 @@ export function setPlayList (playList) {
   return { type: ActionTypes.SET_PLAYLIST, playList }
 }
 
+// 设置当前歌手
+export function setSinger (singer) {
+  return { type: ActionTypes.SET_SINGER, singer }
+}
+
 // 播放歌曲（替换歌单列表）
 export const setAllPlay = ({ playList, currentIndex }) => dispatch => {
   dispatch(setShowPlayer(true))

@@ -1,10 +1,10 @@
 @import "../../styles/mixin.scss";
 
 .m-login {
-  position: fixed;
-  top: 0;
-  left: 0;
-  @include wh(100%, 100%);
+	position: fixed;
+	top: 0;
+	left: 0;
+	@include wh(100%, 100%);
 	background: $theme;
 	.login-logo {
 		position: relative;
@@ -40,9 +40,9 @@
 		}
 
 		.pulse {
-      position: absolute;
-      margin-top: 10px;
-      margin-left: -6px;
+			position: absolute;
+			margin-top: 10px;
+			margin-left: -6px;
 			@include wh(100%, 0);
 			padding-bottom: 100%;
 			border: 6px solid $bgc;
@@ -61,9 +61,9 @@
 		}
 
 		.pulse1 {
-      position: absolute;
-      margin-top: 10px;
-      margin-left: -6px;
+			position: absolute;
+			margin-top: 10px;
+			margin-left: -6px;
 			@include wh(100%, 0);
 			padding-bottom: 100%;
 			border: 6px solid $bgc;
@@ -82,8 +82,8 @@
 		}
 	}
 	.login-btn {
-    @include wh(100%, 40%);
-    margin-top: 60px;
+		@include wh(100%, 40%);
+		margin-top: 60px;
 		.btn {
 			@include wh(80%, 48px);
 			background: #fff;
@@ -94,59 +94,121 @@
 			margin: 20px auto;
 		}
 	}
+
+	.login-form {
+		display: none;
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -260px);
+		@include wh(80%, 520px);
+		padding: 100px 10px;
+		box-sizing: border-box;
+		z-index: 1995;
+		background: #fff;
+		border-radius: 10px;
+
+		.username,
+		.password {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			@include wh(100%, 48px);
+			margin-bottom: 40px;
+		}
+
+		.auth {
+			margin-left: 10px;
+			background: $theme;
+			@include sc($font_normal, #fff);
+			line-height: 45px;
+			border-radius: 5px;
+
+			&.forbid {
+				padding: 0 15px;
+				background: $light-gray;
+			}
+		}
+
+		.submit {
+			background: $theme;
+			@include sc($font_normal, #fff);
+			line-height: 45px;
+			border-radius: 5px;
+			text-align: center;
+		}
+
+		.tips {
+			margin-top: 30px;
+			@include sc($font_normal, $gray);
+			line-height: 22px;
+		}
+
+		.input {
+			flex: 1;
+			background: $bgc;
+			line-height: 48px;
+			padding: 0 10px;
+			border-radius: 5px;
+		}
+
+		&.active {
+			display: block !important;
+		}
+	}
 }
 
 @keyframes warn {
-  0% {
-      transform: scale(0.3);
-      -webkit-transform: scale(0.3);
-      opacity: 0.0;
-  }
-  25% {
-      transform: scale(0.3);
-      -webkit-transform: scale(0.3);
-      opacity: 0.1;
-  }
-  50% {
-      transform: scale(0.5);
-      -webkit-transform: scale(0.5);
-      opacity: 0.3;
-  }
-  75% {
-      transform: scale(0.8);
-      -webkit-transform: scale(0.8);
-      opacity: 0.5;
-  }
-  100% {
-      transform: scale(1);
-      -webkit-transform: scale(1);
-      opacity: 0.0;
-  }
+	0% {
+		transform: scale(0.3);
+		-webkit-transform: scale(0.3);
+		opacity: 0;
+	}
+	25% {
+		transform: scale(0.3);
+		-webkit-transform: scale(0.3);
+		opacity: 0.1;
+	}
+	50% {
+		transform: scale(0.5);
+		-webkit-transform: scale(0.5);
+		opacity: 0.3;
+	}
+	75% {
+		transform: scale(0.8);
+		-webkit-transform: scale(0.8);
+		opacity: 0.5;
+	}
+	100% {
+		transform: scale(1);
+		-webkit-transform: scale(1);
+		opacity: 0;
+	}
 }
 @keyframes warn1 {
-  0% {
-      transform: scale(0.3);
-      -webkit-transform: scale(0.3);
-      opacity: 0.0;
-  }
-  25% {
-      transform: scale(0.3);
-      -webkit-transform: scale(0.3);
-      opacity: 0.1;
-  }
-  50% {
-      transform: scale(0.3);
-      -webkit-transform: scale(0.3);
-      opacity: 0.3;
-  }
-  75% {
-      transform: scale(0.5);
-      -webkit-transform: scale(0.5);
-      opacity: 0.5;
-  }
-  100% {
-      transform: scale(0.8);
-      -webkit-transform: scale(0.8);
-      opacity: 0.0;
-  }
+	0% {
+		transform: scale(0.3);
+		-webkit-transform: scale(0.3);
+		opacity: 0;
+	}
+	25% {
+		transform: scale(0.3);
+		-webkit-transform: scale(0.3);
+		opacity: 0.1;
+	}
+	50% {
+		transform: scale(0.3);
+		-webkit-transform: scale(0.3);
+		opacity: 0.3;
+	}
+	75% {
+		transform: scale(0.5);
+		-webkit-transform: scale(0.5);
+		opacity: 0.5;
+	}
+	100% {
+		transform: scale(0.8);
+		-webkit-transform: scale(0.8);
+		opacity: 0;
+	}
 }

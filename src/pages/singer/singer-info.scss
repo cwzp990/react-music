@@ -1,32 +1,45 @@
 @import "../../styles/mixin.scss";
 
 .m-singer-info {
-  height: 100%;
-  .singer-info {
-    position: relative;
-    background: $black;
-    @include wh(100%, 30%);
-    .singer {
-      position: absolute;
-      top: 40%;
-      left: 0;
-      .name {
-        @include sc($font_huge, #fff);
-        margin-bottom: 8px;
-      }
-      .brief {
-        @include sc($font_small, $light_gray);
-        @include more(3);
-        line-height: 22px;
-      }
-    }
-  }
-  .singer-list {
-    position: relative;
-    top: -10px;
-    z-index: 10;
-    background: #fff;
-    border-radius: 15px 15px 0 0;
-    padding: 15px 5px;
-  }
+	position: relative;
+	height: 100%;
+	.singer-info {
+		@include wh(100%, 341px);
+		.back {
+			position: absolute;
+			top: 5px;
+			left: 10px;
+			@include sc(24px, #fff);
+		}
+		.singer {
+			position: absolute;
+			top: 40%;
+			left: 0;
+			.name {
+				@include sc($font_huge, #fff);
+				margin-bottom: 8px;
+			}
+			.brief {
+				@include sc($font_small, #fff);
+				@include more(3);
+				line-height: 22px;
+			}
+		}
+
+		.singer-img {
+			position: absolute;
+			@include wh(100%, 100%);
+			z-index: -1;
+			filter: blur(3px);
+		}
+	}
+	.singer-list {
+		position: absolute;
+		@include wh(100%, 100%);
+		top: 238px;
+		z-index: 10;
+		background: #fff;
+		border-radius: 15px 15px 0 0;
+		padding: 15px 5px;
+	}
 }
