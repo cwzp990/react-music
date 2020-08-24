@@ -3,8 +3,9 @@ import Toast from "../components/toast";
 
 let instance = axios.create();
 
+instance.defaults.withCredentials = true
+
 instance.interceptors.request.use((config) => {
-  console.log(config);
   return config;
 });
 
@@ -14,7 +15,9 @@ instance.interceptors.response.use(
     return response;
   },
   (err) => {
-    console.log(err);
+    if (err.message === 'Request failed with status code 301') {
+      window.location.href = '/#/login'
+    }
   }
 );
 

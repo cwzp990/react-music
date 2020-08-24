@@ -1,0 +1,31 @@
+@import '../../styles/mixin.scss';
+
+.m-daily {
+  .daily-info {
+    position: relative;
+    @include wh(100%, 200px);
+    .bg-img {
+      filter: none;
+    }
+    .daily-date {
+      position: absolute;
+      left: 10px;
+      top: 60%;
+      @include sc(24px, #fff);
+      .date {
+        font-weight: 700;
+      }
+      .month {
+        font-size: 18px;
+      }
+    }
+  }
+
+  .daily-main {
+    position: relative;
+    z-index: 100;
+    background: #fff;
+    top: -40px;
+    border-radius: 10px;
+  }
+}

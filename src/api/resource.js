@@ -1,4 +1,5 @@
-const API_ROOT = "http://120.92.151.48:3000"
+const API_ROOT = "http://localhost:3000"
+// const API_ROOT = "http://120.92.151.48:3000"
 
 const apiMusic = {
 	loginCellphone: "/login/cellphone", // 手机登陆

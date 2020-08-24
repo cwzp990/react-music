@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import Cookies from 'js-cookie'
 
 import "./index.scss"
 import { api } from "../../api"
@@ -49,7 +50,7 @@ function Login (props) {
 
 	const onSubmit = () => {
 		api.getLoginCellphoneResource(phone, password).then(resp => {
-			console.log("验证密码", resp)
+			Cookies.set('MUSIC_U', resp.data.token)
 		})
 	}
 

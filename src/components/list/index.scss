@@ -4,6 +4,7 @@
 	.title {
 		display: flex;
 		justify-content: space-between;
+		padding: 10px 0;
 		.all {
 			margin-left: 10px;
 			@include sc($font_large, $black);

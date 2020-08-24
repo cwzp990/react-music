@@ -27,6 +27,11 @@ export function today () {
   return new Date().getDate();
 }
 
+export function getMonth () {
+  let month = new Date().getMonth() + 1
+  return String(month).padStart(2, '0')
+}
+
 export function debounce (func, delay) {
   let timer = null;
   return function (...args) {
@@ -57,4 +62,13 @@ export function findIndex (list, music) {
   return list.findIndex(item => {
     return item.id === music.id
   })
+}
+
+// 获取cookie
+export function getCookie (name) {
+  let arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+  if (arr = document.cookie.match(reg))
+    return unescape(arr[2]);
+  else
+    return null;
 }
