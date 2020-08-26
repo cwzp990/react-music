@@ -8,6 +8,7 @@ const initialState = {
   currentIndex: -1, //当前音乐索引
   currentMusic: {}, //当前音乐
   singer: {}, //当前歌手
+  userInfo: {}
 }
 
 // 是否显示Player组件
@@ -59,12 +60,22 @@ function currentSinger (singer = initialState.singer, action) {
   }
 }
 
+function userInfo (info = initialState.userInfo, action) {
+  switch (action.type) {
+    case ActionTypes.SET_USERINFO:
+      return action.info
+    default:
+      return info
+  }
+}
+
 const reducer = combineReducers({
   showPlayer,
   currentMusic,
   currentIndex,
   currentSinger,
-  playList
+  playList,
+  userInfo
 })
 
 export default reducer

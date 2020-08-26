@@ -1,19 +1,22 @@
 import React, { useState } from "react"
-import Cookies from 'js-cookie'
+import { connect } from "react-redux"
+import Cookies from "js-cookie"
+import { setUserInfo } from "../../store/actions"
 
 import "./index.scss"
 import { api } from "../../api"
 
-function Login (props) {
+function Login(props) {
 	const { history } = props
+	const { setUserInfoDispatch } = props
 	const [isShow, setIsShow] = useState(false)
 	const [isSend, setIsSend] = useState(false)
-	const [phone, setPhone] = useState('')
-	const [password, setPassword] = useState('')
+	const [phone, setPhone] = useState("")
+	const [password, setPassword] = useState("")
 	const [count, setCount] = useState(60)
 
 	const goToDiscover = () => {
-		history.push('/discover')
+		history.push("/discover")
 	}
 
 	const openFormBox = () => {
@@ -21,7 +24,7 @@ function Login (props) {
 	}
 
 	const onPhone = e => {
-		let val = e.target.value.replace(/[^\d]+/, '')
+		let val = e.target.value.replace(/[^\d]+/, "")
 		setPhone(val)
 	}
 
@@ -35,7 +38,7 @@ function Login (props) {
 		api.getAuthCode(phone).then(resp => {
 			setIsSend(true)
 			const countDown = setInterval(() => {
-				setCount((preSecond) => {
+				setCount(preSecond => {
 					if (preSecond <= 1) {
 						setIsSend(false)
 						clearInterval(countDown)
@@ -50,7 +53,12 @@ function Login (props) {
 
 	const onSubmit = () => {
 		api.getLoginCellphoneResource(phone, password).then(resp => {
-			Cookies.set('MUSIC_U', resp.data.token)
+			const key = ["avatarUrl", "backgroundUrl", "birthday", "province", "city", "followed", "followeds", "follows", "gender", "nickname", "playlistBeSubscribedCount", "playlistCount", "signature", "userId", "userType", "vipType"]
+			let info = {}
+			key.forEach(k => (info[k] = resp.data.profile[k]))
+			setUserInfoDispatch(info)
+			Cookies.set("MUSIC_U", resp.data.token)
+			goToDiscover()
 		})
 	}
 
@@ -66,21 +74,27 @@ function Login (props) {
 			</div>
 
 			<div className="login-btn">
-				<p className="btn" onClick={openFormBox} >手机账号登陆</p>
-				<p className="btn" onClick={goToDiscover}>立即体验</p>
+				<p className="btn" onClick={openFormBox}>
+					手机账号登陆
+				</p>
+				<p className="btn" onClick={goToDiscover}>
+					立即体验
+				</p>
 			</div>
 
-			<div className={isShow ? 'login-form active' : 'login-form'} >
+			<div className={isShow ? "login-form active" : "login-form"}>
 				<div className="username">
 					<input value={phone} className="input" placeholder="请输入手机号" onChange={onPhone} />
-					<span className={isSend ? 'auth forbid' : 'auth'} onClick={getAuth}>
-						{isSend ? `${count} s` : '获取验证码'}
+					<span className={isSend ? "auth forbid" : "auth"} onClick={getAuth}>
+						{isSend ? `${count} s` : "获取验证码"}
 					</span>
 				</div>
 				<div className="password">
 					<input value={password} className="input" placeholder="请输入验证码" onChange={onPassword} />
 				</div>
-				<div className="submit" onClick={onSubmit}>登录</div>
+				<div className="submit" onClick={onSubmit}>
+					登录
+				</div>
 
 				<div className="tips">提示：内部某些功能需要登录后方能使用，密码仅用作于和网易云官方验证，不会记录在服务器中，请放心登录～</div>
 			</div>
@@ -88,4 +102,11 @@ function Login (props) {
 	)
 }
 
-export default React.memo(Login)
+//映射dispatch到props上
+const mapDispatchToProps = dispatch => ({
+	setUserInfoDispatch: status => {
+		dispatch(setUserInfo(status))
+	},
+})
+
+export default connect(null, mapDispatchToProps)(React.memo(Login))

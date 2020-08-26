@@ -1,0 +1,50 @@
+@import "../../styles/mixin.scss";
+
+.m-friend {
+	display: flex;
+	flex-wrap: wrap;
+	background: $bgc;
+	.m-hotwall {
+		width: calc(50% - 20px);
+		margin: 10px;
+		border-radius: 10px;
+		.img-wrapper {
+			position: relative;
+			@include wh(100%, 300px);
+			.song-info {
+				position: absolute;
+				bottom: 5px;
+				left: 5px;
+				@include sc($font_small, #fff);
+			}
+		}
+
+		.hotwall-main {
+			margin-bottom: 10px;
+			.content {
+				@include sc($font_small, $black);
+				line-height: 18px;
+			}
+			.userinfo {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				.info {
+					display: flex;
+          align-items: center;
+          width: 50%;
+					.avatar {
+						@include avatar(24px, 24px);
+						margin-right: 8px;
+					}
+					.name {
+						@include sc($font_small, $gray);
+					}
+				}
+				.liked {
+					@include sc($font_small, $gray);
+				}
+			}
+		}
+	}
+}

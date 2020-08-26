@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react";
 import List from "../../components/list";
-import { api } from "../../api";
+import Info from "../../components/songlist/info"
 import { convertCount } from "../../utils";
+
+import { api } from "../../api";
 
 import "./index.scss";
 
-function SongListDetail(props) {
+function SongListDetail (props) {
   const { history, match } = props;
 
   const url_id = match.params.id;
+  const [isShow, setIsShow] = useState(false);
   const [songlist, setSonglist] = useState({});
   const {
     creator = {},
@@ -16,8 +19,6 @@ function SongListDetail(props) {
     name,
     coverImgUrl,
     description,
-    id,
-    userId,
     playCount,
     subscribedCount,
   } = songlist;
@@ -26,15 +27,15 @@ function SongListDetail(props) {
     api.getPlaylistDetailResource(url_id).then((resp) => {
       setSonglist(resp.data.playlist);
     });
-  }, []);
+  }, [url_id]);
 
-  const onInfo = (id) => {
-    history.push(`/list_info/${id}`);
-  };
+  const onInfo = () => {
+    setIsShow(true)
+  }
 
   return (
     <div className="m-songlist-details">
-      <div className="songlist-info" onClick={() => onInfo(id)}>
+      <div className="songlist-info" onClick={() => onInfo()}>
         <div className="cover">
           <img src={coverImgUrl} alt="" />
           <span className="count">
@@ -63,6 +64,8 @@ function SongListDetail(props) {
       <div className="songlist-main">
         <List list={tracks} subscribed={subscribedCount} history={history} />
       </div>
+
+      {isShow && <Info info={songlist} />}
     </div>
   );
 }

@@ -33,7 +33,7 @@ function List (props) {
 						<div className="item-left">
 							<p className="index">{index + 1}</p>
 							<p className="song-name">
-								<span className="name">{more(song.name, 25)}</span>
+								<span className="name">{more(song.name, 20)}</span>
 								<span className="singer">
 									{song.ar[0].name} - {more(song.al.name, 25)}
 								</span>
@@ -49,11 +49,6 @@ function List (props) {
 	)
 }
 
-// 映射Redux全局的state到组件的props上
-const mapStateToProps = state => ({
-	currentMusic: state.currentMusic
-})
-
 // 映射dispatch到props上
 const mapDispatchToProps = dispatch => ({
 	setAllPlayDispatch: list => {
@@ -61,4 +56,4 @@ const mapDispatchToProps = dispatch => ({
 	}
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(React.memo(List))
+export default connect(null, mapDispatchToProps)(React.memo(List))

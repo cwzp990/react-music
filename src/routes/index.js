@@ -17,7 +17,6 @@ import SingerInfo from "../pages/singer/singer-info"
 import Classify from "../pages/classify"
 
 import SongListDetail from "../components/songlist"
-import SongListInfo from "../components/songlist/info"
 import Comment from "../components/comment"
 
 const routes = [
@@ -64,10 +63,6 @@ const routes = [
 					{
 						path: '/list_detail/:id',
 						component: SongListDetail
-					},
-					{
-						path: '/list_info/:id',
-						component: SongListInfo
 					},
 					{
 						path: "/rank",

@@ -53,7 +53,9 @@ import {
 	UserFollows,
 	UserFans,
 	AuthCode,
-	verifyAuth
+	verifyAuth,
+	userHistory,
+	hotwallList
 } from "./resource"
 
 export const api = {
@@ -471,5 +473,13 @@ export const api = {
 		return axios.get(verifyAuth, {
 			params: { phone, captcha }
 		})
+	},
+	getUserHistory (uid, type = 1) {
+		return axios.get(userHistory, {
+			params: { uid, type }
+		})
+	},
+	getHotwallList () {
+		return axios.get(hotwallList)
 	}
 }

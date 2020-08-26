@@ -76,7 +76,7 @@ function Discover(props) {
 							<p className="main">
 								<span>
 									<em className="name">{t.searchWord}</em>
-									<i className={t.iconType === 1 ? "icon-hot iconfont red" : "icon-NEW iconfont"}></i>
+									<i className={t.iconType === 1 ? "icon-HOT iconfont red" : "icon-NEW iconfont blue"}></i>
 								</span>
 								<span className="sub more">{t.content}</span>
 							</p>

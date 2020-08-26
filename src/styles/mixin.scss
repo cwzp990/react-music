@@ -3,6 +3,7 @@ $gray: #707070;
 $black: #3c3c3c;
 $red: #d81e06;
 $blue: #1296db;
+$green: #1afa29;
 $bgc: #f6f6f6;
 $theme: #ffaa20;
 $logo: #ff9900;
@@ -54,6 +55,10 @@ $font_huge: 18px;
 
 .blue {
 	color: $blue !important;
+}
+
+.green {
+	color: $green !important;
 }
 
 .container {

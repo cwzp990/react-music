@@ -1,6 +1,7 @@
 @import "../../styles/mixin.scss";
 
 .m-songlist-details {
+  position: relative;
 	.songlist-info {
     position: relative;
 		display: flex;

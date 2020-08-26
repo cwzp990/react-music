@@ -1,0 +1,102 @@
+@import "../../styles/mixin.scss";
+
+.m-mine {
+	.mine-info {
+		position: relative;
+		@include wh(100%, 200px);
+		.users {
+			display: flex;
+			align-items: center;
+			margin-top: 50px;
+			padding: 0 10px;
+			.avatar-wrapper {
+				@include avatar(48px, 48px);
+				margin-right: 10px;
+			}
+			.name {
+				@include sc(24px, #fff);
+				font-weight: 700;
+			}
+		}
+
+		&:before {
+			position: absolute;
+			top: 0;
+			left: 0;
+			@include wh(100%, 100%);
+			background-image: linear-gradient(to bottom , #fff, $theme);
+		}
+	}
+
+	.mine-main {
+		padding: 10px;
+		border-radius: 10px;
+		background: #fff;
+		.title {
+			@include sc($font_large, $black);
+			line-height: 18px;
+		}
+		.like {
+			display: flex;
+			margin: 8px 0;
+			.wrapper {
+				position: relative;
+				@include wh(100px, 160px);
+        margin-right: 13px;
+				.name {
+					position: absolute;
+          top: 50%;
+          width: 100%;
+          text-align: center;
+					@include sc($font_normal, #fff);
+				}
+				.brief {
+					position: absolute;
+          bottom: 10px;
+          width: 100%;
+          text-align: center;
+					@include sc($font_small, $light_gray);
+				}
+			}
+		}
+
+		.tabs {
+			display: flex;
+			margin: 8px 0;
+			.tabs-item {
+				@include sc($font_normal, $gray);
+				line-height: 18px;
+				margin-right: 10px;
+			}
+		}
+
+		.playlist-wrapper {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			flex-wrap: wrap;
+			.list-item {
+				display: flex;
+				align-items: center;
+				@include wh(50%, 60px);
+				.cover {
+					flex: 0 0 50px;
+					@include wh(50px, 50px);
+					margin-right: 8px;
+				}
+				.info {
+					flex: 1;
+					.name {
+						@include more;
+						@include sc($font_small, $black);
+						line-height: 14px;
+						margin-bottom: 8px;
+					}
+					.count {
+						@include sc($font_small, $gray);
+					}
+				}
+			}
+		}
+	}
+}

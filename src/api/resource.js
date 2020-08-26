@@ -55,6 +55,8 @@ const apiMusic = {
 	userFans: "/user/followeds", // 获取用户粉丝列表
 	auth: "/captcha/sent", // 发送验证码
 	verify: "/captcha/verify", // 验证验证码
+	history: "/user/record", // 用户播放记录
+	hotwall: "/comment/hotwall/list", // 云村热评
 }
 
 export const LoginCellphoneResource = API_ROOT.concat(apiMusic.loginCellphone)
@@ -110,3 +112,5 @@ export const UserFollows = API_ROOT.concat(apiMusic.userFollows)
 export const UserFans = API_ROOT.concat(apiMusic.userFans)
 export const AuthCode = API_ROOT.concat(apiMusic.auth)
 export const verifyAuth = API_ROOT.concat(apiMusic.verify)
+export const userHistory = API_ROOT.concat(apiMusic.history)
+export const hotwallList = API_ROOT.concat(apiMusic.hotwall)

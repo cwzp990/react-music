@@ -11,6 +11,14 @@
 		.iconfont {
 			@include sc(24px);
 		}
+		.cd-wrapper {
+			@include avatar(24px, 24px);
+			margin-right: 10px;
+			animation: circle-rotate 12s linear infinite;
+			&.pause {
+				animation-play-state: paused;
+			}
+		}
 	}
 	.header-main {
 		position: relative;
@@ -22,5 +30,15 @@
 	.header-title {
 		@include sc($font_huge, $gray);
 		line-height: 30px;
+	}
+}
+
+// cd旋转
+@keyframes circle-rotate {
+	0% {
+		transform: rotate(0);
+	}
+	100% {
+		transform: rotate(360deg);
 	}
 }

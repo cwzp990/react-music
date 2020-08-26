@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "5127473",
+      "name": "radio",
+      "font_class": "radio",
+      "unicode": "e7f8",
+      "unicode_decimal": 59384
+    },
+    {
+      "icon_id": "13745135",
+      "name": "Pause",
+      "font_class": "pause",
+      "unicode": "e6b4",
+      "unicode_decimal": 59060
+    },
+    {
       "icon_id": "611331",
       "name": "play",
       "font_class": "play-circle",

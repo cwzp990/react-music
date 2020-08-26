@@ -4,3 +4,4 @@ export const SET_CURRENTMUSIC = 'SET_CURRENTMUSIC' // 设置当前音乐
 export const SET_CURRENTINDEX = 'SET_CURRENTINDEX' // 设置当前音乐索引
 export const SET_PLAYLIST = 'SET_PLAYLIST' // 设置当前播放列表
 export const SET_SINGER = 'SET_SINGER' // 设置当前歌手
+export const SET_USERINFO = 'SET_USERINFO' // 设置登录用户信息

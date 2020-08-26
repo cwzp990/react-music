@@ -26,6 +26,11 @@ export function setSinger (singer) {
   return { type: ActionTypes.SET_SINGER, singer }
 }
 
+// 设置当前用户信息
+export function setUserInfo (info) {
+  return { type: ActionTypes.SET_USERINFO, info }
+}
+
 // 播放歌曲（替换歌单列表）
 export const setAllPlay = ({ playList, currentIndex }) => dispatch => {
   dispatch(setShowPlayer(true))
