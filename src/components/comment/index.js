@@ -26,7 +26,6 @@ function Comment (props) {
   return (
     <div className="m-comment">
       <Header>
-        <i className="iconfont icon-left" onClick={onBack} key="left"></i>
         <p className="comment-title" key="main">评论</p>
       </Header>
 

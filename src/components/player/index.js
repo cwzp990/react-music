@@ -51,6 +51,7 @@ function Player (props) {
 					</span>
 					<span className="singer">{ar[0] ? `${ar[0].name}` : ""}</span>
 				</p>
+				<i key="right"></i>
 			</Header>
 
 			<div className={isPlay ? "player-main" : "player-main pause"}>

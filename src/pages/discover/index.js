@@ -29,6 +29,7 @@ function Discover (props) {
 
 	return <div className="m-discover container">
 		<Header>
+			<i></i>
 			<input className="search-box" placeholder="随便搜搜吧 ┑(￣Д ￣)┍" onFocus={onSearch} key="main" />
 			<i className="iconfont icon-person" onClick={goToSinger} key="right"></i>
 		</Header>
