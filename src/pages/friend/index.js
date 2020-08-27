@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react"
+import Header from '../../components/header'
 import { connect } from "react-redux"
 import { addPlay } from "../../store/actions"
 import { api } from "../../api"
 
 import "./index.scss"
 
-function Friend(props) {
+function Friend (props) {
 	const [list, setList] = useState([])
-	const { addPlayDispatch } = props
+	const { addPlayDispatch, history } = props
 
 	useEffect(() => {
 		api.getHotwallList().then(resp => {
@@ -22,6 +23,11 @@ function Friend(props) {
 
 	return (
 		<div className="m-friend">
+			<Header history={history}>
+				<i></i>
+				<p className="header-title" key="main">云村</p>
+				<i></i>
+			</Header>
 			{list.map(i => (
 				<div className="m-hotwall" key={i.id} onClick={() => onPlay(i.song)}>
 					<div className="img-wrapper">

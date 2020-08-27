@@ -19,7 +19,8 @@ function SongList (props) {
 		})
 
 		onDetails(hotCategory[0])
-	}, [hotCategory])
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [])
 
 	const onDetails = cat => {
 		api.getTopPlaylistResource(cat).then(resp => {

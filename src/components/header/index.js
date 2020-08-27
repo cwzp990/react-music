@@ -4,7 +4,7 @@ import { setShowPlayer } from "../../store/actions"
 
 import "./index.scss"
 
-function Header(props) {
+function Header (props) {
 	const { children, history } = props
 	const { currentMusic, playerState, setShowPlayerDispatch } = props
 	const { al = {} } = currentMusic
@@ -29,18 +29,20 @@ function Header(props) {
 			{left.key ? (
 				<div className="header-left">{left}</div>
 			) : (
-				<div className="header-left">
-					<i className="iconfont icon-left" onClick={onBack}></i>
-				</div>
-			)}
+					<div className="header-left">
+						<i className="iconfont icon-left" onClick={onBack}></i>
+					</div>
+				)}
 			{main.key && <div className="header-main">{main}</div>}
 			{right.key ? (
 				<div className="header-right">{right}</div>
 			) : (
-				<p className={playerState ? 'cd-wrapper' : 'cd-wrapper pause'} onClick={onPlayer}>
-					<img src={al.picUrl} alt="" />
-				</p>
-			)}
+					<div className="header-right">
+						{al.picUrl ? (<p className={playerState ? 'cd-wrapper' : 'cd-wrapper pause'} onClick={onPlayer}>
+							<img src={al.picUrl} alt="" />
+						</p>) : <i className="iconfont icon-disc"></i>}
+					</div>
+				)}
 		</div>
 	)
 }

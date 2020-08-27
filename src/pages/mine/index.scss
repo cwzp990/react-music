@@ -3,28 +3,38 @@
 .m-mine {
 	.mine-info {
 		position: relative;
-		@include wh(100%, 200px);
+		@include wh(100%, 180px);
 		.users {
 			display: flex;
 			align-items: center;
-			margin-top: 50px;
+			margin-top: 20px;
 			padding: 0 10px;
 			.avatar-wrapper {
 				@include avatar(48px, 48px);
 				margin-right: 10px;
 			}
 			.name {
-				@include sc(24px, #fff);
+				@include sc($font_large, #fff);
 				font-weight: 700;
+				margin-bottom: 8px;
+			}
+			.level {
+				@include sc($font_small, #fff);
+				background: rgba(196, 192, 192, 0.603);
+				border-radius: 8px;
+				padding: 3px 5px;
+				text-align: center;
 			}
 		}
 
-		&:before {
+		.info-img {
 			position: absolute;
 			top: 0;
 			left: 0;
 			@include wh(100%, 100%);
-			background-image: linear-gradient(to bottom , #fff, $theme);
+			z-index: -1;
+			transform: scale(1.2);
+			filter: blur(8px);
 		}
 	}
 
@@ -42,19 +52,19 @@
 			.wrapper {
 				position: relative;
 				@include wh(100px, 160px);
-        margin-right: 13px;
+				margin-right: 13px;
 				.name {
 					position: absolute;
-          top: 50%;
-          width: 100%;
-          text-align: center;
+					top: 50%;
+					width: 100%;
+					text-align: center;
 					@include sc($font_normal, #fff);
 				}
 				.brief {
 					position: absolute;
-          bottom: 10px;
-          width: 100%;
-          text-align: center;
+					bottom: 10px;
+					width: 100%;
+					text-align: center;
 					@include sc($font_small, $light_gray);
 				}
 			}

@@ -5,13 +5,18 @@
 	align-items: center;
 	@include wh(100%, 36px);
 	margin-bottom: 10px;
+	
 	.header-left,
 	.header-right {
-		flex: 0 0 5%;
-		.iconfont {
-			@include sc(24px);
-		}
+		width: 8%;
 	}
+	.header-main {
+		position: relative;
+		height: 80%;
+		flex: 1;
+		text-align: center;
+	}
+
 	.cd-wrapper {
 		@include avatar(24px, 24px);
 		animation: circle-rotate 12s linear infinite;
@@ -19,11 +24,8 @@
 			animation-play-state: paused;
 		}
 	}
-	.header-main {
-		position: relative;
-		@include wh(80%, 80%);
-		flex: 1;
-		text-align: center;
+	.iconfont {
+		@include sc(24px);
 	}
 
 	.header-title {

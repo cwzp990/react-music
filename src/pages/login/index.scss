@@ -20,7 +20,7 @@
 			line-height: 60px;
 			background: $logo;
 			.iconfont {
-				@include sc(48px, #fff);
+				@include sc(48px, $gray);
 			}
 		}
 

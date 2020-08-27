@@ -8,13 +8,21 @@ import "./index.scss"
 function Mine (props) {
 	const { history } = props
 	const { userInfo } = props
-	const { avatarUrl, nickname, backgroundUrl, userId = 88905019 } = userInfo
 
 	const [fm, setFm] = useState([])
 	const [like, setLike] = useState({})
 	const [playList, setPlayList] = useState([])
+	const [user, setUser] = useState([])
+
+	const { avatarUrl, nickname, backgroundUrl, level } = user
+	const { userId = 88905019 } = userInfo
 
 	useEffect(() => {
+		api.getUserDetails(userId).then(resp => {
+			let info = resp.data.profile
+			info.level = resp.data.level
+			setUser(info)
+		})
 		api.getPersonalFmResource(userId).then(resp => {
 			setFm(resp.data)
 		})
@@ -63,10 +71,15 @@ function Mine (props) {
 					<p className="avatar-wrapper">
 						<img src={avatarUrl} alt="" />
 					</p>
-					<p className="name">{nickname}</p>
+					<div >
+						<p className="name">{nickname}</p>
+						<p className="level">lv {level}</p>
+					</div>
 				</div>
 
-				<div className="info-img"></div>
+				<div className="info-img">
+					<img src={backgroundUrl} alt="" />
+				</div>
 			</div>
 			<div className="mine-main">
 				<p className="title">我的音乐</p>

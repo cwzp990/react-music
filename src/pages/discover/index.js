@@ -23,13 +23,13 @@ function Discover (props) {
 		history.push('/search')
 	}
 
-	return <div className="m-discover container">
+	return <div className="m-discover">
 		<Header history={history}>
 			<i></i>
 			<input className="search-box" placeholder="随便搜搜吧 ┑(￣Д ￣)┍" onFocus={onSearch} key="main" />
 			<i></i>
 		</Header>
-		<Slider imgList={imgList} />
+		{/* <Slider imgList={imgList} /> */}
 		<div className="discover-btn">
 			<NavLink to="/daily"><i className="iconfont icon-calendar"></i><span className="btn-title">每日推荐</span><span className="today">{today()}</span></NavLink>
 			<NavLink to="/songlist"><i className="iconfont icon-songlist"></i><span className="btn-title">歌单</span></NavLink>

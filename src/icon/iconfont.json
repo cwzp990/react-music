@@ -6,6 +6,48 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "5123786",
+      "name": "Orange",
+      "font_class": "logo",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "7205980",
+      "name": "Music disc",
+      "font_class": "disc",
+      "unicode": "e629",
+      "unicode_decimal": 58921
+    },
+    {
+      "icon_id": "13244917",
+      "name": "orange",
+      "font_class": "orange",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "1704630",
+      "name": "download",
+      "font_class": "download",
+      "unicode": "e6f3",
+      "unicode_decimal": 59123
+    },
+    {
+      "icon_id": "8804714",
+      "name": "new",
+      "font_class": "new",
+      "unicode": "e8ed",
+      "unicode_decimal": 59629
+    },
+    {
+      "icon_id": "12004320",
+      "name": "Star",
+      "font_class": "Star",
+      "unicode": "ea93",
+      "unicode_decimal": 60051
+    },
+    {
       "icon_id": "5127473",
       "name": "radio",
       "font_class": "radio",
