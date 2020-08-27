@@ -88,7 +88,18 @@
 			}
 		}
 		.player-progress {
+			display: flex;
+			align-items: center;
 			@include wh(100%, 50px);
+			.time {
+				width: 10%;
+				text-align: center;
+				@include sc($font_normal, #fff);
+			}
+			.progress-wrapper {
+				flex: 1;
+				margin: 0 10px;
+			}
 		}
 	}
 
