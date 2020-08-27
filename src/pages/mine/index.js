@@ -18,7 +18,7 @@ function Mine (props) {
 		api.getPersonalFmResource(userId).then(resp => {
 			setFm(resp.data)
 		})
-		
+
 		onSelect(1)
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
@@ -54,9 +54,10 @@ function Mine (props) {
 	return (
 		<div className="m-mine">
 			<div className="mine-info">
-				<Header>
+				<Header history={history}>
+					<i key="left"></i>
 					<p key="main"></p>
-					<i key="right"></i>
+					<i></i>
 				</Header>
 				<div className="users">
 					<p className="avatar-wrapper">

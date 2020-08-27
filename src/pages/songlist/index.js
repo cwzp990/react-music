@@ -27,21 +27,16 @@ function SongList (props) {
 		})
 	}
 
-	const onBack = () => {
-		history.goBack()
-	}
-
 	const goToAll = () => {
 		history.push("/classify")
 	}
 
 	return (
 		<div className="m-square">
-			<Header>
-				<i className="iconfont icon-left" onClick={onBack} key="left"></i>
-				<p className="header-title" key="main">
-					歌单广场
-				</p>
+			<Header history={history}>
+				<i></i>
+				<p className="header-title" key="main">歌单广场</p>
+				<i></i>
 			</Header>
 			<div className="square-category">
 				<div className="cat-wrapper">

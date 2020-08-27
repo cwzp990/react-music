@@ -11,13 +11,12 @@
 		.iconfont {
 			@include sc(24px);
 		}
-		.cd-wrapper {
-			@include avatar(24px, 24px);
-			margin-right: 10px;
-			animation: circle-rotate 12s linear infinite;
-			&.pause {
-				animation-play-state: paused;
-			}
+	}
+	.cd-wrapper {
+		@include avatar(24px, 24px);
+		animation: circle-rotate 12s linear infinite;
+		&.pause {
+			animation-play-state: paused;
 		}
 	}
 	.header-main {

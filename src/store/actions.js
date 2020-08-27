@@ -6,6 +6,11 @@ export function setShowPlayer (showPlayer) {
   return { type: ActionTypes.SET_SHOW_PLAYER, showPlayer }
 }
 
+// 设置播放状态
+export function setPlayerState (playerState) {
+  return { type: ActionTypes.SET_PLAYER_STATE, playerState }
+}
+
 // 设置当前音乐
 export function setCurrentMusic (currentMusic) {
   return { type: ActionTypes.SET_CURRENTMUSIC, currentMusic }
@@ -34,6 +39,7 @@ export function setUserInfo (info) {
 // 播放歌曲（替换歌单列表）
 export const setAllPlay = ({ playList, currentIndex }) => dispatch => {
   dispatch(setShowPlayer(true))
+  dispatch(setPlayerState(true))
   dispatch(setPlayList(playList))
   dispatch(setCurrentIndex(currentIndex))
   dispatch(setCurrentMusic(playList[currentIndex]))
@@ -54,5 +60,6 @@ export const addPlay = music => (dispatch, getState) => {
     dispatch(setCurrentIndex(index))
     dispatch(setCurrentMusic(playList[index]))
   }
+  dispatch(setPlayerState(true))
   dispatch(setShowPlayer(true))
 }

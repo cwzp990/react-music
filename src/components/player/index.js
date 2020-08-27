@@ -2,7 +2,7 @@
 import React, { useRef, useEffect, useState } from "react"
 import { NavLink } from "react-router-dom"
 import { connect } from "react-redux"
-import { setShowPlayer, setCurrentMusic, setCurrentIndex, setPlayList } from "../../store/actions"
+import { setPlayerState, setShowPlayer, setCurrentMusic, setCurrentIndex, setPlayList } from "../../store/actions"
 import { playMode } from "../../utils"
 import Header from "../../components/header"
 
@@ -12,23 +12,24 @@ function Player (props) {
 	const audioRef = useRef()
 	const [ready, setReady] = useState(false)
 	const [isPlay, setIsPlay] = useState(false)
-	const { showPlayer, currentMusic, setShowPlayerDispatch } = props
+	const { showPlayer, currentMusic, setPlayerStateDispatch, setShowPlayerDispatch } = props
 	const { name, id, ar = [], al = {}, alia = [] } = currentMusic
-
-	const onBack = () => {
-		// 最小化播放器
-		setShowPlayerDispatch(false)
-	}
 
 	const songReady = () => {
 		setReady(true)
 	}
 
+	const onBack = () => {
+		setShowPlayerDispatch(false)
+	}
+
 	const onToggle = () => {
 		setIsPlay(!isPlay)
 		if (isPlay) {
+			setPlayerStateDispatch(false)
 			audioRef.current.pause()
 		} else {
+			setPlayerStateDispatch(true)
 			audioRef.current.play()
 		}
 	}
@@ -44,7 +45,7 @@ function Player (props) {
 	const fullPlayer = (
 		<div className="player-normal">
 			<Header>
-				<i className="iconfont icon-left" onClick={onBack} key="left"></i>
+				<i></i>
 				<p className="player-title" key="main">
 					<span className="name more">
 						{name} {alia[0] ? `(${alia[0]})` : ""}
@@ -116,6 +117,9 @@ const mapStateToProps = state => ({
 
 //映射dispatch到props上
 const mapDispatchToProps = dispatch => ({
+	setPlayerStateDispatch: status => {
+		dispatch(setPlayerState(status))
+	},
 	setShowPlayerDispatch: status => {
 		dispatch(setShowPlayer(status))
 	},

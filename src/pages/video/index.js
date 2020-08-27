@@ -20,10 +20,6 @@ function Video (props) {
 		history.push('/search')
 	}
 
-	const goToSinger = () => {
-		history.push('/singer')
-	}
-
 	const onSelect = (val) => {
 		api.getMvResource(val).then(resp => {
 			setMVList(resp.data.data)
@@ -31,9 +27,10 @@ function Video (props) {
 	}
 
 	return <div className="m-video">
-		<Header>
+		<Header history={history}>
+			<i></i>
 			<input className="search-box" placeholder="随便搜搜吧 ┑(￣Д ￣)┍" onFocus={onSearch} key="main" />
-			<i className="iconfont icon-person" onClick={goToSinger} key="right"></i>
+			<i></i>
 		</Header>
 		<div className="square-category">
 			<div className="cat-wrapper">

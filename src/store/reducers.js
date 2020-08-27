@@ -4,6 +4,7 @@ import * as ActionTypes from './actionTypes'
 // 初始数据
 const initialState = {
   showPlayer: false, //Player显示状态
+  playerState: false, //Player播放状态
   playList: [], //播放列表
   currentIndex: -1, //当前音乐索引
   currentMusic: {}, //当前音乐
@@ -18,6 +19,16 @@ function showPlayer (showPlayer = initialState.showPlayer, action) {
       return action.showPlayer
     default:
       return showPlayer
+  }
+}
+
+// player播放状态
+function playerState (playerState = initialState.playerState, action) {
+  switch (action.type) {
+    case ActionTypes.SET_PLAYER_STATE:
+      return action.playerState
+    default:
+      return playerState
   }
 }
 
@@ -71,6 +82,7 @@ function userInfo (info = initialState.userInfo, action) {
 
 const reducer = combineReducers({
   showPlayer,
+  playerState,
   currentMusic,
   currentIndex,
   currentSinger,

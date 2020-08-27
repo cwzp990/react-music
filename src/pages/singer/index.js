@@ -32,10 +32,6 @@ function Singer (props) {
 		setType(type)
 	}
 
-	const onBack = () => {
-		history.goBack()
-	}
-
 	// 路由拦截
 	const goToInfo = singer => {
 		setSingerDispatch(singer)
@@ -44,9 +40,10 @@ function Singer (props) {
 
 	return (
 		<div className="m-singer">
-			<Header>
-				<i className="iconfont icon-left" onClick={onBack} key="left"></i>
+			<Header history={history}>
+				<i></i>
 				<p className="header-title" key="main">歌手分类</p>
+				<i></i>
 			</Header>
 			<div className="m-category">
 				<p>

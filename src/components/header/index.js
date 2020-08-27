@@ -1,15 +1,26 @@
 import React from "react"
-import "./index.scss"
 import { connect } from "react-redux"
+import { setShowPlayer } from "../../store/actions"
+
+import "./index.scss"
 
 function Header(props) {
 	const { children, history } = props
-	const { currentMusic } = props
+	const { currentMusic, playerState, setShowPlayerDispatch } = props
 	const { al = {} } = currentMusic
 	const [left, main, right] = children
 
 	const onBack = () => {
-		history.goBack()
+		if (history) {
+			history.goBack()
+		} else {
+			// 最小化播放器
+			setShowPlayerDispatch(false)
+		}
+	}
+
+	const onPlayer = () => {
+		setShowPlayerDispatch(true)
 	}
 
 	// 如果传了对应的元素就渲染，否则渲染默认的元素
@@ -26,7 +37,7 @@ function Header(props) {
 			{right.key ? (
 				<div className="header-right">{right}</div>
 			) : (
-				<p className="cd-wrapper">
+				<p className={playerState ? 'cd-wrapper' : 'cd-wrapper pause'} onClick={onPlayer}>
 					<img src={al.picUrl} alt="" />
 				</p>
 			)}
@@ -37,6 +48,13 @@ function Header(props) {
 // 映射Redux全局的state到组件的props上
 const mapStateToProps = state => ({
 	currentMusic: state.currentMusic,
+	playerState: state.playerState
 })
 
-export default connect(mapStateToProps, null)(React.memo(Header))
+const mapDispatchToProps = dispatch => ({
+	setShowPlayerDispatch: status => {
+		dispatch(setShowPlayer(status))
+	},
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Header))

@@ -4,7 +4,7 @@ import { api } from "../../api"
 
 import "./index.scss"
 
-function Classify(props) {
+function Classify (props) {
 	const { history } = props
 	const [cat, setCat] = useState([])
 
@@ -25,24 +25,16 @@ function Classify(props) {
 		})
 	}, [])
 
-	const onBack = () => {
-		history.goBack()
-	}
-
 	const backToSquare = () => {
-		
+
 	}
 
 	return (
 		<div className="m-classify">
-			<Header>
-				<i className="iconfont icon-left" onClick={onBack} key="left"></i>
-				<p className="header-title" key="main">
-					所有歌单
-				</p>
-				<p key="right">
-					<img src="" alt="" />
-				</p>
+			<Header history={history}>
+				<i></i>
+				<p className="header-title" key="main">所有歌单</p>
+				<i></i>
 			</Header>
 			<div className="classify-wrapper container">
 				{cat.map(i => (

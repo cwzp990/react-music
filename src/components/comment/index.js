@@ -11,10 +11,6 @@ function Comment (props) {
   const [hotComments, setHotComments] = useState([]);
   const url_id = match.params.id;
 
-  const onBack = () => {
-    history.goBack();
-  };
-
   useEffect(() => {
     api.getCommentResource(url_id).then((resp) => {
       setComments(resp.data.comments);
@@ -25,8 +21,10 @@ function Comment (props) {
 
   return (
     <div className="m-comment">
-      <Header>
+      <Header history={history}>
+        <i></i>
         <p className="comment-title" key="main">评论</p>
+        <i></i>
       </Header>
 
       <div>

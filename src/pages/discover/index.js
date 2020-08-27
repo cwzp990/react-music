@@ -23,15 +23,11 @@ function Discover (props) {
 		history.push('/search')
 	}
 
-	const goToSinger = () => {
-		history.push('/singer')
-	}
-
 	return <div className="m-discover container">
-		<Header>
+		<Header history={history}>
 			<i></i>
 			<input className="search-box" placeholder="随便搜搜吧 ┑(￣Д ￣)┍" onFocus={onSearch} key="main" />
-			<i className="iconfont icon-person" onClick={goToSinger} key="right"></i>
+			<i></i>
 		</Header>
 		<Slider imgList={imgList} />
 		<div className="discover-btn">

@@ -4,7 +4,7 @@ import { debounce } from "../../utils"
 
 import "./index.scss"
 
-function Discover(props) {
+function Discover (props) {
 	const { history } = props
 	const [key, setKey] = useState("")
 	const [hotKeys, setHotKeys] = useState([])
@@ -33,6 +33,10 @@ function Discover(props) {
 
 	const onBack = () => {
 		history.goBack()
+	}
+
+	const goToSinger = () => {
+		history.push('/singer')
 	}
 
 	const onEmpty = () => {
@@ -107,9 +111,10 @@ function Discover(props) {
 				<div className="header-main">
 					<input className="search-box" value={key} placeholder="随便搜搜吧┑(￣Д ￣)┍" onChange={onInput} />
 					<i className="iconfont icon-search search"></i>
-					<span className="cancel" onClick={onBack}>
-						取消
-					</span>
+					<span className="cancel" onClick={onBack}>取消</span>
+				</div>
+				<div className="header-right">
+					<i className="iconfont icon-person" onClick={goToSinger}></i>
 				</div>
 			</div>
 

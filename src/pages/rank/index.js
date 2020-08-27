@@ -16,17 +16,11 @@ function Rank (props) {
 		})
 	}, [])
 
-	const onBack = () => {
-		history.goBack()
-	}
-
 	return <div className="m-rank">
-		<Header>
-			<i className="iconfont icon-left" onClick={onBack} key="left"></i>
+		<Header history={history}>
+			<i></i>
 			<p className="header-title" key="main">排行榜</p>
-			<p key="right">
-				<img src="" alt="" />
-			</p>
+			<i></i>
 		</Header>
 		<div className="ranklist-wrapper container">
 			{rankList.map(list => (<div className="box-wrapper" key={list.id}>

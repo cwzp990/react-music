@@ -6,7 +6,7 @@ import { today, getMonth } from "../../utils"
 
 import "./index.scss"
 
-function Daily(props) {
+function Daily (props) {
 	const { history } = props
 	const [dailyList, setDailyList] = useState([])
 	const bgUrl = dailyList.length ? dailyList[0].al.picUrl : ""
@@ -17,16 +17,14 @@ function Daily(props) {
 		})
 	}, [])
 
-	const onBack = () => {
-		history.goBack()
-	}
-
 	return (
 		<div className="m-daily">
 			<div className="daily-info">
-				<Header>
-					<i className="iconfont icon-left" onClick={onBack} key="left"></i>
-					<p key="main"></p>
+				<Header history={history}>
+					<i></i>
+					{/* 根据你的音乐口味，为你推荐好音乐 */}
+					<p></p>
+					<i></i>
 				</Header>
 				<p className="daily-date">
 					<span className="date">{today()}</span>
