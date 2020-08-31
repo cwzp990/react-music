@@ -42,8 +42,8 @@
     },
     {
       "icon_id": "12004320",
-      "name": "Star",
-      "font_class": "Star",
+      "name": "star",
+      "font_class": "star",
       "unicode": "ea93",
       "unicode_decimal": 60051
     },

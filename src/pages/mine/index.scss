@@ -3,11 +3,11 @@
 .m-mine {
 	.mine-info {
 		position: relative;
-		@include wh(100%, 180px);
+		@include wh(100%, 200px);
 		.users {
 			display: flex;
 			align-items: center;
-			margin-top: 20px;
+			margin: 15px 0;
 			padding: 0 10px;
 			.avatar-wrapper {
 				@include avatar(48px, 48px);
@@ -24,6 +24,28 @@
 				border-radius: 8px;
 				padding: 3px 5px;
 				text-align: center;
+			}
+		}
+
+		.mine-btn {
+			display: flex;
+			margin-top: 10px;
+			p {
+				display: flex;
+				position: relative;
+				justify-content: center;
+				align-items: center;
+				flex-direction: column;
+				width: 25%;
+				@include sc;
+				.iconfont {
+					@include sc(32px, #fff);
+					margin-bottom: 5px;
+				}
+				.btn-title {
+					@include sc($font_normal, #fff);
+					margin-top: 8px;
+				}
 			}
 		}
 

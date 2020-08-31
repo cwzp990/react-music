@@ -70,6 +70,13 @@
 		}
 	}
 
+	.m-lyric {
+		position: relative;
+		@include wh(100%, calc(100% - 186px));
+		padding: 20px 10px;
+		box-sizing: border-box;
+	}
+
 	.player-footer {
 		@include wh(100%, 150px);
 		.player-operate,
@@ -77,14 +84,11 @@
 			display: flex;
 			.btn-wrapper {
 				flex: 1;
-				@include sc(24px, #fff);
 				text-align: center;
-        padding: 10px;
-				.icon-play-circle,
-				.icon-pause {
-          font-size: 24px;
-          line-height: 28px;
-        }
+				padding: 10px;
+				.iconfont {
+					@include sc(24px, #fff);
+				}
 			}
 		}
 		.player-progress {

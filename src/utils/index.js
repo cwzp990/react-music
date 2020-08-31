@@ -1,8 +1,8 @@
 //播放模式
 export const playMode = {
-  sequence: 0,
-  loop: 1,
-  random: 2
+  sequence: 1,
+  loop: 2,
+  random: 3
 };
 
 
@@ -62,4 +62,10 @@ export function findIndex (list, music) {
   return list.findIndex(item => {
     return item.id === music.id
   })
+}
+
+export function getSinger (ar) {
+  if (!ar.length) return ''
+  if (ar.length === 1) return ar[0].name
+  if (ar.length === 2) return `${ar[0].name} / ${ar[1].name}`
 }

@@ -1,0 +1,54 @@
+@import "../../styles/mixin.scss";
+
+.m-playerlist {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	@include wh(100%, 65%);
+	z-index: 1995;
+	background: #fff;
+	border-radius: 8px;
+	display: none;
+
+	.history,
+	.now {
+		float: left;
+		@include wh(100%, 100%);
+	}
+
+	.title {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		height: 35px;
+		padding: 0 10px;
+	}
+
+	.list-wrapper {
+		display: flex;
+		flex-direction: column;
+		height: calc(100% - 70px);
+		overflow-x: hidden;
+		overflow-y: auto;
+		.item-list {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			height: 35px;
+			padding: 0 10px;
+			border-bottom: 1px solid $bgc;
+			.name {
+				@include sc($font_small, $black);
+			}
+			.singer {
+				@include sc($font_small, $gray);
+			}
+		}
+	}
+
+	.close {
+		@include sc($font_normal, $black);
+		line-height: 35px;
+		text-align: center;
+	}
+}

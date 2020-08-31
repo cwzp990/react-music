@@ -77,6 +77,13 @@ function Mine (props) {
 					</div>
 				</div>
 
+				<div className="mine-btn">
+					<p ><i className="iconfont icon-download"></i><span className="btn-title">本地音乐</span></p>
+					<p ><i className="iconfont icon-disc"></i><span className="btn-title">我的电台</span></p>
+					<p ><i className="iconfont icon-star"></i><span className="btn-title">我的收藏</span></p>
+					<p ><i className="iconfont icon-new"></i><span className="btn-title">关注新歌</span></p>
+				</div>
+
 				<div className="info-img">
 					<img src={backgroundUrl} alt="" />
 				</div>
