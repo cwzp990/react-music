@@ -1,0 +1,68 @@
+@import "../../styles/mixin.scss";
+
+.loading-wrapper {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	opacity: 0.6;
+	border-radius: 50%;
+	background-color: $theme;
+	animation: loading 1.4s infinite ease-in;
+	@include wh(60px, 60px);
+	div {
+		&:nth-child(2) {
+			animation-delay: -0.7s;
+		}
+	}
+}
+
+.loading2-wrapper {
+	@include wh(100%, 10px);
+	@include sc($font_small, $gray);
+	margin: auto;
+	text-align: center;
+	div {
+		display: inline-block;
+		background-color: $theme;
+		@include wh(1px, 100%);
+		margin-right: 2px;
+    animation: dance 1s infinite;
+    &:nth-child(2) {
+			animation-delay: -0.4s;
+    }
+    &:nth-child(3) {
+			animation-delay: -0.6s;
+    }
+    &:nth-child(4) {
+			animation-delay: -0.5s;
+    }
+    &:nth-child(5) {
+			animation-delay: -0.2s;
+		}
+	}
+}
+
+@keyframes loading {
+	0%,
+	100% {
+		transform: scale(0);
+	}
+	50% {
+		transform: scale(1);
+	}
+}
+
+@keyframes dance {
+	0%,
+	40%,
+	100% {
+		transform: scaleY(0.4);
+		transform-origin: center 100%;
+	}
+	20% {
+		transform: scaleY(1);
+	}
+}

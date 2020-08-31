@@ -1,0 +1,25 @@
+@import "../../styles/mixin.scss";
+
+.m-scroll {
+  position: relative;
+  @include wh(100%, 100%);
+	overflow: hidden;
+	.scroll-up {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 5px;
+    @include wh(60px, 60px);
+		margin: auto;
+		z-index: 100;
+	}
+	.scroll-down {
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0px;
+		height: 30px;
+		margin: auto;
+		z-index: 100;
+	}
+}

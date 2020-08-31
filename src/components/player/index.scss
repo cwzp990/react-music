@@ -7,6 +7,7 @@
 	@include wh(100%, 100%);
 	z-index: 1994;
 	background: #fff;
+	animation: zoom 0.6s;
 	.iconfont {
 		color: #fff !important;
 	}
@@ -75,6 +76,18 @@
 		@include wh(100%, calc(100% - 186px));
 		padding: 20px 10px;
 		box-sizing: border-box;
+		.lyric-wrapper {
+			position: absolute;
+			width: 100%;
+			.line {
+				@include sc($font_small, $light_gray);
+				line-height: 24px;
+				text-align: center;
+				&.current {
+					color: #fff;
+				}
+			}
+		}
 	}
 
 	.player-footer {
@@ -125,5 +138,15 @@
 	}
 	100% {
 		transform: rotate(360deg);
+	}
+}
+
+// 播放器切换
+@keyframes zoom {
+	0% {
+		clip-path: circle(0 at 100% 0%);
+	}
+	100% {
+		clip-path: circle(200px at 100% 0%);
 	}
 }

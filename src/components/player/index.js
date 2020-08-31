@@ -1,11 +1,13 @@
 
-import React, { useRef, useEffect, useState } from "react"
+import React, { useRef, useEffect, useState, useMemo } from "react"
 import { NavLink } from "react-router-dom"
 import { connect } from "react-redux"
+import Lyric from 'lyric-parser'
 import { setPlayerState, setShowPlayer, setCurrentMusic, setCurrentIndex, setPlayList } from "../../store/actions"
 import { playMode, formatPlayTime, getSinger } from "../../utils"
 import Header from "../../components/header"
 import ProgressBar from "../../components/progress"
+import Scroll from "../../components/scroll"
 import Playerlist from './list'
 import { api } from '../../api'
 
@@ -13,11 +15,14 @@ import "./index.scss"
 
 function Player (props) {
 	const audioRef = useRef()
+	const lyricRef = useRef()
+	const lyricLineRefs = useRef([])
 	const [ready, setReady] = useState(false)
 	const [isPlay, setIsPlay] = useState(false)
 	const [showLyric, setShowLyric] = useState(false)
-	const [lyric, setLyric] = useState('')
+	const [lyric, setLyric] = useState([])
 	const [currentTime, setCurrentTime] = useState(0)
+	const [currentLine, setCurrentLine] = useState(0)
 	const [mode, setMode] = useState(1)
 	const { showPlayer, currentIndex, currentMusic, playList, setPlayerStateDispatch, setShowPlayerDispatch, setCurrentIndexDispatch, setCurrentMusicDispatch } = props
 
@@ -74,9 +79,6 @@ function Player (props) {
 		if (!isPlay) {
 			setPlayerStateDispatch(true);
 		}
-		// if (currentLyric.current) {
-		//   currentLyric.current.seek(newTime * 1000);
-		// }
 	};
 
 	const changeMode = () => {
@@ -87,23 +89,52 @@ function Player (props) {
 		setShowLyric(!showLyric)
 	}
 
-	useEffect(() => {
+	const getLyric = (id) => {
 		api.getLyricResource(id).then(resp => {
-			console.log(resp)
+			if (resp.data.nolyric) {
+				setLyric([])
+				return
+			}
+			let lyric = resp.data.lrc.lyric
+			let lyrics = new Lyric(lyric)
+			setLyric(lyrics.lines)
 		})
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
+	}
 
 	useEffect(() => {
 		// 获取到歌曲id且canplay为true，即可播放
 		if (id && ready) {
 			setIsPlay(true)
 			setCurrentTime(0)
+			getLyric(id)
 			audioRef.current.play()
 		}
 	}, [id, ready])
 
-	const m_cd = (<div className={isPlay ? "player-main" : "player-main pause"} onClick={toggleLyric} >
+	useEffect(() => {
+		if (!lyric.length || !isPlay || !showLyric) return
+		let lyricIndex = 0
+		for (let i = 0; i < lyric.length; i++) {
+			if (currentTime > (lyric[i].time / 1000)) {
+				lyricIndex = i
+			}
+		}
+		setCurrentLine(lyricIndex)
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [currentTime])
+
+	useEffect(() => {
+		if (!lyricRef.current) return;
+		let bScroll = lyricRef.current.getBScroll();
+		if (currentLine > 5) {
+			let lineEl = lyricLineRefs.current[currentLine - 5].current;
+			bScroll.scrollToElement(lineEl, 1000);
+		} else {
+			bScroll.scrollTo(0, 0, 1000);
+		}
+	}, [currentLine]);
+
+	const m_cd = (<div className={isPlay ? "player-main" : "player-main pause"} onClick={toggleLyric}>
 		<div className="needle" />
 		<div className="player-cd">
 			<div className="song-img">
@@ -112,9 +143,29 @@ function Player (props) {
 		</div>
 	</div>)
 
-	const m_lyric = (<div className="m-lyric">
-
-	</div>)
+	const m_lyric = (
+		<div className="m-lyric" onClick={toggleLyric}>
+			<Scroll ref={lyricRef}>
+				<div className="lyric-wrapper">
+					{
+						lyric.map((item, index) => {
+							lyricLineRefs.current[index] = React.createRef();
+							return (
+								<p
+									className={`line ${
+										currentLine === index ? "current" : ""
+										}`}
+									key={item + index}
+									ref={lyricLineRefs.current[index]}
+								>
+									{item.txt}
+								</p>
+							);
+						})
+					}
+				</div>
+			</Scroll>
+		</div>)
 
 	const fullPlayer = (
 		<div className="player-normal">

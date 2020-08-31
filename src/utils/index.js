@@ -33,13 +33,14 @@ export function getMonth () {
 }
 
 export function debounce (func, delay) {
-  let timer = null;
+  let timer;
   return function (...args) {
-    if (timer) {
+    if(timer) {
       clearTimeout(timer);
     }
     timer = setTimeout(() => {
-      func.call(this, ...args);
+      func.apply(this, args);
+      clearTimeout(timer);
     }, delay);
   };
 }
