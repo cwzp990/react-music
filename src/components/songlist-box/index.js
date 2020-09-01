@@ -7,7 +7,7 @@ function SongListBox (props) {
 
   const { info, history } = props
 
-  const { coverImgUrl, playCount, updateFrequency, name, id } = info
+  const { coverImgUrl, picUrl, playCount, updateFrequency, name, id } = info
 
   const goToSongList = (id) => {
     history.push(`/list_detail/${id}`)
@@ -15,7 +15,7 @@ function SongListBox (props) {
 
   return <div className="songlist-box" onClick={() => goToSongList(id)}>
     <div className="img-wrapper">
-      <img src={coverImgUrl} alt="歌单" />
+      <img src={coverImgUrl || picUrl} alt="歌单" />
       <span className="count"><i className="iconfont icon-play-hollow"></i>{convertCount(playCount)}</span>
       <span className="sub">{updateFrequency}</span>
     </div>

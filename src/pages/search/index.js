@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react"
+import { connect } from "react-redux"
 import { api } from "../../api"
 import { debounce } from "../../utils"
+import { addPlay } from "../../store/actions"
 
 import "./index.scss"
 
@@ -9,6 +11,7 @@ function Discover (props) {
 	const [key, setKey] = useState("")
 	const [hotKeys, setHotKeys] = useState([])
 	const [result, setResult] = useState([])
+	const { addPlayDispatch } = props
 
 	const search_history = JSON.parse(localStorage.getItem("_search")) || []
 
@@ -41,6 +44,13 @@ function Discover (props) {
 
 	const onEmpty = () => {
 		localStorage.clear()
+	}
+
+	const onPlay = (id) => {
+		api.getSongDetails(id).then(resp => {
+			let song = resp.data.songs[0]
+			addPlayDispatch(song)
+		})
 	}
 
 	const onSearch = val => {
@@ -96,7 +106,7 @@ function Discover (props) {
 			<p className="title">搜索 "{key}"</p>
 			<ul className="result-wrapper">
 				{result.map(i => (
-					<li className="item-result" key={i.id}>
+					<li className="item-result" key={i.id} onClick={() => onPlay(i.id)} >
 						<i className="iconfont icon-search"></i>
 						{i.name}
 					</li>
@@ -123,4 +133,11 @@ function Discover (props) {
 	)
 }
 
-export default React.memo(Discover)
+// 映射dispatch到props上
+const mapDispatchToProps = dispatch => ({
+	addPlayDispatch: song => {
+		dispatch(addPlay(song))
+	},
+})
+
+export default connect(null, mapDispatchToProps)(React.memo(Discover))

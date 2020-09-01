@@ -3,7 +3,6 @@
 .m-discover {
 	.discover-btn {
 		display: flex;
-		margin-top: 10px;
 		a {
 			display: flex;
 			position: relative;
@@ -25,6 +24,42 @@
 				@include center;
 				@include sc($font_small, #fff);
 				top: 36%;
+			}
+		}
+	}
+
+	.m-recommends {
+		margin: 13px 0;
+		.title {
+			@include sc($font_small, $gray);
+		}
+		.subTitle {
+			display: flex;
+			justify-content: space-between;
+			line-height: 18px;
+			margin: 3px 0;
+			.tips {
+				@include sc($font_large, $black);
+			}
+			.more {
+				padding: 3px 8px;
+				border: 1px solid $light_gray;
+				border-radius: 5px;
+				@include sc($font_small, $gray);
+			}
+		}
+
+		.recommends-wrapper {
+			display: flex;
+			flex-wrap: wrap;
+			margin-top: 3px;
+			.box-wrapper {
+				width: 32%;
+				margin-right: 2%;
+				margin-bottom: 8px;
+				&:nth-child(3n) {
+					margin-right: 0;
+				}
 			}
 		}
 	}

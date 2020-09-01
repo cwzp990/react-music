@@ -1,5 +1,5 @@
 
-import React, { useRef, useEffect, useState, useMemo } from "react"
+import React, { useRef, useEffect, useState } from "react"
 import { NavLink } from "react-router-dom"
 import { connect } from "react-redux"
 import Lyric from 'lyric-parser'
@@ -16,6 +16,7 @@ import "./index.scss"
 function Player (props) {
 	const audioRef = useRef()
 	const lyricRef = useRef()
+	const listRef = useRef()
 	const lyricLineRefs = useRef([])
 	const [ready, setReady] = useState(false)
 	const [isPlay, setIsPlay] = useState(false)
@@ -33,6 +34,33 @@ function Player (props) {
 
 	const songReady = () => {
 		setReady(true)
+	}
+
+	const songEnd = () => {
+		if (mode === playMode.loop) {
+			onLoop()
+		} else {
+			onNext()
+		}
+	}
+
+	const onLoop = () => {
+		setCurrentTime(0)
+		setIsPlay(true)
+		audioRef.current.play()
+		if (lyric.length > 0) {
+			setCurrentLine(0)
+		}
+	}
+
+	const noCopyright = () => {
+	}
+
+	const songError = () => {
+		// 无版权或是vip歌曲
+		if (playList.length) {
+			onNext()
+		}
 	}
 
 	const onBack = () => {
@@ -83,10 +111,17 @@ function Player (props) {
 
 	const changeMode = () => {
 		let newMode = (mode + 1) % 3;
+		setMode(newMode)
+		if (newMode === playMode.loop) return
 	};
 
 	const toggleLyric = () => {
 		setShowLyric(!showLyric)
+	}
+
+	const onList = () => {
+		console.log(111, listRef)
+		listRef.current.toggleList(true)
 	}
 
 	const getLyric = (id) => {
@@ -111,6 +146,7 @@ function Player (props) {
 		}
 	}, [id, ready])
 
+	// 设置当前播放行数
 	useEffect(() => {
 		if (!lyric.length || !isPlay || !showLyric) return
 		let lyricIndex = 0
@@ -123,6 +159,7 @@ function Player (props) {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [currentTime])
 
+	// 歌词滚动
 	useEffect(() => {
 		if (!lyricRef.current) return;
 		let bScroll = lyricRef.current.getBScroll();
@@ -214,13 +251,13 @@ function Player (props) {
 					<span className="btn-wrapper" onClick={onNext}>
 						<i className="iconfont icon-next"></i>
 					</span>
-					<span className="btn-wrapper">
+					<span className="btn-wrapper" onClick={onList} >
 						<i className="iconfont icon-menu"></i>
 					</span>
 				</div>
 			</div>
 
-			<Playerlist />
+			<Playerlist ref={listRef} />
 
 			<div className="bg-img">
 				<img src={al.picUrl} alt="" />
@@ -232,7 +269,7 @@ function Player (props) {
 
 	return <div className="m-player">
 		{showPlayer ? fullPlayer : <></>}
-		<audio ref={audioRef} onCanPlay={songReady} onTimeUpdate={updateTime} src={`http://music.163.com/song/media/outer/url?id=${id}.mp3`} />
+		<audio ref={audioRef} onCanPlay={songReady} onTimeUpdate={updateTime} onEnded={songEnd} onStalled={noCopyright} onError={songError} src={`http://music.163.com/song/media/outer/url?id=${id}.mp3`} />
 	</div>
 }
 
