@@ -1,9 +1,9 @@
 
-import React, { useRef, useEffect, useState } from "react"
+import React, { useRef, useEffect, useState, useCallback } from "react"
 import { NavLink } from "react-router-dom"
 import { connect } from "react-redux"
 import Lyric from 'lyric-parser'
-import { setPlayerState, setShowPlayer, setCurrentMusic, setCurrentIndex, setPlayList } from "../../store/actions"
+import { setPlayerState, setShowPlayer, setShowPlayerList, setCurrentMusic, setCurrentIndex, setPlayList } from "../../store/actions"
 import { playMode, formatPlayTime, getSinger } from "../../utils"
 import Header from "../../components/header"
 import ProgressBar from "../../components/progress"
@@ -16,7 +16,6 @@ import "./index.scss"
 function Player (props) {
 	const audioRef = useRef()
 	const lyricRef = useRef()
-	const listRef = useRef()
 	const lyricLineRefs = useRef([])
 	const [ready, setReady] = useState(false)
 	const [isPlay, setIsPlay] = useState(false)
@@ -25,7 +24,7 @@ function Player (props) {
 	const [currentTime, setCurrentTime] = useState(0)
 	const [currentLine, setCurrentLine] = useState(0)
 	const [mode, setMode] = useState(1)
-	const { showPlayer, currentIndex, currentMusic, playList, setPlayerStateDispatch, setShowPlayerDispatch, setCurrentIndexDispatch, setCurrentMusicDispatch } = props
+	const { showPlayer, currentIndex, currentMusic, playList, setPlayerStateDispatch, setShowPlayerDispatch, setShowPlayerListDispatch, setCurrentIndexDispatch, setCurrentMusicDispatch } = props
 
 	const { name, id, dt, ar = [], al = {}, alia = [] } = currentMusic
 	const duration = dt / 1000
@@ -119,10 +118,15 @@ function Player (props) {
 		setShowLyric(!showLyric)
 	}
 
-	const onList = () => {
-		console.log(111, listRef)
-		listRef.current.toggleList(true)
+	const showList = (e) => {
+		e.stopPropagation()
+		setShowPlayerListDispatch(true)
 	}
+
+	const closeList = useCallback(() => {
+		setShowPlayerListDispatch(false)
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [])
 
 	const getLyric = (id) => {
 		api.getLyricResource(id).then(resp => {
@@ -170,6 +174,15 @@ function Player (props) {
 			bScroll.scrollTo(0, 0, 1000);
 		}
 	}, [currentLine]);
+
+	// 绑定事件
+	useEffect(() => {
+		window.addEventListener("click", closeList)
+
+		return (() => {
+			window.removeEventListener('click', closeList)
+		})
+	}, [closeList])
 
 	const m_cd = (<div className={isPlay ? "player-main" : "player-main pause"} onClick={toggleLyric}>
 		<div className="needle" />
@@ -251,13 +264,13 @@ function Player (props) {
 					<span className="btn-wrapper" onClick={onNext}>
 						<i className="iconfont icon-next"></i>
 					</span>
-					<span className="btn-wrapper" onClick={onList} >
+					<span className="btn-wrapper" onClick={showList} >
 						<i className="iconfont icon-menu"></i>
 					</span>
 				</div>
 			</div>
 
-			<Playerlist ref={listRef} />
+			<Playerlist />
 
 			<div className="bg-img">
 				<img src={al.picUrl} alt="" />
@@ -288,6 +301,9 @@ const mapDispatchToProps = dispatch => ({
 	},
 	setShowPlayerDispatch: status => {
 		dispatch(setShowPlayer(status))
+	},
+	setShowPlayerListDispatch: status => {
+		dispatch(setShowPlayerList(status))
 	},
 	setCurrentMusicDispatch: status => {
 		dispatch(setCurrentMusic(status))

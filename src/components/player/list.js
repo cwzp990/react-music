@@ -1,13 +1,12 @@
-import React, { useState, forwardRef, useImperativeHandle } from "react"
+import React from "react"
 import { connect } from "react-redux"
 import { getSinger } from "../../utils"
-import { addPlay } from "../../store/actions"
+import { addPlay, setShowPlayerList } from "../../store/actions"
 
 import "./list.scss"
 
-const PlayerList = forwardRef((props, ref) => {
-	const { playList, addPlayDispatch } = props
-	const [isShow, setIsShow] = useState(false)
+function PlayerList (props) {
+	const { playList, showPlayerList, addPlayDispatch, setShowPlayerListDispatch } = props
 
 	const history = JSON.parse(localStorage.getItem("history")) || []
 
@@ -15,18 +14,12 @@ const PlayerList = forwardRef((props, ref) => {
 		addPlayDispatch(song)
 	}
 
-	const onList = (status) => {
-		setIsShow(status)
+	const onClose = () => {
+		setShowPlayerListDispatch(false)
 	}
 
-	useImperativeHandle(ref, () => ({
-		toggleList: (status) => {
-			onList(status)
-		}
-	}))
-
 	return (
-		<div className="m-playerlist" style={{ visibility: isShow ? 'visible' : 'hidden' }}>
+		<div className="m-playerlist" style={{ display: showPlayerList ? 'block' : 'none' }}>
 			{/* <div className="history">
 				<p className="title">
 					<span>历史播放</span>
@@ -55,15 +48,16 @@ const PlayerList = forwardRef((props, ref) => {
 						</li>
 					))}
 				</ul>
-				<p className="close" onClick={() => onList(false)}>关闭</p>
+				<p className="close" onClick={onClose}>关闭</p>
 			</div>
 		</div>
 	)
-})
+}
 
 //映射Redux全局的state到组件的props上
 const mapStateToProps = state => ({
 	playList: state.playList,
+	showPlayerList: state.showPlayerList
 })
 
 // 映射dispatch到props上
@@ -71,6 +65,9 @@ const mapDispatchToProps = dispatch => ({
 	addPlayDispatch: song => {
 		dispatch(addPlay(song))
 	},
+	setShowPlayerListDispatch: status => {
+		dispatch(setShowPlayerList(status))
+	}
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(PlayerList))

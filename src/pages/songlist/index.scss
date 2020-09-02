@@ -14,6 +14,9 @@
 				@include wh(60px, 100%);
 				@include sc($font_normal, $gray);
 				line-height: 24px;
+				&.current {
+					color: $theme;
+				}
 			}
 			&::-webkit-scrollbar {
 				display: none;

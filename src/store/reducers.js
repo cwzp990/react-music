@@ -4,12 +4,14 @@ import * as ActionTypes from './actionTypes'
 // 初始数据
 const initialState = {
   showPlayer: false, //Player显示状态
+  showList: false, // 播放列表状态
   playerState: false, //Player播放状态
   playList: [], //播放列表
   currentIndex: -1, //当前音乐索引
   currentMusic: {}, //当前音乐
   singer: {}, //当前歌手
-  userInfo: {}
+  userInfo: {},
+  category: '全部' //当前歌单类型
 }
 
 // 是否显示Player组件
@@ -19,6 +21,16 @@ function showPlayer (showPlayer = initialState.showPlayer, action) {
       return action.showPlayer
     default:
       return showPlayer
+  }
+}
+
+// 是否显示播放列表组件
+function showPlayerList (showList = initialState.showList, action) {
+  switch (action.type) {
+    case ActionTypes.SET_SHOW_PLAYER_LIST:
+      return action.showList
+    default:
+      return showList
   }
 }
 
@@ -80,14 +92,25 @@ function userInfo (info = initialState.userInfo, action) {
   }
 }
 
+function category (category = initialState.category, action) {
+  switch (action.type) {
+    case ActionTypes.SET_CATEGORY:
+      return action.category
+    default:
+      return category
+  }
+}
+
 const reducer = combineReducers({
   showPlayer,
+  showPlayerList,
   playerState,
   currentMusic,
   currentIndex,
   currentSinger,
   playList,
-  userInfo
+  userInfo,
+  category
 })
 
 export default reducer

@@ -6,6 +6,11 @@ export function setShowPlayer (showPlayer) {
   return { type: ActionTypes.SET_SHOW_PLAYER, showPlayer }
 }
 
+// 显示播放列表组件
+export function setShowPlayerList (showList) {
+  return { type: ActionTypes.SET_SHOW_PLAYER_LIST, showList }
+}
+
 // 设置播放状态
 export function setPlayerState (playerState) {
   return { type: ActionTypes.SET_PLAYER_STATE, playerState }
@@ -34,6 +39,11 @@ export function setSinger (singer) {
 // 设置当前用户信息
 export function setUserInfo (info) {
   return { type: ActionTypes.SET_USERINFO, info }
+}
+
+// 设置当前歌单类型
+export function setCategory (category) {
+  return { type: ActionTypes.SET_CATEGORY, category }
 }
 
 // 播放歌曲（替换歌单列表）

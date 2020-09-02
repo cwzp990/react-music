@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react"
+import { connect } from "react-redux"
 import Header from "../../components/header"
 import { api } from "../../api"
+import { setCategory } from "../../store/actions"
 
 import "./index.scss"
 
 function Classify (props) {
 	const { history } = props
+	const { setCategoryDispatch } = props
 	const [cat, setCat] = useState([])
 
 	useEffect(() => {
@@ -25,8 +28,9 @@ function Classify (props) {
 		})
 	}, [])
 
-	const backToSquare = () => {
-
+	const backToSquare = (name) => {
+		setCategoryDispatch(name)
+		history.goBack()
 	}
 
 	return (
@@ -42,7 +46,7 @@ function Classify (props) {
 						<p className="title">{i.name}</p>
 						<ul className="row-wrapper">
 							{i.list.map(j => (
-								<li className="item-classify" onClick={backToSquare}>
+								<li className="item-classify" onClick={() => backToSquare(j.name)}>
 									{j.hot && <i className="iconfont icon-hot red"></i>}
 									<span className="name">{j.name}</span>
 								</li>
@@ -55,4 +59,11 @@ function Classify (props) {
 	)
 }
 
-export default React.memo(Classify)
+//映射dispatch到props上
+const mapDispatchToProps = dispatch => ({
+	setCategoryDispatch: status => {
+		dispatch(setCategory(status))
+	},
+})
+
+export default connect(null, mapDispatchToProps)(React.memo(Classify))

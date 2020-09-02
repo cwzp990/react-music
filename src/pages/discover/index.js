@@ -22,13 +22,16 @@ function Discover(props) {
 		})
 
 		api.getPersonalized().then(resp => {
-			console.log(111, resp)
 			setRecommends(resp.data.result)
 		})
 	}, [])
 
 	const onSearch = () => {
 		history.push("/search")
+	}
+
+	const onMore = () => {
+		history.push("/songlist")
 	}
 
 	return (
@@ -60,7 +63,7 @@ function Discover(props) {
 				<p className="title">推荐歌单</p>
 				<p className="subTitle">
 					<span className="tips">为你精挑细选</span>
-					<span className="more">查看更多</span>
+					<span className="more" onClick={onMore} >查看更多</span>
 				</p>
 
 				<div className="recommends-wrapper">

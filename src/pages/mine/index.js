@@ -63,7 +63,7 @@ function Mine (props) {
 		<div className="m-mine">
 			<div className="mine-info">
 				<Header history={history}>
-					<i key="left"></i>
+					<i></i>
 					<p key="main"></p>
 					<i></i>
 				</Header>
