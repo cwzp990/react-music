@@ -7,9 +7,6 @@ import store from './store'
 import "./styles/index.scss"
 import * as serviceWorker from "./serviceWorker"
 
-// 默认全屏
-document.documentElement.webkitRequestFullScreen()
-
 ReactDOM.render(
 	<Provider store={store}>
 		<App />
