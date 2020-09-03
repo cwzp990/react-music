@@ -2,9 +2,8 @@
 import React, { useRef, useEffect, useState, useCallback } from "react"
 import { NavLink } from "react-router-dom"
 import { connect } from "react-redux"
-import Lyric from 'lyric-parser'
 import { setPlayerState, setShowPlayer, setShowPlayerList, setCurrentMusic, setCurrentIndex, setPlayList } from "../../store/actions"
-import { playMode, formatPlayTime, getSinger } from "../../utils"
+import { playMode, formatPlayTime, getSinger, lyricParser } from "../../utils"
 import Header from "../../components/header"
 import ProgressBar from "../../components/progress"
 import Scroll from "../../components/scroll"
@@ -56,10 +55,8 @@ function Player (props) {
 	}
 
 	const songError = () => {
-		// 无版权或是vip歌曲
-		if (playList.length) {
-			onNext()
-		}
+		// 无版权或是vip歌曲查找url
+		getSongUrl(id)
 	}
 
 	const onBack = () => {
@@ -135,8 +132,20 @@ function Player (props) {
 				return
 			}
 			let lyric = resp.data.lrc.lyric
-			let lyrics = new Lyric(lyric)
-			setLyric(lyrics.lines)
+
+			let lyrics = lyricParser(lyric)
+			setLyric(lyrics)
+		})
+	}
+
+	const getSongUrl = () => {
+		api.getSongUrl(id).then(resp => {
+			if (resp && resp.code === 200) {
+				audioRef.current.src = resp.url
+				audioRef.current.load()
+			} else {
+				console.log("url获取失败")
+			}
 		})
 	}
 
@@ -155,7 +164,7 @@ function Player (props) {
 		if (!lyric.length || !isPlay || !showLyric) return
 		let lyricIndex = 0
 		for (let i = 0; i < lyric.length; i++) {
-			if (currentTime > (lyric[i].time / 1000)) {
+			if (currentTime > lyric[i].time) {
 				lyricIndex = i
 			}
 		}
@@ -270,7 +279,7 @@ function Player (props) {
 				</div>
 			</div>
 
-			<Playerlist />
+			<Playerlist currentIndex={currentIndex} />
 
 			<div className="bg-img">
 				<img src={al.picUrl} alt="" />

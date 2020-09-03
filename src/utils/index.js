@@ -35,7 +35,7 @@ export function getMonth () {
 export function debounce (func, delay) {
   let timer;
   return function (...args) {
-    if(timer) {
+    if (timer) {
       clearTimeout(timer);
     }
     timer = setTimeout(() => {
@@ -69,4 +69,33 @@ export function getSinger (ar) {
   if (!ar.length) return ''
   if (ar.length === 1) return ar[0].name
   if (ar.length === 2) return `${ar[0].name} / ${ar[1].name}`
+}
+
+export function lyricParser (lyric) {
+  if (!lyric) return []
+  let newLyric = []
+  const timeExp1 = /\[(.+?)\]/g
+  const timeExp2 = /\[(\d{2,}):(\d{2})(?:\.(\d{2,3}))?]/g
+  const arr = lyric.split('\n')
+  arr.forEach(line => {
+    let time = line.match(timeExp1)
+    const txt = line.replace(timeExp2, '').trim()
+    if (time) {
+      time.forEach(t => {
+        newLyric.push(`${t} ${txt}`)
+      })
+    }
+  })
+  newLyric = newLyric.map(line => {
+    let result = timeExp2.exec(line)
+    const txt = line.replace(timeExp2, '').trim()
+    return {
+      time: (result[1] * 60 * 1000 + result[2] * 1000 + Number(result[3])) / 1000,
+      txt
+    }
+  })
+  newLyric.sort((a, b) => {
+    return a.time - b.time
+  })
+  return newLyric
 }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import List from "../../components/list";
+import Header from "../../components/header";
 import Info from "../../components/songlist/info"
 import { convertCount } from "../../utils";
 
@@ -36,25 +37,32 @@ function SongListDetail (props) {
   return (
     <div className="m-songlist-details">
       <div className="songlist-info" onClick={() => onInfo()}>
-        <div className="cover">
-          <img src={coverImgUrl} alt="" />
-          <span className="count">
-            <i className="iconfont icon-play"></i>
-            {convertCount(playCount)}
-          </span>
-        </div>
-        <div className="info">
-          <p className="title more">{name}</p>
-          <p className="creator">
-            <span className="avatar-wrapper">
-              <img src={creator.avatarUrl} alt="" />
+        <Header history={history}>
+          <i></i>
+          <p key="main" className="list-title">歌单</p>
+          <i></i>
+        </Header>
+        <div className="list-wrapper">
+          <div className="cover">
+            <img src={coverImgUrl} alt="" />
+            <span className="count">
+              <i className="iconfont icon-play"></i>
+              {convertCount(playCount)}
             </span>
-            <span className="name">
-              {creator.nickname}
-              <i className="iconfont icon-right"></i>
-            </span>
-          </p>
-          <p className="desc">{description}</p>
+          </div>
+          <div className="info">
+            <p className="title more">{name}</p>
+            <p className="creator">
+              <span className="avatar-wrapper">
+                <img src={creator.avatarUrl} alt="" />
+              </span>
+              <span className="name">
+                {creator.nickname}
+                <i className="iconfont icon-right"></i>
+              </span>
+            </p>
+            <p className="desc">{description}</p>
+          </div>
         </div>
 
         <div className="bg-img">

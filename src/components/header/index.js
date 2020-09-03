@@ -10,7 +10,8 @@ function Header (props) {
 	const { al = {} } = currentMusic
 	const [left, main, right] = children
 
-	const onBack = () => {
+	const onBack = (e) => {
+		e.stopPropagation()
 		if (history) {
 			history.goBack()
 		} else {
@@ -19,7 +20,9 @@ function Header (props) {
 		}
 	}
 
-	const onPlayer = () => {
+	const onPlayer = (e) => {
+		e.stopPropagation()
+		if (JSON.stringify(currentMusic) === '{}') return
 		setShowPlayerDispatch(true)
 	}
 
@@ -29,16 +32,16 @@ function Header (props) {
 			{left.key ? (
 				<div className="header-left">{left}</div>
 			) : (
-					<div className="header-left">
-						<i className="iconfont icon-left" onClick={onBack}></i>
+					<div className="header-left" onClick={onBack}>
+						<i className="iconfont icon-left"></i>
 					</div>
 				)}
 			{main.key && <div className="header-main">{main}</div>}
 			{right.key ? (
 				<div className="header-right">{right}</div>
 			) : (
-					<div className="header-right">
-						{al.picUrl ? (<p className={playerState ? 'cd-wrapper' : 'cd-wrapper pause'} onClick={onPlayer}>
+					<div className="header-right" onClick={onPlayer}>
+						{al.picUrl ? (<p className={playerState ? 'cd-wrapper' : 'cd-wrapper pause'}>
 							<img src={al.picUrl} alt="" />
 						</p>) : <i className="iconfont icon-disc"></i>}
 					</div>

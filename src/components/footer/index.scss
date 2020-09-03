@@ -1,7 +1,7 @@
 @import "../../styles/mixin.scss";
 .music-footer {
 	display: flex;
-	height: 50px;
+	height: 60px;
 	a {
 		display: flex;
 		justify-content: center;
@@ -10,7 +10,7 @@
 		width: 25%;
 		@include sc;
 		.iconfont {
-			@include sc(24px);
+			@include sc(22px);
 			margin-bottom: 5px;
 		}
 		&.active {

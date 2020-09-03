@@ -26,7 +26,7 @@
 
 	.player-main {
 		position: relative;
-		@include wh(100%, calc(100% - 186px));
+		@include wh(100%, calc(100% - 196px));
 		padding: 20px 10px;
 		box-sizing: border-box;
 		.needle {
@@ -80,11 +80,11 @@
 			position: absolute;
 			width: 100%;
 			.line {
-				@include sc($font_small, $light_gray);
+				@include sc($font_small, #fff);
 				line-height: 24px;
 				text-align: center;
 				&.current {
-					color: #fff;
+					color: $theme;
 				}
 			}
 		}
@@ -92,6 +92,7 @@
 
 	.player-footer {
 		@include wh(100%, 150px);
+		padding-bottom: 10px;
 		.player-operate,
 		.player-btn {
 			display: flex;

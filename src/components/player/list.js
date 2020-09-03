@@ -6,7 +6,7 @@ import { addPlay, setShowPlayerList } from "../../store/actions"
 import "./list.scss"
 
 function PlayerList (props) {
-	const { playList, showPlayerList, addPlayDispatch, setShowPlayerListDispatch } = props
+	const { playList,currentIndex, showPlayerList, addPlayDispatch, setShowPlayerListDispatch } = props
 
 	const history = JSON.parse(localStorage.getItem("history")) || []
 
@@ -41,10 +41,10 @@ function PlayerList (props) {
 					<i className="iconfont icon-empty"></i>
 				</p>
 				<ul className="list-wrapper">
-					{playList.map(i => (
-						<li className="item-list" key={i.id} onClick={() => onPlay(i)}>
-							<span className="name">{i.name}</span>
-							<span className="singer">{getSinger(i.ar)}</span>
+					{playList.map((song, index) => (
+						<li className={currentIndex === index ? 'item-list current' : 'item-list'} key={song.id} onClick={() => onPlay(song)}>
+							<span className="name">{index + 1}. {song.name}</span>
+							<span className="singer">{getSinger(song.ar)}</span>
 						</li>
 					))}
 				</ul>

@@ -59,6 +59,13 @@ import {
 } from "./resource"
 
 export const api = {
+	getSongUrl (id) {
+		return axios.get('http://120.92.151.48:3030/netease/getUrl/', {
+			params: {
+				id
+			}
+		})
+	},
 	// 获取个人信息，注入cookies
 	getLoginCellphoneResource (phone, password) {
 		return axios.get(LoginCellphoneResource, {
