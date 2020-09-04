@@ -61,7 +61,7 @@ import {
 
 export const api = {
 	getSongUrl (id) {
-		return axios.get(`/netease/getUrl/`, {
+		return axios.get(`${noCopyRightUrl}/netease/getUrl/`, {
 			params: {
 				id
 			}

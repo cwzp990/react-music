@@ -15,7 +15,7 @@ function Mine (props) {
 	const [user, setUser] = useState([])
 
 	const { avatarUrl, nickname, backgroundUrl, level } = user
-	const { userId = 88905019 } = userInfo
+	const { userId } = userInfo
 
 	useEffect(() => {
 		api.getUserDetails(userId).then(resp => {

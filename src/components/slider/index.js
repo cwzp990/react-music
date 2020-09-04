@@ -70,7 +70,7 @@ function Slider (props) {
 		if (timer) setTimer(null)
 		const slideTimer = setTimeout(() => {
 			slide && slide.next()
-		}, 1000)
+		}, 3000)
 		setTimer(slideTimer)
 	}
 
