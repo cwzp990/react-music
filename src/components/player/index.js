@@ -144,6 +144,7 @@ function Player (props) {
 			if (resp.status === 200) {
 				if (resp.data.code === 200) {
 					audioRef.current.src = resp.data.url
+					audioRef.current.load()
 				}
 			}
 		})

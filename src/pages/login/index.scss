@@ -5,6 +5,7 @@
 	top: 0;
 	left: 0;
 	@include wh(100%, 100%);
+	z-index: 1999;
 	background: $theme;
 	.login-logo {
 		position: relative;
@@ -30,8 +31,6 @@
 			left: 50%;
 			top: 50%;
 			transform: translate(-38px, -38px);
-			-webkit-border-radius: 50%;
-			-moz-border-radius: 50%;
 			border: 2px solid $bgc;
 			border-radius: 50%;
 			z-index: 2;
@@ -41,44 +40,29 @@
 
 		.pulse {
 			position: absolute;
-			margin-top: 7px;
-			margin-left: -6px;
-			@include wh(100%, 0);
-			padding-bottom: 100%;
+			@include wh(400px, 400px);
+			left: 50%;
+			top: 50%;
+			margin: -206px 0 0 -206px;
 			border: 6px solid $bgc;
-			-webkit-border-radius: 50%;
-			-moz-border-radius: 50%;
 			border-radius: 50%;
 			z-index: 1;
 			opacity: 0;
-			-webkit-animation: warn 2s ease-out;
-			-moz-animation: warn 2s ease-out;
-			animation: warn 2s ease-out;
-			-webkit-animation-iteration-count: infinite;
-			-moz-animation-iteration-count: infinite;
-			animation-iteration-count: infinite;
 			box-shadow: 1px 1px 30px $bgc;
+			animation: warn 2s ease-out;
+			animation-iteration-count: infinite;
 		}
 
 		.pulse1 {
 			position: absolute;
-			margin-top: 7px;
-			margin-left: -6px;
-			@include wh(100%, 0);
-			padding-bottom: 100%;
+			@include wh(400px, 400px);
 			border: 6px solid $bgc;
-			-webkit-border-radius: 50%;
-			-moz-border-radius: 50%;
 			border-radius: 50%;
 			z-index: 1;
 			opacity: 0;
-			-webkit-animation: warn1 2s ease-out;
-			-moz-animation: warn1 2s ease-out;
-			animation: warn1 2s ease-out;
-			-webkit-animation-iteration-count: infinite;
-			-moz-animation-iteration-count: infinite;
-			animation-iteration-count: infinite;
 			box-shadow: 1px 1px 30px $bgc;
+			animation: warn1 2s ease-out;
+			animation-iteration-count: infinite;
 		}
 	}
 	.login-btn {
