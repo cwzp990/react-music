@@ -1,4 +1,5 @@
 import axios from "./request"
+import { noCopyRightUrl } from '../utils'
 
 import {
 	LoginCellphoneResource,
@@ -60,7 +61,7 @@ import {
 
 export const api = {
 	getSongUrl (id) {
-		return axios.get('http://120.92.151.48:3030/netease/getUrl/', {
+		return axios.get(`/netease/getUrl/`, {
 			params: {
 				id
 			}

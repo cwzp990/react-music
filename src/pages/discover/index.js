@@ -42,7 +42,7 @@ function Discover(props) {
 				<i></i>
 			</Header>
 
-			{/* <Slider imgList={imgList} /> */}
+			<Slider imgList={imgList} />
 			<div className="discover-btn">
 				<NavLink to="/daily">
 					<i className="iconfont icon-calendar"></i>

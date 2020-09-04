@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { connect } from "react-redux"
 import Cookies from "js-cookie"
 import { setUserInfo } from "../../store/actions"
@@ -6,7 +6,7 @@ import { setUserInfo } from "../../store/actions"
 import "./index.scss"
 import { api } from "../../api"
 
-function Login(props) {
+function Login (props) {
 	const { history } = props
 	const { setUserInfoDispatch } = props
 	const [isShow, setIsShow] = useState(false)
@@ -19,8 +19,13 @@ function Login(props) {
 		history.push("/discover")
 	}
 
-	const openFormBox = () => {
+	const showFormBox = (e) => {
+		e.stopPropagation()
 		setIsShow(true)
+	}
+
+	const closeFormBox = () => {
+		setIsShow(false)
 	}
 
 	const onPhone = e => {
@@ -34,7 +39,7 @@ function Login(props) {
 	}
 
 	const getAuth = () => {
-		if (isSend) return
+		if (isSend || !phone) return
 		api.getAuthCode(phone).then(resp => {
 			setIsSend(true)
 			const countDown = setInterval(() => {
@@ -51,7 +56,22 @@ function Login(props) {
 		})
 	}
 
+	const cancelBubble = (e) => {
+		e.stopPropagation()
+	}
+
+	// 绑定事件
+	useEffect(() => {
+		window.addEventListener("click", closeFormBox)
+
+		return (() => {
+			window.removeEventListener('click', closeFormBox)
+		})
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [])
+
 	const onSubmit = () => {
+		if (!phone || !password) return
 		api.getLoginCellphoneResource(phone, password).then(resp => {
 			const key = ["avatarUrl", "backgroundUrl", "birthday", "province", "city", "followed", "followeds", "follows", "gender", "nickname", "playlistBeSubscribedCount", "playlistCount", "signature", "userId", "userType", "vipType"]
 			let info = {}
@@ -74,7 +94,7 @@ function Login(props) {
 			</div>
 
 			<div className="login-btn">
-				<p className="btn" onClick={openFormBox}>
+				<p className="btn" onClick={showFormBox}>
 					手机账号登陆
 				</p>
 				<p className="btn" onClick={goToDiscover}>
@@ -82,7 +102,7 @@ function Login(props) {
 				</p>
 			</div>
 
-			<div className={isShow ? "login-form active" : "login-form"}>
+			<div className={isShow ? "login-form active" : "login-form"} onClick={cancelBubble}>
 				<div className="username">
 					<input value={phone} className="input" placeholder="请输入手机号" onChange={onPhone} />
 					<span className={isSend ? "auth forbid" : "auth"} onClick={getAuth}>
@@ -90,13 +110,13 @@ function Login(props) {
 					</span>
 				</div>
 				<div className="password">
-					<input value={password} className="input" placeholder="请输入验证码" onChange={onPassword} />
+					<input type="password" value={password} className="input" placeholder="这里是密码不是验证码！" onChange={onPassword} />
 				</div>
 				<div className="submit" onClick={onSubmit}>
 					登录
 				</div>
 
-				<div className="tips">提示：内部某些功能需要登录后方能使用，密码仅用作于和网易云官方验证，不会记录在服务器中，请放心登录～</div>
+				<div className="tips">提示：内部某些功能需要登录后方能使用（<em className="theme">如在不登录状态下歌单只会显示前十首歌曲</em>），密码仅用作于和网易云官方验证，不会记录在服务器中，请放心登录～</div>
 			</div>
 		</div>
 	)

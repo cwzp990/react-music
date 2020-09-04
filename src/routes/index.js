@@ -30,7 +30,7 @@ const routes = [
 					{
 						path: "/",
 						exact: true,
-						render: () => <Redirect to={"/discover"} />,
+						render: () => <Redirect to={"/login"} />,
 					},
 					{
 						path: '/login',

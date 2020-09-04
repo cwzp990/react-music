@@ -1,10 +1,12 @@
+//获取没有版权歌曲的url
+export const noCopyRightUrl = 'http://120.92.151.48:3030'
+
 //播放模式
 export const playMode = {
   sequence: 0,
   loop: 1,
   random: 2
 };
-
 
 export function convertCount (count) {
   if (count >= 100000000) {
@@ -71,31 +73,53 @@ export function getSinger (ar) {
   if (ar.length === 2) return `${ar[0].name} / ${ar[1].name}`
 }
 
+const tagRegMap = {
+  title: 'ti',
+  artist: 'ar',
+  album: 'al',
+  offset: 'offset',
+  by: 'by'
+}
+
+const timeExp = /\[(\d{2,}):(\d{2})(?:\.(\d{2,3}))?]/g
+
 export function lyricParser (lyric) {
   if (!lyric) return []
   let newLyric = []
-  const timeExp1 = /\[(.+?)\]/g
-  const timeExp2 = /\[(\d{2,}):(\d{2})(?:\.(\d{2,3}))?]/g
+  let tags = {} // 保存歌曲的专辑信息
+
+  for (let tag in tagRegMap) {
+    const matches = lyric.match(new RegExp(`\\[${tagRegMap[tag]}:([^\\]]*)]`, 'i'))
+    tags[tag] = (matches && matches[1]) || ''
+  }
+
   const arr = lyric.split('\n')
   arr.forEach(line => {
-    let time = line.match(timeExp1)
-    const txt = line.replace(timeExp2, '').trim()
+    let time = line.match(timeExp)
+    const txt = line.replace(timeExp, '').trim()
     if (time) {
       time.forEach(t => {
         newLyric.push(`${t} ${txt}`)
       })
     }
   })
+
   newLyric = newLyric.map(line => {
-    let result = timeExp2.exec(line)
-    const txt = line.replace(timeExp2, '').trim()
+    let result = timeExp.exec(line)
+    const txt = line.replace(timeExp, '').trim()
     return {
       time: (result[1] * 60 * 1000 + result[2] * 1000 + Number(result[3])) / 1000,
       txt
     }
   })
+
+  if (tags.offset !== '') {
+    newLyric.unshift({ time: tags.offset, txt: `歌曲: ${tags.title}` }, { time: tags.offset, txt: `歌手: ${tags.artist}` }, { time: tags.offset, txt: `专辑: ${tags.album}` })
+  }
+
   newLyric.sort((a, b) => {
     return a.time - b.time
   })
+
   return newLyric
 }

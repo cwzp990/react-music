@@ -56,7 +56,7 @@ function Player (props) {
 
 	const songError = () => {
 		// 无版权或是vip歌曲查找url
-		getSongUrl(id)
+		getSongUrl()
 	}
 
 	const onBack = () => {
@@ -139,12 +139,12 @@ function Player (props) {
 	}
 
 	const getSongUrl = () => {
+		if (!id) return
 		api.getSongUrl(id).then(resp => {
-			if (resp && resp.code === 200) {
-				audioRef.current.src = resp.url
-				audioRef.current.load()
-			} else {
-				console.log("url获取失败")
+			if (resp.status === 200) {
+				if (resp.data.code === 200) {
+					audioRef.current.src = resp.data.url
+				}
 			}
 		})
 	}
@@ -191,7 +191,8 @@ function Player (props) {
 		return (() => {
 			window.removeEventListener('click', closeList)
 		})
-	}, [closeList])
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [])
 
 	const m_cd = (<div className={isPlay ? "player-main" : "player-main pause"} onClick={toggleLyric}>
 		<div className="needle" />
