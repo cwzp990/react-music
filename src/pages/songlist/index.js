@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react"
 import { connect } from "react-redux"
 import Box from "../../components/songlist-box"
-import Header from "../../components/header"
 import { setCategory } from "../../store/actions"
 import { api } from "../../api"
 
@@ -17,8 +16,10 @@ function SongList (props) {
 
 	useEffect(() => {
 		api.getCategoryHotPlaylist().then(resp => {
-			let list = resp.data.tags.map(i => i.name)
-			setHotCategory(list)
+			if (resp.data.code === 200) {
+				let list = resp.data.tags.map(i => i.name)
+				setHotCategory(list)
+			}
 		})
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
@@ -33,19 +34,14 @@ function SongList (props) {
 
 	useEffect(() => {
 		api.getTopPlaylistResource(category).then(resp => {
-			setSquareList(resp.data.playlists)
+			if (resp.data.code === 200) {
+				setSquareList(resp.data.playlists)
+			}
 		})
 	}, [category])
 
 	return (
 		<div className="m-square">
-			<Header history={history}>
-				<i></i>
-				<p className="header-title" key="main">
-					{category === '全部' ? '歌单广场' : category}
-				</p>
-				<i></i>
-			</Header>
 			<div className="square-category">
 				<div className="cat-wrapper">
 					{hotCategory.map((name, index) => (<span className={category === name ? 'current' : ''} onClick={() => onDetails(name)} key={index}>{name}</span>))}

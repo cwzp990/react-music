@@ -5,10 +5,9 @@ import { setShowPlayer } from "../../store/actions"
 import "./index.scss"
 
 function Header (props) {
-	const { children, history } = props
-	const { currentMusic, playerState, setShowPlayerDispatch } = props
+	const { history } = props
+	const { header, currentMusic, playerState, setShowPlayerDispatch } = props
 	const { al = {} } = currentMusic
-	const [left, main, right] = children
 
 	const onBack = (e) => {
 		e.stopPropagation()
@@ -29,23 +28,15 @@ function Header (props) {
 	// 如果传了对应的元素就渲染，否则渲染默认的元素
 	return (
 		<div className="m-header">
-			{left.key ? (
-				<div className="header-left">{left}</div>
-			) : (
-					<div className="header-left" onClick={onBack}>
-						<i className="iconfont icon-left"></i>
-					</div>
-				)}
-			{main.key && <div className="header-main">{main}</div>}
-			{right.key ? (
-				<div className="header-right">{right}</div>
-			) : (
-					<div className="header-right" onClick={onPlayer}>
-						{al.picUrl ? (<p className={playerState ? 'cd-wrapper' : 'cd-wrapper pause'}>
-							<img src={al.picUrl} alt="" />
-						</p>) : <i className="iconfont icon-disc"></i>}
-					</div>
-				)}
+			<div className="header-left" onClick={onBack}>
+				<i className="iconfont icon-left"></i>
+			</div>
+			<div className="header-main">{header}</div>
+			<div className="header-right" onClick={onPlayer}>
+				{al.picUrl ? (<p className={playerState ? 'cd-wrapper' : 'cd-wrapper pause'}>
+					<img src={al.picUrl} alt="" />
+				</p>) : <i className="iconfont icon-disc"></i>}
+			</div>
 		</div>
 	)
 }

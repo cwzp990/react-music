@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react"
 import { NavLink } from "react-router-dom"
-import Header from "../../components/header"
 import Slider from "../../components/slider"
 import Box from "../../components/songlist-box"
 
@@ -9,7 +8,7 @@ import { api } from "../../api"
 
 import "./index.scss"
 
-function Discover(props) {
+function Discover (props) {
 	const { history } = props
 
 	const [imgList, setImgList] = useState([])
@@ -18,11 +17,15 @@ function Discover(props) {
 	useEffect(() => {
 		// getData
 		api.getBanner().then(resp => {
-			setImgList(resp.data.banners)
+			if (resp.data.code === 200) {
+				setImgList(resp.data.banners)
+			}
 		})
 
 		api.getPersonalized().then(resp => {
-			setRecommends(resp.data.result)
+			if (resp.data.code === 200) {
+				setRecommends(resp.data.result)
+			}
 		})
 	}, [])
 
@@ -36,12 +39,6 @@ function Discover(props) {
 
 	return (
 		<div className="m-discover">
-			<Header history={history}>
-				<i></i>
-				<input className="search-box" placeholder="随便搜搜吧 ┑(￣Д ￣)┍" onFocus={onSearch} key="main" />
-				<i></i>
-			</Header>
-
 			<Slider imgList={imgList} />
 			<div className="discover-btn">
 				<NavLink to="/daily">

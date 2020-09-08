@@ -5,64 +5,39 @@
 	top: 0;
 	left: 0;
 	@include wh(100%, 100%);
-	z-index: 1999;
 	background: $theme;
+	z-index: 100;
 	.login-logo {
 		position: relative;
 		@include wh(100%, 60%);
-		.logo-wrapper {
-			position: absolute;
-			left: 50%;
-			top: 50%;
-			margin: -30px 0 0 -30px;
-			@include wh(60px, 60px);
-			border-radius: 50%;
-			text-align: center;
-			line-height: 60px;
-			background: $logo;
-			.iconfont {
-				@include sc(48px, $gray);
-			}
-		}
-
-		.dot {
-			position: absolute;
-			@include wh(72px, 72px);
-			left: 50%;
-			top: 50%;
-			transform: translate(-38px, -38px);
-			border: 2px solid $bgc;
-			border-radius: 50%;
-			z-index: 2;
-			opacity: 0.3;
-			box-shadow: 1px 1px 30px $bgc;
-		}
-
 		.pulse {
 			position: absolute;
-			@include wh(400px, 400px);
-			left: 50%;
-			top: 50%;
-			margin: -206px 0 0 -206px;
+			margin-top: 7px;
+			margin-left: -6px;
+			@include wh(100%, 0);
+			padding-bottom: 100%;
 			border: 6px solid $bgc;
 			border-radius: 50%;
 			z-index: 1;
 			opacity: 0;
-			box-shadow: 1px 1px 30px $bgc;
 			animation: warn 2s ease-out;
 			animation-iteration-count: infinite;
+			box-shadow: 1px 1px 30px $bgc;
 		}
 
 		.pulse1 {
 			position: absolute;
-			@include wh(400px, 400px);
+			margin-top: 7px;
+			margin-left: -6px;
+			@include wh(100%, 0);
+			padding-bottom: 100%;
 			border: 6px solid $bgc;
 			border-radius: 50%;
 			z-index: 1;
 			opacity: 0;
-			box-shadow: 1px 1px 30px $bgc;
 			animation: warn1 2s ease-out;
 			animation-iteration-count: infinite;
+			box-shadow: 1px 1px 30px $bgc;
 		}
 	}
 	.login-btn {
@@ -134,6 +109,14 @@
 			line-height: 48px;
 			padding: 0 10px;
 			border-radius: 5px;
+		}
+
+		.no-user {
+			position: absolute;
+			right: 10px;
+			bottom: 10px;
+			@include sc($font_small, $gray);
+			line-height: 18px;
 		}
 
 		&.active {

@@ -1,78 +1,42 @@
 
 import React, { useEffect, useState, useRef } from "react"
-import BScroll from "better-scroll"
-
+import BScroll from '@better-scroll/core'
+import Slide from '@better-scroll/slide'
 import "./index.scss"
+
+BScroll.use(Slide)
 
 function Slider (props) {
 	const { imgList } = props
 
 	const [currentIndex, setCurrentIndex] = useState(0)
-	const [slide, setSlide] = useState(null)
-	const [timer, setTimer] = useState(null)
-	const slideWrapper = useRef()
-	const slideGroup = useRef()
+	const slide = useRef(null)
+	const slideWrapper = useRef(null)
+	const slideGroup = useRef(null)
 
 	useEffect(() => {
 		initWidth()
 	}, [imgList])
 
 	useEffect(() => {
-		const bs = new BScroll(slideWrapper.current, {
+		if (!slideWrapper.current) return
+		slide.current = new BScroll(slideWrapper.current, {
 			scrollX: true,
 			scrollY: false,
+			slide: true,
+			useTransition: true,
 			momentum: false,
-			snap: {
-				loop: true,
-				threshold: 0.1,
-				speed: 400
-			},
 			bounce: false,
-			stopPropagation: true
+			stopPropagation: true,
+			probeType: 2
 		})
-		setSlide(bs)
 
-		const dom = slideWrapper.current
-		dom.addEventListener("touched", _touchEndEvent, false)
-
-		return () => {
-			dom.removeEventListener('touched', _touchEndEvent, false)
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
-
-	useEffect(() => {
-		if (!slide) return
-		_play()
-		slide.goToPage(currentIndex, 0, 0)
-		slide.on('scrollEnd', _onScrollEnd)
-		slide.on('beforeScrollStart', () => {
-			setTimer(null)
+		slide.current.on('slideWillChange', (page) => {
+			setCurrentIndex(page.pageX)
 		})
+
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [slide])
-
-	// 触摸事件
-	const _touchEndEvent = () => {
-		if (!slide) return
-		_play()
-	}
-
-	// 滚动结束事件
-	const _onScrollEnd = () => {
-		let pageIndex = slide.getCurrentPage().pageX
-		setCurrentIndex(pageIndex)
-		_play()
-	}
-
-	// 自动切换
-	const _play = () => {
-		if (timer) setTimer(null)
-		const slideTimer = setTimeout(() => {
-			slide && slide.next()
-		}, 3000)
-		setTimer(slideTimer)
-	}
+	}, [slideWrapper.current])
 
 	const initWidth = () => {
 		let slideWidth = slideWrapper.current.clientWidth

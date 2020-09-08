@@ -17,7 +17,9 @@ function Discover (props) {
 
 	useEffect(() => {
 		api.getHotKeys().then(resp => {
-			setHotKeys(resp.data.data)
+			if (resp.data.code === 200) {
+				setHotKeys(resp.data.data)
+			}
 		})
 	}, [])
 
@@ -28,7 +30,9 @@ function Discover (props) {
 		}
 		const queryList = () => {
 			api.getSearchResource(key).then(resp => {
-				setResult(resp.data.result.songs)
+				if (resp.data.code === 200) {
+					setResult(resp.data.result.songs)
+				}
 			})
 		}
 		return debounce(queryList, 500)
@@ -48,8 +52,10 @@ function Discover (props) {
 
 	const onPlay = (id) => {
 		api.getSongDetails(id).then(resp => {
-			let song = resp.data.songs[0]
-			addPlayDispatch(song)
+			if (resp.data.code === 200) {
+				let song = resp.data.songs[0]
+				addPlayDispatch(song)
+			}
 		})
 	}
 

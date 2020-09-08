@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import List from "../../components/list";
-import Header from "../../components/header";
 import Info from "../../components/songlist/info"
 import { convertCount } from "../../utils";
 
@@ -37,11 +36,6 @@ function SongListDetail (props) {
   return (
     <div className="m-songlist-details">
       <div className="songlist-info" onClick={() => onInfo()}>
-        <Header history={history}>
-          <i></i>
-          <p key="main" className="list-title">歌单</p>
-          <i></i>
-        </Header>
         <div className="list-wrapper">
           <div className="cover">
             <img src={coverImgUrl} alt="" />

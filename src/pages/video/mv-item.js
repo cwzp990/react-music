@@ -11,7 +11,9 @@ function MVItem(props) {
 
   const onPlay = (id) => {
     api.getMVPlay(id).then(resp => {
-      setUrl(resp.data.data.url)
+			if (resp.data.code === 200) {
+				setUrl(resp.data.data.url)
+			}
     })
   }
 

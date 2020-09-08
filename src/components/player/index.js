@@ -3,8 +3,7 @@ import React, { useRef, useEffect, useState, useCallback } from "react"
 import { NavLink } from "react-router-dom"
 import { connect } from "react-redux"
 import { setPlayerState, setShowPlayer, setShowPlayerList, setCurrentMusic, setCurrentIndex, setPlayList } from "../../store/actions"
-import { playMode, formatPlayTime, getSinger, lyricParser } from "../../utils"
-import Header from "../../components/header"
+import { playMode, formatPlayTime, lyricParser } from "../../utils"
 import ProgressBar from "../../components/progress"
 import Scroll from "../../components/scroll"
 import Playerlist from './list'
@@ -127,14 +126,16 @@ function Player (props) {
 
 	const getLyric = (id) => {
 		api.getLyricResource(id).then(resp => {
-			if (resp.data.nolyric) {
-				setLyric([])
-				return
+			if (resp.data.code === 200) {
+				if (resp.data.nolyric) {
+					setLyric([])
+					return
+				}
+				let lyric = resp.data.lrc.lyric
+	
+				let lyrics = lyricParser(lyric)
+				setLyric(lyrics)
 			}
-			let lyric = resp.data.lrc.lyric
-
-			let lyrics = lyricParser(lyric)
-			setLyric(lyrics)
 		})
 	}
 
@@ -230,17 +231,6 @@ function Player (props) {
 
 	const fullPlayer = (
 		<div className="player-normal">
-			<Header>
-				<i></i>
-				<p className="player-title" key="main">
-					<span className="name more">
-						{name} {alia[0] ? `(${alia[0]})` : ""}
-					</span>
-					<span className="singer">{getSinger(ar)}</span>
-				</p>
-				<i key="right"></i>
-			</Header>
-
 			{showLyric ? m_lyric : m_cd}
 
 			<div className="player-footer">

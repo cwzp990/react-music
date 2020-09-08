@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react"
-import Header from '../../components/header'
 import MVItem from './mv-item'
 import { api } from "../../api"
 
@@ -22,16 +21,13 @@ function Video (props) {
 
 	const onSelect = (val) => {
 		api.getMvResource(val).then(resp => {
-			setMVList(resp.data.data)
+			if (resp.data.code === 200) {
+				setMVList(resp.data.data)
+			}
 		})
 	}
 
 	return <div className="m-video">
-		<Header history={history}>
-			<i></i>
-			<input className="search-box" placeholder="随便搜搜吧 ┑(￣Д ￣)┍" onFocus={onSearch} key="main" />
-			<i></i>
-		</Header>
 		<div className="square-category">
 			<div className="cat-wrapper">
 				{cat.map((item, index) => (<span key={index} onClick={() => onSelect(item)}>{item}</span>))}

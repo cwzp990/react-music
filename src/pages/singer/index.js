@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react"
-import Header from '../../components/header'
 import { connect } from 'react-redux'
 import { setSinger } from "../../store/actions"
 import { api } from "../../api"
@@ -15,13 +14,17 @@ function Singer (props) {
 
 	useEffect(() => {
 		api.getTopArtistsResource().then(resp => {
-			setSingerList(resp.data.artists)
+			if (resp.data.code === 200) {
+				setSingerList(resp.data.artists)
+			}
 		})
 	}, [])
 
 	useEffect(() => {
 		api.getArtList(area, type).then(resp => {
-			setSingerList(resp.data.artists)
+			if (resp.data.code === 200) {
+				setSingerList(resp.data.artists)
+			}
 		})
 	}, [area, type])
 
@@ -40,11 +43,6 @@ function Singer (props) {
 
 	return (
 		<div className="m-singer">
-			<Header history={history}>
-				<i></i>
-				<p className="header-title" key="main">歌手分类</p>
-				<i></i>
-			</Header>
 			<div className="m-category">
 				<p>
 					<span className={area === 7 ? "active" : ""} onClick={() => changeArea(7)}>

@@ -41,23 +41,32 @@ function Login (props) {
 	const getAuth = () => {
 		if (isSend || !phone) return
 		api.getAuthCode(phone).then(resp => {
-			setIsSend(true)
-			const countDown = setInterval(() => {
-				setCount(preSecond => {
-					if (preSecond <= 1) {
-						setIsSend(false)
-						clearInterval(countDown)
-						// 重置秒数
-						return 60
-					}
-					return preSecond - 1
-				})
-			}, 1000)
+			if (resp.data.code === 200) {
+				setIsSend(true)
+				const countDown = setInterval(() => {
+					setCount(preSecond => {
+						if (preSecond <= 1) {
+							setIsSend(false)
+							clearInterval(countDown)
+							// 重置秒数
+							return 60
+						}
+						return preSecond - 1
+					})
+				}, 1000)
+			}
+
 		})
 	}
 
 	const cancelBubble = (e) => {
 		e.stopPropagation()
+	}
+
+	const noUser = () => {
+		setPhone(18655323262)
+		setPassword("cwzp990.!")
+		onSubmit()
 	}
 
 	// 绑定事件
@@ -73,22 +82,21 @@ function Login (props) {
 	const onSubmit = () => {
 		if (!phone || !password) return
 		api.getLoginCellphoneResource(phone, password).then(resp => {
-			const key = ["avatarUrl", "backgroundUrl", "birthday", "province", "city", "followed", "followeds", "follows", "gender", "nickname", "playlistBeSubscribedCount", "playlistCount", "signature", "userId", "userType", "vipType"]
-			let info = {}
-			key.forEach(k => (info[k] = resp.data.profile[k]))
-			setUserInfoDispatch(info)
-			Cookies.set("MUSIC_U", resp.data.token)
-			goToDiscover()
+			if (resp.data.code === 200) {
+				const key = ["avatarUrl", "backgroundUrl", "birthday", "province", "city", "followed", "followeds", "follows", "gender", "nickname", "playlistBeSubscribedCount", "playlistCount", "signature", "userId", "userType", "vipType"]
+				let info = {}
+				key.forEach(k => (info[k] = resp.data.profile[k]))
+				setUserInfoDispatch(info)
+				Cookies.set("MUSIC_U", resp.data.token)
+				goToDiscover()
+			}
 		})
 	}
 
 	return (
 		<div className="m-login">
 			<div className="login-logo">
-				<span className="logo-wrapper">
-					<i className="iconfont icon-orange"></i>
-				</span>
-				<span className="dot"></span>
+				{/* <span className="dot"></span> */}
 				<span className="pulse"></span>
 				<span className="pulse1"></span>
 			</div>
@@ -117,6 +125,8 @@ function Login (props) {
 				</div>
 
 				<div className="tips">提示：内部某些功能需要登录后方能使用（<em className="theme">如在不登录状态下歌单只会显示前十首歌曲</em>），密码仅用作于和网易云官方验证，不会记录在服务器中，请放心登录～</div>
+
+				<span className="no-user" onClick={noUser}>桔子 <i className="iconfont icon-right"></i></span>
 			</div>
 		</div>
 	)

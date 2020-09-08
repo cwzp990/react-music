@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react"
-import Header from '../../components/header'
 import { connect } from "react-redux"
 import { addPlay } from "../../store/actions"
 import { api } from "../../api"
@@ -12,7 +11,9 @@ function Friend (props) {
 
 	useEffect(() => {
 		api.getHotwallList().then(resp => {
-			setList(resp.data.data)
+			if (resp.data.code === 200) {
+				setList(resp.data.data)
+			}
 		})
 	}, [])
 
@@ -23,11 +24,6 @@ function Friend (props) {
 
 	return (
 		<div className="m-friend">
-			<Header history={history}>
-				<i></i>
-				<p className="header-title" key="main">云村</p>
-				<i></i>
-			</Header>
 			{list.map(i => (
 				<div className="m-hotwall" key={i.id} onClick={() => onPlay(i.song)}>
 					<div className="img-wrapper">

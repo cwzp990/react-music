@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react"
 import { connect } from "react-redux"
-import Header from "../../components/header"
 import { api } from "../../api"
 
 import "./index.scss"
@@ -18,13 +17,18 @@ function Mine (props) {
 	const { userId } = userInfo
 
 	useEffect(() => {
+		if (!userId) return
 		api.getUserDetails(userId).then(resp => {
-			let info = resp.data.profile
-			info.level = resp.data.level
-			setUser(info)
+			if (resp.data.code === 200) {
+				let info = resp.data.profile
+				info.level = resp.data.level
+				setUser(info)
+			}
 		})
 		api.getPersonalFmResource(userId).then(resp => {
-			setFm(resp.data)
+			if (resp.data.code === 200) {
+				setFm(resp.data)
+			}
 		})
 
 		onSelect(1)
@@ -36,25 +40,28 @@ function Mine (props) {
 	}
 
 	const onSelect = (type) => {
+		if (!userId) return
 		api.getUserPlaylistResource(userId).then(resp => {
-			let like = resp.data.playlist[0]
-			let create = resp.data.playlist.filter(i => i.userId === userId).map(i => ({
-				id: i.id,
-				name: i.name,
-				coverImgUrl: i.coverImgUrl,
-				trackCount: i.trackCount,
-			}))
-			let collect = resp.data.playlist.filter(i => i.userId !== userId).map(i => ({
-				id: i.id,
-				name: i.name,
-				coverImgUrl: i.coverImgUrl,
-				trackCount: i.trackCount,
-			}))
-			setLike(like)
-			if (type === 1) {
-				setPlayList(create)
-			} else {
-				setPlayList(collect)
+			if (resp.data.code === 200) {
+				let like = resp.data.playlist[0]
+				let create = resp.data.playlist.filter(i => i.userId === userId).map(i => ({
+					id: i.id,
+					name: i.name,
+					coverImgUrl: i.coverImgUrl,
+					trackCount: i.trackCount,
+				}))
+				let collect = resp.data.playlist.filter(i => i.userId !== userId).map(i => ({
+					id: i.id,
+					name: i.name,
+					coverImgUrl: i.coverImgUrl,
+					trackCount: i.trackCount,
+				}))
+				setLike(like)
+				if (type === 1) {
+					setPlayList(create)
+				} else {
+					setPlayList(collect)
+				}
 			}
 		})
 	}
@@ -62,11 +69,6 @@ function Mine (props) {
 	return (
 		<div className="m-mine">
 			<div className="mine-info">
-				<Header history={history}>
-					<i></i>
-					<p key="main"></p>
-					<i></i>
-				</Header>
 				<div className="users">
 					<p className="avatar-wrapper">
 						<img src={avatarUrl} alt="" />

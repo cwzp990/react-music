@@ -19,10 +19,14 @@ function SingerInfo (props) {
 	useEffect(() => {
 		if (!id) return
 		api.getSingerHotSong(id).then(resp => {
-			setHotList(resp.data.songs)
+			if (resp.data.code === 200) {
+				setHotList(resp.data.songs)
+			}
 		})
 		api.getArtistDescResource(id).then(resp => {
-			setInfo(resp.data)
+			if (resp.data.code === 200) {
+				setInfo(resp.data)
+			}
 		})
 	}, [id])
 
