@@ -2,8 +2,9 @@
 
 .m-scroll {
   position: relative;
-  @include wh(100%, 100%);
-	overflow: hidden;
+	@include wh(100%, 100%);
+	overflow-x: hidden;
+	overflow-y: auto;
 	.scroll-up {
 		position: absolute;
 		left: 0;

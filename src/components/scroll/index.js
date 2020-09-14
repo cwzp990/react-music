@@ -1,8 +1,6 @@
 import React, { forwardRef, useState, useEffect, useRef, useImperativeHandle, useMemo } from "react"
 import PropTypes from "prop-types"
 import BScroll from "better-scroll"
-import Loading from './loading';
-import Loading2 from './loading2';
 import { debounce } from "../../utils";
 
 import './index.scss';
@@ -105,9 +103,9 @@ const Scroll = forwardRef((props, ref) => {
 		<div className="m-scroll" ref={scrollContaninerRef}>
 			{props.children}
 			{/* 滑到底部加载动画 */}
-			<div className="scroll-up" style={PullUpdisplayStyle}><Loading></Loading></div>
+			<div className="scroll-up" style={PullUpdisplayStyle}></div>
 			{/* 顶部下拉刷新动画 */}
-			<div className="scroll-down" style={PullDowndisplayStyle}><Loading2></Loading2></div>
+			<div className="scroll-down" style={PullDowndisplayStyle}></div>
 		</div>
 	);
 })

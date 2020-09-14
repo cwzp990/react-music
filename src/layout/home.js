@@ -11,23 +11,24 @@ import "./index.scss"
 function Home (props) {
 	const { route } = props
 
-	const handleScroll = () => { }
-	const handlePullUp = () => { }
-	const pullUpLoading = false
+	const onPullUp = () => {
+		console.log(111)
+	}
+
+	const onPullDown = () => {
+		console.log(222)
+	}
 
 	return (
 		<div className="music-wrapper">
 			<Header />
-
 			<div className="music-main">
-				<Scroll
-					onScroll={handleScroll}
-					pullUp={handlePullUp}
-					pullUpLoading={pullUpLoading}
-					bounceTop={false}>
-					<Transition>
-						{renderRoutes(route.routes)}
-					</Transition>
+				<Scroll pullUp={onPullUp} pullDown={onPullDown}>
+					<div className="scroll-wrapper">
+						<Transition>
+							{renderRoutes(route.routes)}
+						</Transition>
+					</div>
 				</Scroll>
 			</div>
 			<Footer />

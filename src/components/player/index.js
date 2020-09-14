@@ -5,6 +5,7 @@ import { connect } from "react-redux"
 import { setPlayerState, setShowPlayer, setShowPlayerList, setCurrentMusic, setCurrentIndex, setPlayList } from "../../store/actions"
 import { playMode, formatPlayTime, lyricParser } from "../../utils"
 import ProgressBar from "../../components/progress"
+import Header from "../../components/header"
 import Scroll from "../../components/scroll"
 import Playerlist from './list'
 import { api } from '../../api'
@@ -132,7 +133,7 @@ function Player (props) {
 					return
 				}
 				let lyric = resp.data.lrc.lyric
-	
+
 				let lyrics = lyricParser(lyric)
 				setLyric(lyrics)
 			}
@@ -145,7 +146,9 @@ function Player (props) {
 			if (resp.status === 200) {
 				if (resp.data.code === 200) {
 					audioRef.current.src = resp.data.url
-					audioRef.current.load()
+					setCurrentTime(0)
+					audioRef.current.currentTime = 0
+					audioRef.current.play()
 				}
 			}
 		})
@@ -231,6 +234,7 @@ function Player (props) {
 
 	const fullPlayer = (
 		<div className="player-normal">
+			<Header />
 			{showLyric ? m_lyric : m_cd}
 
 			<div className="player-footer">
